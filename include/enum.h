@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/08/18 12:39:31 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:43:08 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,16 @@ enum	e_keycode
 	majlock_key	=	65509
 };
 
-enum	yes_no
+enum	e_yesno
 {
 	YES	=	0,
 	NO	=	1
+};
+
+enum	e_error
+{
+	NOPLAYER	= 1,
+	NBTEXT		= 2
 };
 
 #endif

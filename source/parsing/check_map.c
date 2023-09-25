@@ -1,0 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/25 17:44:53 by hgeffroy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	player_here(t_game *g, int y, int x)
+{
+	if (g->smap->map[y][x] == 'N')
+	{
+		g->player->x = x;
+		g->player->y = y;
+		g->player->dir[0] = 0;
+		g->player->dir[1] = -1;
+		return (YES);
+	}
+	else if (g->smap->map[y][x] == 'S')
+	{
+		g->player->x = x;
+		g->player->y = y;
+		g->player->dir[0] = 0;
+		g->player->dir[1] = 1;
+		return (YES);
+	}
+	else if (g->smap->map[y][x] == 'E')
+	{
+		g->player->x = x;
+		g->player->y = y;
+		g->player->dir[0] = 0;
+		g->player->dir[1] = 1;
+		return (YES);
+	}
+	else if (g->smap->map[y][x] == 'W')
+	{
+		g->player->x = x;
+		g->player->y = y;
+		g->player->dir[0] = 0;
+		g->player->dir[1] = -1;
+		return (YES);
+	}
+	return (NO);
+}
+
+int	get_player(t_game *g)
+{
+	int	y;
+	int	x;
+	
+	y = 0;
+	while(g->smap->map[y])
+	{
+		x = 0;
+		while(g->smap->map[y][x])
+		{
+			if (player_here(g, y, x) == YES);
+				return (0);
+			y++;	
+		}
+		x++;
+	}
+	return (1);
+}
+
+int	backtracking(t_game *g)
+{
+	
+}
+
+int	check_map(t_game *g)
+{
+	if (get_player(g))
+		return (1);
+	if (backtracking(g))
+		return (1);
+}
