@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 13:18:54 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:27:41 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,16 @@ typedef struct s_colors
 	char	*hexa_roof;
 }	t_colors;
 
+typedef struct s_map
+{
+	char	**map;
+	int		*mapsize;
+}	t_map;
+
 typedef struct s_game
 {
-	char			**map;
+	int				*mapsize;
+	t_map			*smap;
 	t_textures		*textures;
 	t_colors		*colors;
 	t_player		*player;
@@ -50,7 +57,7 @@ t_game	*parsing(char *file);
 int		get_textures(t_game **g, int fd);
 int		is_mapline(char *line);
 int		check_file(char *file);
-char	**get_map(char *file);
+t_map	*get_map(char *file);
 void	print_parsing(t_game *g);
 
 #endif

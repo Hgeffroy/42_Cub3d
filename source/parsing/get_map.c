@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:04:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 13:29:25 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:26:56 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ char	*go_to_map(int fd)
 	return (line);
 }
 
-char	**malloc_map(char *file)
+t_map	*malloc_map(t_map *smap, char *file)
 {
 	int		fd;
 	int		mapsz;
 	char	*line;
-	char	**map;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -45,47 +44,54 @@ char	**malloc_map(char *file)
 		mapsz++;
 		line = get_next_line(fd);
 	}
-	map = (char **)malloc(sizeof(char *) * mapsz + 1);
-	if (!map)
+	smap->map = (char **)malloc(sizeof(char *) * (mapsz + 1));
+	if (!smap->map)
+		return (NULL);
+	smap->mapsize = (int *)malloc(sizeof(char *) * mapsz);
+	if (!smap->mapsize)
 		return (NULL);
 	close (fd);
-	return (map);
+	return (smap);
 }
 
-char	**fill_map(char **map, char *line, int fd)
+t_map	*fill_map(t_map *smap, char *line, int fd)
 {
 	int	i;
 	
 	i = 0;
 	while (is_mapline(line) == YES)
 	{
-		map[i] = line;
+		smap->map[i] = line;
+		smap->mapsize[i] = ft_strlen(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	map[i] = NULL;
+	smap->map[i] = NULL;
 	if (line)
 		free(line);
-	return (map);
+	return (smap);
 }
 
-char	**get_map(char *file)
+t_map	*get_map(char *file)
 {
+	t_map	*smap;
 	int		fd;
 	char	*line;
-	char	**map;
 
-	map = malloc_map(file);
-	if (!map)
+	smap = (t_map *)malloc(sizeof(t_map));
+	if (!smap)
 		return (NULL);
+	smap = malloc_map(smap, file);
+	if (!smap)
+		return(NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
 	line = NULL;
 	line = go_to_map(fd);
-	map = fill_map(map, line, fd);
-	if (!map)
+	smap = fill_map(smap, line, fd);
+	if (!smap)
 		return (NULL);
 	close(fd);	
-	return (map);
+	return (smap);
 }
