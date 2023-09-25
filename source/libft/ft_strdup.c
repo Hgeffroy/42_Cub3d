@@ -6,12 +6,11 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:48:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/05/26 11:11:52 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:03:03 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -19,6 +18,8 @@ char	*ft_strdup(const char *s)
 	size_t		len;
 	int			i;
 
+	if (!s)
+		return (NULL);
 	len = ft_strlen(s);
 	sdup = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sdup)

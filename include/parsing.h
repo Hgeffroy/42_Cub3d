@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/08/18 13:13:37 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:18:54 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ typedef struct s_game
 }	t_game;
 
 t_game	*parsing(char *file);
-void	print_textures(t_game *g);
+int		get_textures(t_game **g, int fd);
+int		is_mapline(char *line);
+int		check_file(char *file);
+char	**get_map(char *file);
+void	print_parsing(t_game *g);
 
 #endif
 

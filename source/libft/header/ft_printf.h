@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 13:24:20 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/08/18 09:11:35 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/19 08:57:48 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/19 08:57:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 
 int		ft_printf(const char *str, ...);
-int		ft_dprintf(int fd, const char *str, ...);
+// int		ft_dprintf(int fd, const char *str, ...);
 int		printf_putchar(int c, int fd);
 int		printf_putstr(const char *str, int fd);
 int		printf_putnbr(int nb, int fd);

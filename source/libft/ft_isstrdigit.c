@@ -6,11 +6,11 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:33:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/06/10 12:28:48 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:37:36 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/libft.h"
+#include "libft.h"
 
 int	ft_isstrdigit(char *str)
 {
@@ -19,7 +19,7 @@ int	ft_isstrdigit(char *str)
 	if (!str)
 		return (-1);
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i + 1])
 			i++;
@@ -30,6 +30,7 @@ int	ft_isstrdigit(char *str)
 	{
 		if (ft_isdigit(str[i]) != 1)
 			return (-1);
+		i++;
 	}
 	return (1);
 }

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 13:47:46 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/08/24 14:06:02 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/08/24 13:26:31 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/19 13:01:30 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	free_tab(char **tab)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	if (!src && !dest)
+	if (!tab)
+		return ;
+	i = -1;
+	while (tab[++i])
 	{
-		dest = NULL;
-		return (dest);
+		if (tab[i])
+			free(tab[i]);
 	}
-	while (i < n)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dest);
+	free(tab);
 }

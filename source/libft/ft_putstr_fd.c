@@ -5,23 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 13:48:18 by hgeffroy          #+#    #+#             */
-/*   Updated: 2022/11/16 13:57:55 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/19 08:55:20 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/19 08:55:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putstr_fd(const char *s, int fd)
 {
-	int	i;
-
 	if (!s)
 		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	write(fd, s, ft_strlen(s));
 }

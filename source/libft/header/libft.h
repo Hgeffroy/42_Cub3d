@@ -6,15 +6,19 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:55:24 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/08/18 12:46:22 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/19 08:57:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <string.h>
+# include <stdlib.h>
 # include <stdint.h>
+# include <stdio.h>
+# include <unistd.h>
 
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -30,9 +34,11 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
+int		ft_isstrdigit(char *str);
 int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_strnequ(const char *s1, const char *s2, size_t n);
@@ -44,6 +50,7 @@ size_t	ft_strlen(const char *str);
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
+char	*ft_strndup(const char *s, int n);
 char	*ft_strnstr(const char *meule_de_foin, const char *aiguille, size_t n);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_itoa(int n);
@@ -73,5 +80,11 @@ void	*ft_calloc(size_t nmemb, size_t size);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+int		len_tab(char **tab);
+void	print_tab(char **tab);
+void	print_tab_int(int *tab, int n);
+void	free_tab(char **tab);
+int		ft_dprintf(int fd, char *str, ...);
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 13:27:27 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/07/17 23:55:56 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/19 08:55:39 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/19 08:55:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,19 @@ int	ft_printf(const char *str, ...)
 	return (res);
 }
 
-int	ft_dprintf(int fd, const char *str, ...)
-{
-	int			res;
-	va_list		args;
-	const char	*modes;
+// int	ft_dprintf(int fd, const char *str, ...)
+// {
+// 	int			res;
+// 	va_list		args;
+// 	const char	*modes;
 
-	if (write(fd, 0, 0) != 0)
-		return (-1);
-	modes = "cdisupxX%";
-	if (!str)
-		return (-1);
-	va_start(args, str);
-	res = ft_printf_main(str, args, modes, fd);
-	va_end(args);
-	return (res);
-}
+// 	if (write(fd, 0, 0) != 0)
+// 		return (-1);
+// 	modes = "cdisupxX%";
+// 	if (!str)
+// 		return (-1);
+// 	va_start(args, str);
+// 	res = ft_printf_main(str, args, modes, fd);
+// 	va_end(args);
+// 	return (res);
+// }

@@ -6,7 +6,7 @@
 #    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/08/18 13:11:05 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/09/25 09:40:07 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CFLAGS          =       -g3 -Wall -Wextra -Werror -I $(LIBFT_DIR)/header -I $(IN
 
 #--debug flags--------------------------------------------------------#
 
-DFLAGS          =       #-g3 -fsanitize=address
+DFLAGS          =       -g3 -fsanitize=address
 
 ifeq ($(DEBUG), yes)
 CFLAGS          +=      $(DFLAGS)
