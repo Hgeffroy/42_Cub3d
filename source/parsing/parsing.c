@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 10:42:00 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:31:15 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	init_game(t_game **g)
 	(*g)->player = (t_player *)malloc(sizeof(t_player));
 	if (!(*g)->player)
 		return (free((*g)->textures), free((*g)->colors), free(*g), -1);
+	(*g)->minimap = (t_img *)malloc(sizeof(t_img));
+	if (!((*g)->minimap))
+		return(/*Tout free*/-1);
+	(*g)->display = (t_img *)malloc(sizeof(t_img));
+	if (!((*g)->minimap))
+		return(/*Tout free*/-1);
 	return (0);
 }
 

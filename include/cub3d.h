@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:59 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 15:50:31 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:12:38 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 
 # include "define.h"
 # include "struct.h"
-# include "parsing.h"
 # include "libft.h"
 # include "enum.h"
+# include "parsing.h"
+# include "minimap.h"
+# include "mlx.h"
 
 #endif

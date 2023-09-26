@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
+#    By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/09/26 10:59:42 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/09/26 17:13:44 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ DEBUG           =       yes
 
 INC_DIR         =       include
 LIBFT_DIR       =       source/libft
-MINILIB_DIR		=		source/minilibx-linux
+MLX_DIR			=		source/minilibx-linux
 
 #--sources & objects-----------------------------------------------------------#
 
@@ -30,8 +30,8 @@ OBJ_DIR         =       .objs
 
 #--flags-----------------------------------------------------------------------#
 
-CFLAGS          =       -g3 -Wall -Wextra -Werror -I $(LIBFT_DIR)/header -I $(INC_DIR)
-LIBFLAGS		=		-I $(MINILIB_DIR) -Lmlx_linux -lmlx_Linux
+CFLAGS          =       -g3 -Wall -Wextra -Werror -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include
+MLXFLAGS		=		-L $(MLX_DIR) -l mlx -l Xext -l X11 -l m -I $(MLX_DIR)
 
 #--debug flags-----------------------------------------------------------------#
 
@@ -61,11 +61,11 @@ all:
 		$(MAKE) $(NAME) -j
 
 $(NAME): $(OBJECTS) $(LIBFT)
-		$(CC) $^ $(CFLAGS) $(LIBFT) -o $@
+		$(CC) $^ $(CFLAGS) $(MLXFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS) 
 		mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) $(MLXFLAGS) -c $< -o $@
 
 #--libs, debugs & bonus--------------------------------------------------------#
 
@@ -84,6 +84,7 @@ re:
 
 clean:
 		$(MAKE) -C $(LIBFT_DIR) clean
+		$(MAKE) -C $(MLX_DIR) clean
 		$(RM) -rf $(OBJECTS)
 
 fclean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 15:54:48 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:50:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,32 @@ void	draw_square(t_img *img, int	x, int y, int color)
 	int	ord;
 
 	abs = 0;
-	ord = 0;
 	while (abs < TILE_SZ)
 	{
+		ord = 0;
 		while (ord < TILE_SZ)
 		{
-			my_mlx_pixel_put(img, x * TILE_SZ + abs, y * TILE_SZ + ord, color);
+			my_mlx_pixel_put(img, (x * TILE_SZ) + abs, (y * TILE_SZ) + ord, color);
 			ord++;
 		}
 		abs++;
 	}
 }
 
+/*Ptr sur fct*/
 void	draw_tile(t_game *g, int x, int y)
 {
-	if ()
+	if (g->smap->map[y][x] - '0' == FTILE)
+		draw_square(g->minimap, x, y, H_WHITE);
+	else if (g->smap->map[y][x] - '0' == WALL)
+		draw_square(g->minimap, x, y, H_GREY);
+	else if (g->smap->map[y][x] == ' ' || g->smap->map[y][x] == '\n')
+		draw_square(g->minimap, x, y, H_BLACK);
+	else
+		draw_square(g->minimap, x, y, H_BLUE);
 }
 
-int	draw_minimap(t_game *g)
+void	draw_minimap(t_game *g)
 {
 	int	i;
 	int	j;
@@ -62,16 +70,18 @@ int	draw_minimap(t_game *g)
 		}
 		i++;
 	}
+	mlx_put_image_to_window(g->mlx, g->win, g->minimap->img, 0, 0);
 }
 
-int	init_minimap(t_game *g)
+void	init_minimap(t_game *g)
 {
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, 1920, 1080, "cub3d");
-	mlx_loop(g->mlx);
 }
 
-int	play(t_game *g)
+void	play(t_game *g)
 {
-	init_minimap(g);
+	init_minimap(g);	
+	draw_minimap(g);
+	mlx_loop(g->mlx);
 }
