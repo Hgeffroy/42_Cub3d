@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:04:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 15:26:56 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 10:23:52 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_map	*malloc_map(t_map *smap, char *file)
 		mapsz++;
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	smap->map = (char **)malloc(sizeof(char *) * (mapsz + 1));
 	if (!smap->map)
 		return (NULL);
@@ -66,9 +68,10 @@ t_map	*fill_map(t_map *smap, char *line, int fd)
 		line = get_next_line(fd);
 		i++;
 	}
-	smap->map[i] = NULL;
 	if (line)
 		free(line);
+	smap->map[i] = NULL;
+	smap->map_cpy = tab_dup(smap->map);
 	return (smap);
 }
 

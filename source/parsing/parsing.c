@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 15:27:45 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 10:42:00 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_game	*parsing(char *file)
 	g->smap = get_map(file);
 	if (!(g->smap))
 		return (NULL);
+	check_map(g);
+	// if (!check_map(g))
+	// 	return (NULL);
 	return (g);
 }
 
@@ -57,4 +60,6 @@ void	print_parsing(t_game *g)
 	printf("Texture Plafond : %s", g->colors->rgb_roof);
 	printf("Texture Sol : %s\n", g->colors->rgb_floor);
 	print_tab(g->smap->map);
+	printf("\n\n");
+	print_tab(g->smap->map_cpy);
 }

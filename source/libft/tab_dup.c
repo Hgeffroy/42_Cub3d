@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_len.c                                          :+:      :+:    :+:   */
+/*   tab_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 10:39:32 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 07:58:45 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/26 07:50:10 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/26 07:58:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	tab_len(char **tab)
+char	**tab_dup(char **tab)
 {
-	int	len;
-
+	char	**res;
+	int		i;
+	
 	if (!tab)
-		return (0);
-	len = 0;
-	while (tab[len])
-		len++;
-	return (len);
+		return (NULL);
+	res = (char **)malloc(sizeof(char *) * (tab_len(tab) + 1));
+	if (!res)
+		return (NULL);
+	i = -1;
+	while (tab[++i])
+	{
+		res[i] = ft_strdup(tab[i]);
+		if (!res[i])
+		{
+			free_tab(res);
+			return (NULL);
+		}
+	}
+	res[i] = NULL;
+	return (res);
 }

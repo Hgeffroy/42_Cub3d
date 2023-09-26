@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:55:24 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/19 08:57:40 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 07:58:57 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-int		len_tab(char **tab);
+int		tab_len(char **tab);
+char	**tab_dup(char **tab);
 void	print_tab(char **tab);
 void	print_tab_int(int *tab, int n);
 void	free_tab(char **tab);

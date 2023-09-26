@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 17:43:08 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/26 10:08:48 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ enum	e_yesno
 {
 	YES	=	0,
 	NO	=	1
+};
+
+enum	e_map
+{
+	FTILE	= 0,
+	WALL	= 1,
+	OPEN	= 2
 };
 
 enum	e_error
