@@ -6,7 +6,7 @@
 #    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/09/25 09:40:07 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/09/26 10:59:42 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ DEBUG           =       yes
 
 INC_DIR         =       include
 LIBFT_DIR       =       source/libft
+MINILIB_DIR		=		source/minilibx-linux
 
 #--sources & objects-----------------------------------------------------------#
 
@@ -30,8 +31,9 @@ OBJ_DIR         =       .objs
 #--flags-----------------------------------------------------------------------#
 
 CFLAGS          =       -g3 -Wall -Wextra -Werror -I $(LIBFT_DIR)/header -I $(INC_DIR)
+LIBFLAGS		=		-I $(MINILIB_DIR) -Lmlx_linux -lmlx_Linux
 
-#--debug flags--------------------------------------------------------#
+#--debug flags-----------------------------------------------------------------#
 
 DFLAGS          =       -g3 -fsanitize=address
 
@@ -54,6 +56,7 @@ OBJECTS =       $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 #--compilation rules-----------------------------------------------------------#
 
 all:
+		$(MAKE) -C ./source/minilibx-linux
 		$(MAKE) -C ./source/libft
 		$(MAKE) $(NAME) -j
 

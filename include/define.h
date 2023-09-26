@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 12:17:17 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 11:18:09 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/26 13:59:10 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/26 15:50:00 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef DEFINE_H
+# define DEFINE_H
 
-int	main(int ac, char **av)
-{
-	t_game	*g;
-	
-	if (ac != 2)
-		return (ft_dprintf(2, "This program should be ran with one argument.\n"));
-	g = parsing(av[1]);
-	print_parsing(g);
-	play(g);
-	return (0);
-}
+# include "cub3d.h"
+
+# define H_WHITE			0xffffff
+# define H_BLACK			0x000000
+# define H_RED				0xff0000
+# define H_GREEN			0x00ff00
+# define H_DARKGREEN		0x01452c
+# define H_BLUE				0x0000ff
+# define H_YELLOW			0xffff00
+# define H_ORANGE			0xffa500
+# define H_PINK				0xffc0cb
+# define H_PURPLE			0x800080
+# define H_GREY				0x808080
+
+# define TILE_SZ			32
+
+#endif
