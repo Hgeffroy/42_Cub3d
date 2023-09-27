@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 08:19:09 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 10:47:53 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:28:26 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	check_up(t_map *smap, int x, int y)
 
 int	check_down(t_map *smap, int x, int y)
 {
-	if (y >= tab_len(smap->map_cpy))
+	if (y >= tab_len(smap->map_cpy) - 1)
 		return (OPEN);
-	if (x >= smap->mapsize[y + 1] - 1)
+	if (x >= smap->mapsize[y + 1])
 		return (OPEN);
 	if (smap->map_cpy[y + 1][x] == '1')
 		return (WALL);

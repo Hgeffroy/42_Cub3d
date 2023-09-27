@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:59 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 11:05:08 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 14:10:52 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "struct.h"
 # include "enum.h"
 # include "parsing.h"
-# include "minimap.h"
+# include "display.h"
 # include "play.h"
 
 #endif

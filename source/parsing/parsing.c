@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 12:41:00 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:01:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ t_game	*parsing(char *file)
 	g->smap = get_map(file);
 	if (!(g->smap))
 		return (NULL);
-	check_map(g);
+	if (check_map(g))
+		return (NULL);
 	return (g);
 }
 

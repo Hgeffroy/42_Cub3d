@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 11:18:42 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:28:01 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ int	backtracking(t_game *g, int y, int x)
 	g->smap->map_cpy[y][x] = '1';
 	if (check_around(g, x, y) == OPEN)
 		return (OPEN);
-	if (check_up(g->smap, x, y) == 0)
-		backtracking(g, y - 1, x);
-	if (check_down(g->smap, x, y) == 0)
-		backtracking(g, y + 1, x);
-	if (check_right(g->smap, x, y) == 0)
-		backtracking(g, y, x + 1);
-	if (check_left(g->smap, x, y) == 0)
-		backtracking(g, y, x - 1);
+	if (check_up(g->smap, x, y) == 0 && backtracking(g, y - 1, x) == OPEN)
+		return (OPEN);
+	if (check_down(g->smap, x, y) == 0 && backtracking(g, y + 1, x) == OPEN)
+		return (OPEN);
+	if (check_right(g->smap, x, y) == 0 && backtracking(g, y, x + 1) == OPEN)
+		return (OPEN);
+	if (check_left(g->smap, x, y) == 0 && backtracking(g, y, x - 1) == OPEN)
+		return (OPEN);
 	return (0);
 }
 
@@ -88,7 +88,12 @@ int	check_map(t_game *g)
 {
 	if (get_player(g))
 		return (1);
-	if (backtracking(g, g->player->y, g->player->x))
+	printf("\nnb lignes: %d\n", tab_len(g->smap->map_cpy));
+	if (backtracking(g, g->player->y, g->player->x) == OPEN)
+	{
+		print_tab(g->smap->map_cpy);
+		ft_printf("Map open");
 		return (1);
+	}
 	return (0);
 }
