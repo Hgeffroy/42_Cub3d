@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.h                                          :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 17:21:25 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/27 17:37:51 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "cub3d.h"
 
-# include "cub3d.h"
-
-void	init_minimap(t_game *g);
-void	draw_minimap(t_game *g);
-int		ray(t_game *g, float angle);
-
-#endif
+	
+int		raycasting(t_game *g)
+{
+	int	len;
+	int	height;
+	
+	//Mettre ca dan une boucle
+	len = ray(g, g->player->angle);
+	height = SCREEN_DIST * WALL_HEIGHT / len;
+}

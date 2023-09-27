@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 16:33:36 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:21:04 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,28 +88,29 @@ void	draw_player(t_game *g)
 // 	}
 // }
 
-void	draw_line(t_game *g, float angle)
+int	ray(t_game *g, float angle)
 {
 	float	x;
 	float	y;
 	int		ix;
 	int		iy;
-	int		count;
+	int		len;
 
-	count = 0;
+	len = 0;
 	x = g->player->fx;
 	y = g->player->fy;
 	ix = (int)(x / TILE_SZ);
 	iy = (int)(y / TILE_SZ);
-	while(g->smap->map[iy][ix] == '0' && count < 200)
+	while(g->smap->map[iy][ix] == '0')
 	{
 		my_mlx_pixel_put(g->minimap, x, y, H_ORANGE);
 		x = x + cos(angle);
 		y = y + sin(angle);
 		ix = (int)(x / TILE_SZ);
 		iy = (int)(y / TILE_SZ);
-		count++;
+		len++;
 	}
+	return (len);
 }
 
 void	draw_fov(t_game *g)
@@ -120,7 +121,7 @@ void	draw_fov(t_game *g)
 	while (angle < g->player->angle + M_PI / 6)
 	{
 		angle += 0.003;
-		draw_line(g, angle);
+		ray(g, angle);
 	}
 }
 void	init_minimap(t_game *g)

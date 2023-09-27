@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 16:28:01 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:58:57 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	check_map(t_game *g)
 {
 	if (get_player(g))
 		return (1);
-	printf("\nnb lignes: %d\n", tab_len(g->smap->map_cpy));
 	if (backtracking(g, g->player->y, g->player->x) == OPEN)
 	{
 		print_tab(g->smap->map_cpy);
