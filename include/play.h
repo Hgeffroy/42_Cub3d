@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   play.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 08:07:59 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 11:05:08 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/09/27 10:01:00 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/09/27 11:13:57 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PLAY_H
+# define PLAY_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <math.h>
-# include <stdbool.h>
-
-// A del
-# include <stdio.h>
-
-# include "mlx.h"
-# include "libft.h"
-# include "define.h"
-# include "struct.h"
-# include "enum.h"
-# include "parsing.h"
-# include "minimap.h"
-# include "play.h"
+int		press_key(int keycode, t_game *g);
+int		release_key(int keycode, t_game *g);
+void	move_forward(t_game *g);
+void	move_backward(t_game *g);
+void	move_left(t_game *g);
+void	move_right(t_game *g);
+void	rotate_left(t_game *g);
+void	rotate_right(t_game *g);
+void	play(t_game *g);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 16:32:52 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:12:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "cub3d.h"
 
-void	play(t_game *g);
+void	init_minimap(t_game *g);
+void	draw_minimap(t_game *g);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 09:15:19 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 11:09:14 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	double	fx;
-	double	fy;
+	float	fx;
+	float	fy;
 	float	angle; // Coordonnees du vecteur
 }	t_player;
 
@@ -56,6 +56,18 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
+
+typedef struct	s_movement
+{
+	bool	move_up;
+	bool	move_down;
+	bool	move_right;
+	bool	move_left;
+	bool	rotate_right;
+	bool	rotate_left;
+}	t_movement;
+
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -66,6 +78,7 @@ typedef struct s_game
 	t_textures		*textures;
 	t_colors		*colors;
 	t_player		*player;
+	t_movement		*movement;
 }	t_game;
 
 #endif
