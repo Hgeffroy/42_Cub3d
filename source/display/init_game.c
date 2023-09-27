@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 18:48:33 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 09:20:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,57 @@ void	draw_tile(t_game *g, int x, int y)
 	else if (g->smap->map[y][x] == ' ' || g->smap->map[y][x] == '\n')
 		draw_square(g->minimap, x, y, H_BLACK);
 	else
-		draw_square(g->minimap, x, y, H_BLUE);
+		draw_square(g->minimap, x, y, H_WHITE);
 }
 
-void	draw_line(t_game *g, int *vector)
+void	draw_player(t_game *g)
 {
-	int	x;
-	int	y;
-	int	count;
+	double	x;
+	double	y;
 
-	(void)vector;
+	x = g->player->fx - PLAYER_SZ;
+	y = g->player->fy - PLAYER_SZ;
+	while (x < g->player->fx + PLAYER_SZ)
+	{
+		y = g->player->fy - PLAYER_SZ;
+		while (y < g->player->fx + PLAYER_SZ)
+		{
+			if ((pow(x - g->player->fx, 2)) + (pow(y - g->player->fy, 2)) < pow(PLAYER_SZ, 2))
+				my_mlx_pixel_put(g->minimap, x, y, H_BLUE);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	draw_line(t_game *g, float angle)
+{
+	float	x;
+	float	y;
+	int		count;
 
 	count = 0;
-	x = g->player->x * TILE_SZ; // Partir de la pos en float du joueur
-	y = g->player->y * TILE_SZ; // Partir de la pos en float du joueur
+	x = (float)g->player->fx;
+	y = (float)g->player->fy;
 	while(count < 100)
 	{
 		my_mlx_pixel_put(g->minimap, x, y, H_ORANGE);
-		x = x + vector[0];
-		y = y + vector[1];
+		x = x + cos(angle);
+		y = y + sin(angle);
 		count++;
 	}
 }
 
 void	draw_fov(t_game *g)
 {
-	draw_line(g, g->player->dir);
+	float	angle;
+
+	angle = g->player->angle - M_PI / 6;
+	while (angle < g->player->angle + M_PI / 6)
+	{
+		angle += 0.001;
+		draw_line(g, angle);
+	}
 }
 
 void	draw_minimap(t_game *g)
@@ -95,6 +120,7 @@ void	draw_minimap(t_game *g)
 		}
 		i++;
 	}
+	draw_player(g);
 }
 
 void	init_minimap(t_game *g)
@@ -117,8 +143,16 @@ int	mlx_play(int keycode, t_game *g)
 	return (0);
 }
 
+int	init_game(t_game *g)
+{
+	g->player->fx = g->player->x * TILE_SZ + 0.5 * TILE_SZ;
+	g->player->fy = g->player->y * TILE_SZ + 0.5 * TILE_SZ;
+	return (0);
+}
+
 void	play(t_game *g)
 {
+	init_game(g);
 	init_minimap(g);	
 	draw_minimap(g);
 	draw_fov(g);

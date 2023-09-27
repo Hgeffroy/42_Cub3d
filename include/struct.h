@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 13:51:29 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 09:15:19 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	dir[2]; // Coordonnees du vecteur
+	int		x;
+	int		y;
+	double	fx;
+	double	fy;
+	float	angle; // Coordonnees du vecteur
 }	t_player;
 
 typedef struct s_textures

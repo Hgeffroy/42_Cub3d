@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 17:31:15 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 08:15:15 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_game(t_game **g)
+int	init_tgame(t_game **g)
 {
 	*g = (t_game *)malloc(sizeof(t_game));
 	if (!(*g))
@@ -40,7 +40,7 @@ t_game	*parsing(char *file)
 	t_game	*g;
 	int		fd;
 
-	if (init_game(&g) < 0)
+	if (init_tgame(&g) < 0)
 		return (NULL);
 	fd = check_file(file);
 	if (fd < 0)

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 10:48:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/27 09:17:10 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,28 @@ int	player_here(t_game *g, int y, int x)
 	{
 		g->player->x = x;
 		g->player->y = y;
-		g->player->dir[0] = 0;
-		g->player->dir[1] = -1;
+		g->player->angle = - M_PI_2;
 		return (YES);
 	}
 	else if (g->smap->map[y][x] == 'S')
 	{
 		g->player->x = x;
 		g->player->y = y;
-		g->player->dir[0] = 0;
-		g->player->dir[1] = 1;
+		g->player->angle = M_PI_2;
 		return (YES);
 	}
 	else if (g->smap->map[y][x] == 'E')
 	{
 		g->player->x = x;
 		g->player->y = y;
-		g->player->dir[0] = 0;
-		g->player->dir[1] = 1;
+		g->player->angle = 0;
 		return (YES);
 	}
 	else if (g->smap->map[y][x] == 'W')
 	{
 		g->player->x = x;
 		g->player->y = y;
-		g->player->dir[0] = 0;
-		g->player->dir[1] = -1;
+		g->player->angle = M_PI;
 		return (YES);
 	}
 	return (NO);
