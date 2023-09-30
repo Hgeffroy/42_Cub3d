@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/30 12:10:15 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/30 13:02:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,91 +42,78 @@ void	draw_floor_ceiling(t_game *g)
 
 float	raycasting(t_game *g, float angle)
 {
-	float	ray_len[2];
-	float	ray_start[2];
-	float	ray_dir[2];
-	float	step_size[2];
-	float	len;
-	bool	tile_found;
-	int		map_check[2];
-	int		step[2];
+	t_ray	*ray;
 
+	float	len;
 	float	test1;
 	float	test2;
 
-	ft_bzero(ray_len, 2);
-	ft_bzero(step, 2);
-	map_check[0] = g->player->fx / TILE_SZ;
-	map_check[1] = g->player->fy / TILE_SZ;
-	ray_start[0] = g->player->fx - floor(g->player->fx) + (g->player->fx / TILE_SZ);
-	ray_start[1] = g->player->fy - floor(g->player->fy) + (g->player->fy / TILE_SZ);
-	ray_dir[0] = cosf(angle);
-	ray_dir[1] = sinf(angle);
-	step_size[0] = sqrt(1 + (ray_dir[1] / ray_dir[0]) * (ray_dir[1] / ray_dir[0]));
-	step_size[1] = sqrt(1 + (ray_dir[0] / ray_dir[1]) * (ray_dir[0] / ray_dir[1]));
+	ray = (t_ray *)malloc(sizeof(t_ray));
+	ft_bzero(ray->ray_len, 2);
+	ft_bzero(ray->step, 2);
+	ray->map_check[0] = g->player->fx / TILE_SZ;
+	ray->map_check[1] = g->player->fy / TILE_SZ;
+	ray->ray_start[0] = g->player->fx - floor(g->player->fx) + (g->player->fx / TILE_SZ);
+	ray->ray_start[1] = g->player->fy - floor(g->player->fy) + (g->player->fy / TILE_SZ);
+	ray->ray_dir[0] = cosf(angle);
+	ray->ray_dir[1] = sinf(angle);
+	ray->step_size[0] = sqrt(1 + (ray->ray_dir[1] / ray->ray_dir[0]) * (ray->ray_dir[1] / ray->ray_dir[0]));
+	ray->step_size[1] = sqrt(1 + (ray->ray_dir[0] / ray->ray_dir[1]) * (ray->ray_dir[0] / ray->ray_dir[1]));
 
 
-	if (ray_dir[0] < 0)
+	if (ray->ray_dir[0] < 0)
 	{
-		step[0] = -1;
-		ray_len[0] = (ray_start[0] - (float)(map_check[0])) * step_size[0];
+		ray->step[0] = -1;
+		ray->ray_len[0] = (ray->ray_start[0] - (float)(ray->map_check[0])) * ray->step_size[0];
 	}
 	else
 	{
-		step[0] = 1;
-		ray_len[0] = ((float)(map_check[0] + 1) - ray_start[0]) * step_size[0];
+		ray->step[0] = 1;
+		ray->ray_len[0] = ((float)(ray->map_check[0] + 1) - ray->ray_start[0]) * ray->step_size[0];
 	}
-	if (ray_dir[1] < 0)
+	if (ray->ray_dir[1] < 0)
 	{
-		step[1] = -1;
-		ray_len[1] = (ray_start[1] - (float)(map_check[1])) * step_size[1];
+		ray->step[1] = -1;
+		ray->ray_len[1] = (ray->ray_start[1] - (float)(ray->map_check[1])) * ray->step_size[1];
 	}
 	else
 	{
-		step[1] = 1;
-		ray_len[1] = ((float)(map_check[1] + 1) - ray_start[1]) * step_size[1];
+		ray->step[1] = 1;
+		ray->ray_len[1] = ((float)(ray->map_check[1] + 1) - ray->ray_start[1]) * ray->step_size[1];
 	}
 
-	// printf("Putain d'angle de merde : %f et %f\n", ray_dir[0], ray_dir[1]);
-
-	tile_found = false;
+	ray->tile_found = false;
 	len = 0.0;
 
-	printf("ptdrlol1 %f\n", step_size[0]);
-	printf("ptdrlol2 %f\n", step_size[1]);
-	
-	test1 = step_size[0] * (float)cosf(angle); //* (float)step[1];
-	test2 = step_size[1] * (float)sinf(angle); //* (float)step[0];
-	
-	printf("avant boucle test1: %f\n", test1);
-	printf("avant boucle test2: %f\n", test2);
+	printf("ray len premiere case en x: %f\n", ray->ray_len[0]);
+	printf("ray len premiere case en y: %f\n", ray->ray_len[1]);
 
-	while (!tile_found) // Mettre un max ?
+	while (!ray->tile_found) // Mettre un max ?
 	{
-		printf("len: %f\n", len);
-		printf("test1: %f\n", test1);
-		printf("test2: %f\n", test2);
-		if (ray_len[0] < ray_len[1])
+		if (ray->ray_len[0] < ray->ray_len[1])
 		{
-			map_check[0] += step[0];
-			ray_len[0] += step_size[0];
-			len += test2;
+			ray->map_check[0] += ray->step[0];
+			ray->ray_len[0] += ray->step_size[0];
 		}
 		else
 		{
-			map_check[1] += step[1];
-			ray_len[1] += step_size[1];
-			len += test1;
+			ray->map_check[1] += ray->step[1];
+			ray->ray_len[1] += ray->step_size[1];
 		}
-		if (g->smap->map[map_check[1]][map_check[0]] != '0')
-			tile_found = true;
+		if (g->smap->map[ray->map_check[1]][ray->map_check[0]] != '0')
+			ray->tile_found = true;
 	}
 	puts("lala");
 
+	if (ray->ray_len[0] < ray->ray_len[1])
+		len = ray->ray_len[0];
+	else
+		len = ray->ray_len[1];
+
 	// printf("point de collision: %d, %d\n", map_check[0], map_check[1]);
 	// printf("lenx = %f, leny = %f\n", ray_len[0], ray_len[1]);
-
-	// printf("len = %f\n", len);
+	printf("len = %f\n", len);
+	
 	return (fabs(len) * (float)TILE_SZ);
 }
 

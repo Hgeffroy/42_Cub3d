@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/28 09:28:31 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/30 12:53:01 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ typedef struct	s_movement
 	bool	rotate_right;
 	bool	rotate_left;
 }	t_movement;
+
+typedef struct s_ray
+{
+	float	ray_len[2];
+	float	ray_start[2];
+	float	ray_dir[2];
+	float	step_size[2];
+	bool	tile_found;
+	int		map_check[2];
+	int		step[2];
+}	t_ray;
 
 
 typedef struct s_game
