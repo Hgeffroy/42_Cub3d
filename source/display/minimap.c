@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 17:21:04 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:18:53 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,31 +70,13 @@ void	draw_player(t_game *g)
 	}
 }
 
-// void	draw_player(t_game *g)
-// {
-// 	float	x;
-// 	float	y;
-
-// 	x = g->player->fx - PLAYER_SZ;
-// 	while (x < g->player->fx + PLAYER_SZ)
-// 	{
-// 		y = g->player->fy - PLAYER_SZ;
-// 		while (y < g->player->fy + PLAYER_SZ)
-// 		{
-// 			my_mlx_pixel_put(g->minimap, x, y, H_BLUE);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
-
-int	ray(t_game *g, float angle)
+float	minimap_ray(t_game *g, float angle)
 {
 	float	x;
 	float	y;
 	int		ix;
 	int		iy;
-	int		len;
+	float	len;
 
 	len = 0;
 	x = g->player->fx;
@@ -104,11 +86,11 @@ int	ray(t_game *g, float angle)
 	while(g->smap->map[iy][ix] == '0')
 	{
 		my_mlx_pixel_put(g->minimap, x, y, H_ORANGE);
-		x = x + cos(angle);
-		y = y + sin(angle);
+		x = x + (cos(angle) / 10);
+		y = y + (sin(angle) / 10);
 		ix = (int)(x / TILE_SZ);
 		iy = (int)(y / TILE_SZ);
-		len++;
+		len += 0.1;
 	}
 	return (len);
 }
@@ -118,11 +100,12 @@ void	draw_fov(t_game *g)
 	float	angle;
 
 	angle = g->player->angle - M_PI / 6;
-	while (angle < g->player->angle + M_PI / 6)
-	{
-		angle += 0.003;
-		ray(g, angle);
-	}
+	// while (angle < g->player->angle + M_PI / 6)
+	// {
+	// 	angle += 0.003;
+	// 	minimap_ray(g, angle);
+	// }
+	minimap_ray(g, g->player->angle);
 }
 void	init_minimap(t_game *g)
 {
@@ -149,7 +132,7 @@ void	draw_minimap(t_game *g)
 		}
 		i++;
 	}
-	draw_fov(g);
+	draw_fov(g); // Voir pour opti, sinon faire 2 fonctions dont une qui ne dessine pas ?
 	draw_player(g);
 }
 

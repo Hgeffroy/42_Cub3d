@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 11:09:14 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/28 09:28:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_player
 	int		y;
 	float	fx;
 	float	fy;
-	float	angle; // Coordonnees du vecteur
+	float	angle;
 }	t_player;
 
 typedef struct s_textures
@@ -73,7 +73,6 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	t_img			*minimap;
-	t_img			*display;
 	t_map			*smap;
 	t_textures		*textures;
 	t_colors		*colors;

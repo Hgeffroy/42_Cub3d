@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 14:12:34 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/09/28 08:02:22 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ int	init_game(t_game *g)
 	return (0);
 }
 
-int	next_frame(t_game *g)
-{
-	draw_minimap(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->minimap->img, 0, 0);
-	return (0);
-}
-
 int	mlx_play(t_game *g)
 {
 	if (g->movement->rotate_left)
@@ -46,8 +39,10 @@ int	mlx_play(t_game *g)
 		move_left(g);
 	if (g->movement->move_right)
 		move_right(g);
+	draw_display(g);
 	draw_minimap(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->minimap->img, 0, 0);
+
 	return (0);
 }
 
@@ -55,7 +50,6 @@ void	play(t_game *g)
 {
 	init_game(g);
 	init_minimap(g);
-	draw_minimap(g);
 	mlx_hook(g->win, 17, 1L << 17, &mlx_close, g);
 	mlx_hook(g->win, 2, 1L << 0, &press_key, g);
 	mlx_hook(g->win, 3, 1L << 1, &release_key, g);
