@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:59:10 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/28 08:05:12 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 09:27:05 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define H_PURPLE			0x800080
 # define H_GREY				0x808080
 
-# define TILE_SZ			32
-# define PLAYER_SZ			8
+# define TILE_SZ			16
+# define PLAYER_SZ			4
 # define SCREEN_DIST		10
-# define WALL_HEIGHT		800
+# define WALL_HEIGHT		100
 
 #endif

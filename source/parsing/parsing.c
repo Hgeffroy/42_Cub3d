@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/28 08:05:51 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:39:59 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ int	init_tgame(t_game **g)
 	(*g)->player = (t_player *)malloc(sizeof(t_player));
 	if (!(*g)->player)
 		return (free((*g)->textures), free((*g)->colors), free(*g), -1);
-	(*g)->minimap = (t_img *)malloc(sizeof(t_img));
-	if (!((*g)->minimap))
+	(*g)->display = (t_img *)malloc(sizeof(t_img));
+	if (!((*g)->display))
 		return(/*Tout free*/-1);
 	(*g)->movement = (t_movement *)malloc(sizeof(t_movement));
 	if (!((*g)->movement))
 		return(/*Tout free*/-1);	
 	init_movement(*g);
+	(*g)->ray = (t_ray *)malloc(sizeof(t_ray));
+	if (!(*g)->ray)
+		return (/*Tout free*/-1);
 	return (0);
 }
 

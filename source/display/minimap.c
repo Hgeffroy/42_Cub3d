@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/30 11:18:53 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 10:07:34 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ void	draw_square(t_img *img, int	x, int y, int color)
 void	draw_tile(t_game *g, int x, int y)
 {
 	if (g->smap->map[y][x] - '0' == FTILE)
-		draw_square(g->minimap, x, y, H_WHITE);
+		draw_square(g->display, x, y, H_WHITE);
 	else if (g->smap->map[y][x] - '0' == WALL)
-		draw_square(g->minimap, x, y, H_GREY);
+		draw_square(g->display, x, y, H_GREY);
 	else if (g->smap->map[y][x] == ' ' || g->smap->map[y][x] == '\n')
-		draw_square(g->minimap, x, y, H_BLACK);
+	{
+		if (y < 1080 / 2)
+			draw_square(g->display, x, y, g->colors->hexa_roof);
+		else
+			draw_square(g->display, x, y, g->colors->hexa_floor);
+	}
 	else
-		draw_square(g->minimap, x, y, H_WHITE);
+		draw_square(g->display, x, y, H_WHITE);
 }
 
 void	draw_player(t_game *g)
@@ -56,14 +61,14 @@ void	draw_player(t_game *g)
 	float	x;
 	float	y;
 
-	x = g->player->fx - PLAYER_SZ;
-	while (x < g->player->fx + PLAYER_SZ)
+	x = g->player->fx * TILE_SZ - PLAYER_SZ;
+	while (x < g->player->fx * TILE_SZ + PLAYER_SZ)
 	{
 		y = g->player->fy - PLAYER_SZ;
-		while (y < g->player->fy + PLAYER_SZ)
+		while (y < g->player->fy * TILE_SZ + PLAYER_SZ)
 		{
-			if ((pow(x - g->player->fx, 2)) + (pow(y - g->player->fy, 2)) < pow(PLAYER_SZ, 2))
-				my_mlx_pixel_put(g->minimap, x, y, H_BLUE);
+			if ((pow(x - g->player->fx * TILE_SZ, 2)) + (pow(y - g->player->fy * TILE_SZ, 2)) < pow(PLAYER_SZ, 2))
+				my_mlx_pixel_put(g->display, x, y, H_BLUE);
 			y++;
 		}
 		x++;
@@ -76,23 +81,20 @@ float	minimap_ray(t_game *g, float angle)
 	float	y;
 	int		ix;
 	int		iy;
-	float	len;
 
-	len = 0;
-	x = g->player->fx;
-	y = g->player->fy;
-	ix = (int)(x / TILE_SZ);
-	iy = (int)(y / TILE_SZ);
+	x = g->player->fx * TILE_SZ;
+	y = g->player->fy * TILE_SZ;
+	ix = (int)g->player->fx;
+	iy = (int)g->player->fy;
 	while(g->smap->map[iy][ix] == '0')
 	{
-		my_mlx_pixel_put(g->minimap, x, y, H_ORANGE);
-		x = x + (cos(angle) / 10);
-		y = y + (sin(angle) / 10);
+		my_mlx_pixel_put(g->display, x, y, H_ORANGE);
+		x = x + cos(angle);
+		y = y + sin(angle);
 		ix = (int)(x / TILE_SZ);
 		iy = (int)(y / TILE_SZ);
-		len += 0.1;
 	}
-	return (len);
+	return (0);
 }
 
 void	draw_fov(t_game *g)
@@ -100,20 +102,20 @@ void	draw_fov(t_game *g)
 	float	angle;
 
 	angle = g->player->angle - M_PI / 6;
-	// while (angle < g->player->angle + M_PI / 6)
-	// {
-	// 	angle += 0.003;
-	// 	minimap_ray(g, angle);
-	// }
-	minimap_ray(g, g->player->angle);
+	while (angle < g->player->angle + M_PI / 6)
+	{
+		angle += 0.003;
+		minimap_ray(g, angle);
+	}
+	// minimap_ray(g, g->player->angle);
 }
 void	init_minimap(t_game *g)
 {
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, 1920, 1080, "cub3d");
-	g->minimap->img = mlx_new_image(g->mlx, 1920, 1080);
-	g->minimap->addr = mlx_get_data_addr(g->minimap->img, &g->minimap->bits_per_pixel, &g->minimap->line_len, \
-								&g->minimap->endian);
+	g->display->img = mlx_new_image(g->mlx, 1920, 1080);
+	g->display->addr = mlx_get_data_addr(g->display->img, &g->display->bits_per_pixel, &g->display->line_len, \
+								&g->display->endian);
 }
 
 void	draw_minimap(t_game *g)

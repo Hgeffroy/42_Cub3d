@@ -6,7 +6,7 @@
 #    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 12:38:03 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/09/28 07:47:25 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/10/01 10:54:00 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SOURCES = 	source/parsing/parsing.c \
 			source/parsing/parsing_utils.c \
 			source/display/minimap.c \
 			source/display/raycasting.c \
+			source/display/texturing.c \
 			source/play/movements.c \
 			source/play/hook.c \
 			source/play/play.c \

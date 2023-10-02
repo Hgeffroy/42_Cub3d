@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:03:02 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 13:54:36 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 09:28:34 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	rotate_left(t_game *g)
 {
-	g->player->angle -= M_PI / 180;
+	g->player->angle -= M_PI / 90;
 }
 
 void	rotate_right(t_game *g)
 {
-	g->player->angle += M_PI / 180;
+	g->player->angle += M_PI / 90;
 }
 
 void	move_forward(t_game *g)
@@ -27,12 +27,12 @@ void	move_forward(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle);
-	nexty = g->player->fy + sin (g->player->angle);
-	if (g->smap->map[(int)(g->player->fy / TILE_SZ)][(int)(nextx / TILE_SZ)] == '0')
-		g->player->fx += cos(g->player->angle);
-	if (g->smap->map[(int)(nexty / TILE_SZ)][(int)(g->player->fx / TILE_SZ)] == '0')
-		g->player->fy += sin(g->player->angle);
+	nextx = g->player->fx + cos (g->player->angle) * 0.03;
+	nexty = g->player->fy + sin (g->player->angle) * 0.03;
+	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
+		g->player->fx += cos(g->player->angle) * 0.03;
+	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
+		g->player->fy += sin(g->player->angle) * 0.03;
 }
 
 void	move_backward(t_game *g)
@@ -40,12 +40,12 @@ void	move_backward(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle + M_PI);
-	nexty = g->player->fy + sin (g->player->angle + M_PI);
-	if (g->smap->map[(int)(g->player->fy / TILE_SZ)][(int)(nextx / TILE_SZ)] == '0')
-		g->player->fx += cos(g->player->angle + M_PI);
-	if (g->smap->map[(int)(nexty / TILE_SZ)][(int)(g->player->fx / TILE_SZ)] == '0')
-		g->player->fy += sin(g->player->angle + M_PI);
+	nextx = g->player->fx + cos (g->player->angle + M_PI) * 0.03;
+	nexty = g->player->fy + sin (g->player->angle + M_PI) * 0.03;
+	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
+		g->player->fx += cos(g->player->angle + M_PI) * 0.03;
+	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
+		g->player->fy += sin(g->player->angle + M_PI) * 0.03;
 }
 
 void	move_left(t_game *g)
@@ -53,12 +53,12 @@ void	move_left(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle - M_PI_2);
-	nexty = g->player->fy + sin (g->player->angle - M_PI_2);
-	if (g->smap->map[(int)(g->player->fy / TILE_SZ)][(int)(nextx / TILE_SZ)] == '0')
-		g->player->fx += cos(g->player->angle - M_PI_2);
-	if (g->smap->map[(int)(nexty / TILE_SZ)][(int)(g->player->fx / TILE_SZ)] == '0')
-		g->player->fy += sin(g->player->angle - M_PI_2);
+	nextx = g->player->fx + cos (g->player->angle - M_PI_2) * 0.03;
+	nexty = g->player->fy + sin (g->player->angle - M_PI_2) * 0.03;
+	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
+		g->player->fx += cos(g->player->angle - M_PI_2) * 0.03;
+	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
+		g->player->fy += sin(g->player->angle - M_PI_2) * 0.03;
 }
 
 void	move_right(t_game *g)
@@ -66,10 +66,10 @@ void	move_right(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle + M_PI_2);
-	nexty = g->player->fy + sin (g->player->angle + M_PI_2);
-	if (g->smap->map[(int)(g->player->fy / TILE_SZ)][(int)(nextx / TILE_SZ)] == '0')
-		g->player->fx += cos(g->player->angle + M_PI_2);
-	if (g->smap->map[(int)(nexty / TILE_SZ)][(int)(g->player->fx / TILE_SZ)] == '0')
-		g->player->fy += sin(g->player->angle + M_PI_2);
+	nextx = g->player->fx + cos (g->player->angle + M_PI_2) * 0.03;
+	nexty = g->player->fy + sin (g->player->angle + M_PI_2) * 0.03;
+	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
+		g->player->fx += cos(g->player->angle + M_PI_2) * 0.03;
+	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
+		g->player->fy += sin(g->player->angle + M_PI_2) * 0.03;
 }

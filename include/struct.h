@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/30 12:53:01 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 10:38:57 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_colors
 {
 	char	*rgb_floor;
 	char	*rgb_roof;
-	char	*hexa_floor;
-	char	*hexa_roof;
+	int		hexa_floor;
+	int		hexa_roof;
 }	t_colors;
 
 typedef struct s_map
@@ -56,6 +56,15 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_walltext
+{
+	void	*img;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}	t_walltext;
 
 typedef struct	s_movement
 {
@@ -83,7 +92,12 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
-	t_img			*minimap;
+	t_ray			*ray;
+	t_img			*display;
+	t_walltext		*north_wall;
+	t_walltext		*south_wall;
+	t_walltext		*east_wall;
+	t_walltext		*west_wall;
 	t_map			*smap;
 	t_textures		*textures;
 	t_colors		*colors;

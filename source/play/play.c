@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/28 08:02:22 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:39:33 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	mlx_close(t_game *g)
 
 int	init_game(t_game *g)
 {
-	g->player->fx = g->player->x * TILE_SZ + 0.5 * TILE_SZ;
-	g->player->fy = g->player->y * TILE_SZ + 0.5 * TILE_SZ;
+	g->player->fx = g->player->x + 0.5;
+	g->player->fy = g->player->y + 0.5;
 	return (0);
 }
 
@@ -41,7 +41,7 @@ int	mlx_play(t_game *g)
 		move_right(g);
 	draw_display(g);
 	draw_minimap(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->minimap->img, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->display->img, 0, 0);
 
 	return (0);
 }
@@ -50,6 +50,7 @@ void	play(t_game *g)
 {
 	init_game(g);
 	init_minimap(g);
+	init_walls(g);
 	mlx_hook(g->win, 17, 1L << 17, &mlx_close, g);
 	mlx_hook(g->win, 2, 1L << 0, &press_key, g);
 	mlx_hook(g->win, 3, 1L << 1, &release_key, g);
