@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 13:37:40 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:01:12 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		check_left(t_map *smap, int x, int y);
 int		check_map(t_game *g);
 
 int		init_walls(t_game *g);
+int		is_whitespace(char c);
 
 
 #endif

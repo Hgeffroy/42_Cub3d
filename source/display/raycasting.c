@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 10:57:53 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 13:17:48 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 float	raycasting(t_game *g, float angle)
 {
 	float	len;
-	float	test1;
-	float	test2;
 
 	ft_bzero(g->ray->ray_len, 2);
 	ft_bzero(g->ray->step, 2);
@@ -60,12 +58,20 @@ float	raycasting(t_game *g, float angle)
 			g->ray->map_check[0] += g->ray->step[0];
 			len = g->ray->ray_len[0];
 			g->ray->ray_len[0] += g->ray->step_size[0];
+			if (g->ray->step[0] > 0)
+				g->ray->wall_found = EAST;
+			else
+				g->ray->wall_found = WEST;
 		}
 		else
 		{
 			g->ray->map_check[1] += g->ray->step[1];
 			len = g->ray->ray_len[1];
 			g->ray->ray_len[1] += g->ray->step_size[1];
+			if (g->ray->step[1] > 0)
+				g->ray->wall_found = SOUTH;
+			else
+				g->ray->wall_found = NORTH;
 		}
 		if (g->smap->map[g->ray->map_check[1]][g->ray->map_check[0]] != '0')
 			g->ray->tile_found = true;

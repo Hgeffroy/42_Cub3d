@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 10:08:48 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 09:06:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,14 @@ enum	e_map
 	FTILE	= 0,
 	WALL	= 1,
 	OPEN	= 2
+};
+
+enum	e_wall
+{
+	NORTH	= 0,
+	SOUTH	= 1,
+	EAST	= 2,
+	WEST	= 3
 };
 
 enum	e_error

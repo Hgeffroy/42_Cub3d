@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:59:10 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 09:27:05 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:47:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@
 # define TILE_SZ			16
 # define PLAYER_SZ			4
 # define SCREEN_DIST		10
-# define WALL_HEIGHT		100
+# define WALL_HEIGHT		150
 
 #endif

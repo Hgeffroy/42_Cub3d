@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 10:38:57 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:59:17 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_img
 typedef struct s_walltext
 {
 	void	*img;
+	char	*addr;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
@@ -85,6 +86,7 @@ typedef struct s_ray
 	bool	tile_found;
 	int		map_check[2];
 	int		step[2];
+	int		wall_found;
 }	t_ray;
 
 

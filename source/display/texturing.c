@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 14:15:51 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:02:26 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,8 @@ void	draw_floor_ceiling(t_game *g)
 int	get_color(t_walltext *w, int x, int y)
 {
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
 
-	addr = mlx_get_data_addr(w->img, &bits_per_pixel, &line_len, &endian);
-	addr = addr + y * line_len + x * (bits_per_pixel / 8);
+	addr = w->addr + y * w->line_len + x * (w->bits_per_pixel / 8);
 	return (*(unsigned int*)addr);
 }
 
@@ -65,17 +61,32 @@ int	draw_walls(t_game *g)
 	float	height;
 	int 	half_height;
 	int		x;
-	int		width;
 	int		color;
 	float	y_ratio;
-	float	x_ratio;
 	float	angle;
+	float	x_impact;
+	float	y_impact;
 
 	angle = g->player->angle - M_PI / 6;
 	x = 0;
+	// len = raycasting(g, angle);// * cosf(angle - g->player->angle);
+	// x_impact = g->player->fx + len * cosf(angle);
+	// x_impact = (x_impact - (int)x_impact) * g->north_wall->width;
+	// x_impact *= cosf(angle - g->player->angle);
+	// y_impact = g->player->fy + len * sinf(angle);
+	// y_impact = (y_impact - (int)y_impact) * g->north_wall->width;
+	// y_impact *= cosf(angle - g->player->angle);
+	// printf("x_impact = %f, y_impact = %f\n", x_impact, y_impact);
+	// printf("x_impact_cos = %f, y_impact_cos = %f\n", x_impact * cosf(angle - g->player->angle), y_impact * cosf(angle - g->player->angle));
+	// len *= cosf(angle - g->player->angle);
 	while (angle < g->player->angle + M_PI / 6)
 	{
-		len = raycasting(g, angle) * cosf(angle - g->player->angle);
+		len = raycasting(g, angle);// * cosf(angle - g->player->angle);
+		x_impact = g->player->fx + len * cosf(angle);
+		x_impact = (x_impact - (int)x_impact) * g->north_wall->width;// * fabs(cosf(angle - g->player->angle));
+		y_impact = g->player->fy + len * sinf(angle);
+		y_impact = (y_impact - (int)y_impact) * g->north_wall->width;// * fabs(cos(angle - g->player->angle));
+		len *= cosf(angle - g->player->angle);
 		height = SCREEN_DIST * WALL_HEIGHT / len;
 		y_ratio = g->north_wall->height / height;
 		if (height > 1080)
@@ -83,7 +94,10 @@ int	draw_walls(t_game *g)
 		half_height = height / 2;
 		while (height > 0)
 		{
-			color = get_color(g->north_wall, 10, (int)(height * y_ratio));
+			if (g->ray->wall_found == NORTH || g->ray->wall_found == SOUTH)
+				color = get_color(g->north_wall, x_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
+			else
+				color = get_color(g->north_wall, y_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
 			my_mlx_pixel_put(g->display, x, (1080 / 2) + height - half_height, color);
 			height -= 1;
 		}

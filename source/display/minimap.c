@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 10:07:34 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 11:02:28 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ void	draw_fov(t_game *g)
 {
 	float	angle;
 
-	angle = g->player->angle - M_PI / 6;
-	while (angle < g->player->angle + M_PI / 6)
-	{
-		angle += 0.003;
-		minimap_ray(g, angle);
-	}
-	// minimap_ray(g, g->player->angle);
+	// angle = g->player->angle - M_PI / 6;
+	// while (angle < g->player->angle + M_PI / 6)
+	// {
+	// 	angle += 0.003;
+	// 	minimap_ray(g, angle);
+	// }
+	minimap_ray(g, g->player->angle);
 }
 void	init_minimap(t_game *g)
 {

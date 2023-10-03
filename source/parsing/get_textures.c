@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:03:48 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 13:37:07 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:00:30 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,11 @@ int	init_walls(t_game *g)
 	g->east_wall = (t_walltext *)malloc(sizeof(t_walltext));
 	texture = set_texture(g->textures->north);
 	g->north_wall->img = mlx_xpm_file_to_image(g->mlx, texture, &g->north_wall->width, &g->north_wall->height);
+	g->north_wall->addr = mlx_get_data_addr(g->north_wall->img, &g->north_wall->bits_per_pixel, &g->north_wall->line_len, &g->north_wall->endian);
 	if (!g->north_wall->img)
 		puts("lala");
 	free(texture);
+	return (0);
 	// g->south_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->south, &g->south_wall->width, &g->south_wall->height);
 	// g->west_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->west, &g->west_wall->width, &g->west_wall->height);
 	// g->east_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->east, &g->east_wall->width, &g->east_wall->height);
