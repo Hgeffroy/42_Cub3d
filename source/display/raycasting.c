@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 13:17:48 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:08:03 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float	raycasting(t_game *g, float angle)
 
 	g->ray->tile_found = false;
 	len = 0.0;
-	while (!g->ray->tile_found)
+	while (1)
 	{
 		if (g->ray->ray_len[0] < g->ray->ray_len[1])
 		{
@@ -74,7 +74,9 @@ float	raycasting(t_game *g, float angle)
 				g->ray->wall_found = NORTH;
 		}
 		if (g->smap->map[g->ray->map_check[1]][g->ray->map_check[0]] != '0')
-			g->ray->tile_found = true;
+			break;
 	}
+	g->ray->impact[0] = g->player->fx + len * cosf(angle) - (int)(g->player->fx + len * cosf(angle));
+	g->ray->impact[1] = g->player->fy + len * sinf(angle) - (int)(g->player->fy + len * sinf(angle));
 	return (len);
 }

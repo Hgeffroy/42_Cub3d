@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:03:02 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 15:04:01 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/04 10:56:16 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	rotate_left(t_game *g)
 {
-	g->player->angle -= M_PI / 45;
+	g->player->angle -= M_PI / 90;
 }
 
 void	rotate_right(t_game *g)
 {
-	g->player->angle += M_PI / 45;
+	g->player->angle += M_PI / 90;
 }
 
 void	move_forward(t_game *g)
@@ -27,12 +27,12 @@ void	move_forward(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle) * 0.1;
-	nexty = g->player->fy + sin (g->player->angle) * 0.1;
+	nextx = g->player->fx + cos (g->player->angle) * SPEED;
+	nexty = g->player->fy + sin (g->player->angle) * SPEED;
 	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
-		g->player->fx += cos(g->player->angle) * 0.1;
+		g->player->fx += cos(g->player->angle) * SPEED;
 	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
-		g->player->fy += sin(g->player->angle) * 0.1;
+		g->player->fy += sin(g->player->angle) * SPEED;
 }
 
 void	move_backward(t_game *g)
@@ -40,12 +40,12 @@ void	move_backward(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle + M_PI) * 0.1;
-	nexty = g->player->fy + sin (g->player->angle + M_PI) * 0.1;
+	nextx = g->player->fx + cos (g->player->angle + M_PI) * SPEED;
+	nexty = g->player->fy + sin (g->player->angle + M_PI) * SPEED;
 	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
-		g->player->fx += cos(g->player->angle + M_PI) * 0.1;
+		g->player->fx += cos(g->player->angle + M_PI) * SPEED;
 	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
-		g->player->fy += sin(g->player->angle + M_PI) * 0.1;
+		g->player->fy += sin(g->player->angle + M_PI) * SPEED;
 }
 
 void	move_left(t_game *g)
@@ -53,12 +53,12 @@ void	move_left(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle - M_PI_2) * 0.1;
-	nexty = g->player->fy + sin (g->player->angle - M_PI_2) * 0.1;
+	nextx = g->player->fx + cos (g->player->angle - M_PI_2) * SPEED;
+	nexty = g->player->fy + sin (g->player->angle - M_PI_2) * SPEED;
 	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
-		g->player->fx += cos(g->player->angle - M_PI_2) * 0.1;
+		g->player->fx += cos(g->player->angle - M_PI_2) * SPEED;
 	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
-		g->player->fy += sin(g->player->angle - M_PI_2) * 0.1;
+		g->player->fy += sin(g->player->angle - M_PI_2) * SPEED;
 }
 
 void	move_right(t_game *g)
@@ -66,10 +66,10 @@ void	move_right(t_game *g)
 	float	nextx;
 	float	nexty;
 	
-	nextx = g->player->fx + cos (g->player->angle + M_PI_2) * 0.1;
-	nexty = g->player->fy + sin (g->player->angle + M_PI_2) * 0.1;
+	nextx = g->player->fx + cos (g->player->angle + M_PI_2) * SPEED;
+	nexty = g->player->fy + sin (g->player->angle + M_PI_2) * SPEED;
 	if (g->smap->map[(int)(g->player->fy)][(int)(nextx)] == '0')
-		g->player->fx += cos(g->player->angle + M_PI_2) * 0.1;
+		g->player->fx += cos(g->player->angle + M_PI_2) * SPEED;
 	if (g->smap->map[(int)(nexty)][(int)(g->player->fx)] == '0')
-		g->player->fy += sin(g->player->angle + M_PI_2) * 0.1;
+		g->player->fy += sin(g->player->angle + M_PI_2) * SPEED;
 }

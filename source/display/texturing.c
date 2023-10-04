@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 15:02:26 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:29:50 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,21 @@ int	draw_walls(t_game *g)
 
 	angle = g->player->angle - M_PI / 6;
 	x = 0;
-	// len = raycasting(g, angle);// * cosf(angle - g->player->angle);
+	len = raycasting(g, angle);// * cosf(angle - g->player->angle);
 	// x_impact = g->player->fx + len * cosf(angle);
 	// x_impact = (x_impact - (int)x_impact) * g->north_wall->width;
 	// x_impact *= cosf(angle - g->player->angle);
 	// y_impact = g->player->fy + len * sinf(angle);
 	// y_impact = (y_impact - (int)y_impact) * g->north_wall->width;
 	// y_impact *= cosf(angle - g->player->angle);
-	// printf("x_impact = %f, y_impact = %f\n", x_impact, y_impact);
-	// printf("x_impact_cos = %f, y_impact_cos = %f\n", x_impact * cosf(angle - g->player->angle), y_impact * cosf(angle - g->player->angle));
-	// len *= cosf(angle - g->player->angle);
-	while (angle < g->player->angle + M_PI / 6)
+	while (x < 1920)
 	{
-		len = raycasting(g, angle);// * cosf(angle - g->player->angle);
-		x_impact = g->player->fx + len * cosf(angle);
-		x_impact = (x_impact - (int)x_impact) * g->north_wall->width;// * fabs(cosf(angle - g->player->angle));
-		y_impact = g->player->fy + len * sinf(angle);
-		y_impact = (y_impact - (int)y_impact) * g->north_wall->width;// * fabs(cos(angle - g->player->angle));
-		len *= cosf(angle - g->player->angle);
+		angle = atanf((x + 0.0001 - (1920 / 2)) / (1920 * 6 / (2 * M_PI))) + g->player->angle + 0.0001;
+		// printf("angle: %f\n", angle);
+		len = raycasting(g, angle) * cosf(angle - g->player->angle);
+		x_impact = g->ray->impact[0] * g->north_wall->width;// * cosf((angle - g->player->angle));
+		y_impact = g->ray->impact[1] * g->north_wall->width;// * cosf((angle - g->player->angle));
+		// len *= cosf(angle - g->player->angle);
 		height = SCREEN_DIST * WALL_HEIGHT / len;
 		y_ratio = g->north_wall->height / height;
 		if (height > 1080)
@@ -102,7 +99,7 @@ int	draw_walls(t_game *g)
 			height -= 1;
 		}
 		x++;
-		angle += (M_PI / 3) / 1920;
+		// angle += (M_PI / 3) / 1920;
 	}
 	return (0);
 }

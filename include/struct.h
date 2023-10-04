@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 14:59:17 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:55:10 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_ray
 	float	ray_start[2];
 	float	ray_dir[2];
 	float	step_size[2];
+	float	impact[2];
 	bool	tile_found;
 	int		map_check[2];
 	int		step[2];
