@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/05 09:30:44 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/05 09:56:43 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,13 @@ int	draw_walls(t_game *g)
 
 	angle = g->player->angle - M_PI / 6;
 	x = 0;
-	len = raycasting(g, angle);// * cosf(angle - g->player->angle);
-	// x_impact = g->player->fx + len * cosf(angle);
-	// x_impact = (x_impact - (int)x_impact) * g->north_wall->width;
-	// x_impact *= cosf(angle - g->player->angle);
-	// y_impact = g->player->fy + len * sinf(angle);
-	// y_impact = (y_impact - (int)y_impact) * g->north_wall->width;
-	// y_impact *= cosf(angle - g->player->angle);
+	len = raycasting(g, angle);
 	while (x < 1920)
 	{
 		angle = atanf((x + 0.0001 - (1920 / 2)) / (1920 * 6 / (2 * M_PI))) + g->player->angle + 0.0001;
-		// printf("angle: %f\n", angle);
 		len = raycasting(g, angle) * cosf(angle - g->player->angle);
-		x_impact = g->ray->impact[0] * g->north_wall->width;// * cosf((angle - g->player->angle));
-		y_impact = g->ray->impact[1] * g->north_wall->width;// * cosf((angle - g->player->angle));
-		// len *= cosf(angle - g->player->angle);
+		x_impact = g->ray->impact[0] * g->north_wall->width;
+		y_impact = g->ray->impact[1] * g->north_wall->width;
 		height = SCREEN_DIST * WALL_HEIGHT / len;
 		y_ratio = g->north_wall->height / height;
 		if (height > 1080)
@@ -92,16 +84,13 @@ int	draw_walls(t_game *g)
 		while (height > 0)
 		{
 			if (g->ray->wall_found == NORTH || g->ray->wall_found == SOUTH)
-				// color = get_color(g->north_wall, x_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
 				color = get_color(g->north_wall, x_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
 			else
-				// color = get_color(g->north_wall, y_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
 				color = get_color(g->north_wall, y_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
 			my_mlx_pixel_put(g->display, x, (1080 / 2) + height - half_height, color);
 			height -= 1;
 		}
 		x++;
-		// angle += (M_PI / 3) / 1920;
 	}
 	return (0);
 }
