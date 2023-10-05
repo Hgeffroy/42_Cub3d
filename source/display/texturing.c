@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/04 15:29:50 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/05 09:30:44 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	draw_walls(t_game *g)
 {
 	float	len;
 	float	height;
-	int 	half_height;
+	float 	half_height;
 	int		x;
 	int		color;
 	float	y_ratio;
@@ -92,9 +92,11 @@ int	draw_walls(t_game *g)
 		while (height > 0)
 		{
 			if (g->ray->wall_found == NORTH || g->ray->wall_found == SOUTH)
-				color = get_color(g->north_wall, x_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
+				// color = get_color(g->north_wall, x_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
+				color = get_color(g->north_wall, x_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
 			else
-				color = get_color(g->north_wall, y_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
+				// color = get_color(g->north_wall, y_impact, (int)(height * y_ratio + g->north_wall->height / 2 - half_height * y_ratio));
+				color = get_color(g->north_wall, y_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
 			my_mlx_pixel_put(g->display, x, (1080 / 2) + height - half_height, color);
 			height -= 1;
 		}
