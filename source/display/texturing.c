@@ -6,18 +6,11 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/05 09:56:43 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:17:08 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	is_whitespace(char c)
-{
-	if (c == ' ' || (c > 8 && c < 13))
-		return (YES);
-	return (NO);
-}
 
 void	draw_floor_ceiling(t_game *g)
 {

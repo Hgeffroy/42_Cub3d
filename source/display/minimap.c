@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 08:42:17 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:17:54 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ void	draw_circle(t_game *g, int *centre, int radius, int color)
 	}
 }
 
-float	minimap_ray(t_game *g, float angle, int i)
+float	minimap_ray(t_game *g, float angle)
 {
 	float	x;
 	float	y;
 	float	ix;
 	float	iy;
-	float	ratio;
 
 	int		color = H_ORANGE;
 	int		j = 0;
@@ -70,18 +69,16 @@ float	minimap_ray(t_game *g, float angle, int i)
 	y = g->player->fy;
 	ix = 7.f * TILE_SZ;
 	iy = 7.f * TILE_SZ;
-	ratio = 1;
-	ratio = 1.f + (i % 5) * 0.01;
-	while(g->smap->map[(int)y][(int)x] == '0' && (pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) < pow(3 * TILE_SZ, 2))
+	while(g->smap->map[(int)y][(int)x] == '0' && \
+	(pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) < pow(3 * TILE_SZ, 2))
 	{
 		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
 			color = H_ORANGE + 3 * j * (1 + 256);
 		my_mlx_pixel_put(g->display, ix, iy, color);
-		ratio = pow(ratio, 1.25);
-		x += ratio * cosf(angle + g->player->angle) / TILE_SZ;
-		y += ratio * sinf(angle + g->player->angle) / TILE_SZ;
-		iy -= ratio * cos(angle);
-		ix += ratio * sin (angle);
+		x += cosf(angle + g->player->angle) / TILE_SZ;
+		y += sinf(angle + g->player->angle) / TILE_SZ;
+		iy -= cos(angle);
+		ix += sin (angle);
 		j++;
 	}
 	return (0);
@@ -98,7 +95,7 @@ void	draw_fov(t_game *g)
 	{
 		i++;
 		angle += 0.01;
-		minimap_ray(g, angle, i);
+		minimap_ray(g, angle);
 	}
 }
 
@@ -122,56 +119,26 @@ void	init_minimap(t_game *g)
 								&g->display->endian);
 }
 
-
-/*
-i et j sont les positions en flottants sur la minimap (Le tableau). Ils sont donc strictement positifs
-a et b sont les positions en pixel sur le display dont le repere est au centre de la minimap.
-Donc quand j'augmente a de x, i augmente de ratio.
-*/
-// void	draw_minimap(t_game *g)
-// {
-// 	float	a;
-// 	float	b;
-// 	int		b_start;
-// 	int		centre[2];
-// 	float	i;
-// 	float	j;
-// 	float	j_start;
-// 	float	ratio;
-
-// 	ratio = 1.f / TILE_SZ;
-// 	centre[0] = TILE_SZ * 7;
-// 	centre[1] = TILE_SZ * 7;
-// 	i = (g->player->fy - 6);
-// 	a = (-1) * 6 * TILE_SZ;
-// 	b_start = (-1) * 6 * TILE_SZ;
-// 	while (i < 0)
-// 	{
-// 		a++;
-// 		i += ratio;
-// 	}
-// 	j_start = (g->player->fx - 6);
-// 	while (j_start < 0)
-// 	{
-// 		b_start++;
-// 		j_start += ratio;
-// 	}
-// 	while (g->smap->map[(int)i] && i < g->player->fy + 6)
-// 	{
-// 		j = j_start;
-// 		b = b_start;
-// 		while (g->smap->map[(int)i][(int)j] && j < g->player->fx + 6)
-// 		{
-// 			if (a * a + b * b < 6 * 6 * TILE_SZ * TILE_SZ)
-// 				draw_tile(g, j, i, b, a, centre);
-// 			j += ratio;
-// 			b++;
-// 		}
-// 		i += ratio;
-// 		a++;
-// 	}
-// 	draw_player(g);
-// }
+void	set_minimap(t_game *g, t_minimap *minimap)
+{
+	minimap->ratio = 1.f / (2 * TILE_SZ);
+	minimap->center[0] = TILE_SZ * 7;
+	minimap->center[1] = TILE_SZ * 7;
+	minimap->map_x = (g->player->fy - 6);
+	minimap->display_x = (-1.f) * 6.f * TILE_SZ;
+	minimap->display_y_start = (-1.f) * 6.f * TILE_SZ;
+	while (minimap->map_x < 0)
+	{
+		minimap->display_x++;
+		minimap->map_x += 2 * minimap->ratio;
+	}
+	minimap->map_y_start = (g->player->fx - 6);
+	while (minimap->map_y_start < 0)
+	{
+		minimap->display_y_start++;
+		minimap->map_y_start += 2 * minimap->ratio;
+	}
+}
 
 /*
 i et j sont les positions en flottants sur la minimap (Le tableau). Ils sont donc strictement positifs
@@ -180,45 +147,22 @@ Donc quand j'augmente a de x, i augmente de ratio.
 */
 void	draw_minimap(t_game *g)
 {
-	float	a;
-	float	b;
-	int		b_start;
-	int		centre[2];
-	float	i;
-	float	j;
-	float	j_start;
-	float	ratio;
-
-	ratio = 1.f / (2 * TILE_SZ);
-	centre[0] = TILE_SZ * 7;
-	centre[1] = TILE_SZ * 7;
-	i = (g->player->fy - 6);
-	a = (-1.f) * 6.f * TILE_SZ;
-	b_start = (-1.f) * 6.f * TILE_SZ;
-	while (i < 0)
+	t_minimap	minimap;
+	
+	set_minimap(g, &minimap);
+	while (g->smap->map[(int)minimap.map_x] && minimap.map_x < g->player->fy + 6)
 	{
-		a++;
-		i += 2 * ratio;
-	}
-	j_start = (g->player->fx - 6);
-	while (j_start < 0)
-	{
-		b_start++;
-		j_start += 2 * ratio;
-	}
-	while (g->smap->map[(int)i] && i < g->player->fy + 6)
-	{
-		j = j_start;
-		b = b_start;
-		while (g->smap->map[(int)i][(int)j] && j < g->player->fx + 6)
+		minimap.map_y = minimap.map_y_start;
+		minimap.display_y = minimap.display_y_start;
+		while (g->smap->map[(int)minimap.map_x][(int)minimap.map_y] && minimap.map_y < g->player->fx + 6)
 		{
-			if (a * a + b * b < 6 * 6 * TILE_SZ * TILE_SZ)
-				draw_tile(g, j, i, b, a, centre);
-			j += ratio;
-			b += 0.5;
+			if (minimap.display_x * minimap.display_x + minimap.display_y * minimap.display_y < 6 * 6 * TILE_SZ * TILE_SZ)
+				draw_tile(g, minimap.map_y, minimap.map_x, minimap.display_y, minimap.display_x, minimap.center);
+			minimap.map_y += minimap.ratio;
+			minimap.display_y += 0.5;
 		}
-		i += ratio;
-		a += 0.5;
+		minimap.map_x += minimap.ratio;
+		minimap.display_x += 0.5;
 	}
 	draw_player(g);
 }

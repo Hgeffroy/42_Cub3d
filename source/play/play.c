@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 08:24:13 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:15:20 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,21 @@ int	init_game(t_game *g)
 {
 	g->player->fx = g->player->x + 0.5;
 	g->player->fy = g->player->y + 0.5;
+	init_minimap(g);
+	init_walls(g);
 	return (0);
+}
+
+int	display(t_game *g)
+{
+	draw_display(g);
+	draw_minimap(g);
+	mlx_put_image_to_window(g->mlx, g->win, g->display->img, 0, 0);
+	mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-123-*-*");
+	mlx_string_put(g->mlx, g->win, \
+			6 * TILE_SZ * cosf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, \
+			6 * TILE_SZ * sinf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, \
+			H_RED, "N");
 }
 
 int	mlx_play(t_game *g)
@@ -39,20 +53,13 @@ int	mlx_play(t_game *g)
 		move_left(g);
 	if (g->movement->move_right)
 		move_right(g);
-	draw_display(g);
-	draw_minimap(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->display->img, 0, 0);
-	mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-123-*-*");
-	mlx_string_put(g->mlx, g->win, 6 * TILE_SZ * cosf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, 6 * TILE_SZ * sinf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, H_RED, "N");
-
+	display(g);
 	return (0);
 }
 
 void	play(t_game *g)
 {
 	init_game(g);
-	init_minimap(g);
-	init_walls(g);
 	mlx_hook(g->win, 17, 1L << 17, &mlx_close, g);
 	mlx_hook(g->win, 2, 1L << 0, &press_key, g);
 	mlx_hook(g->win, 3, 1L << 1, &release_key, g);

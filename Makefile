@@ -6,7 +6,7 @@
 #    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/10/03 12:41:09 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/10/09 14:24:33 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ_DIR         =       .objs
 
 #--flags-----------------------------------------------------------------------#
 
-CFLAGS          =       -g3 -Wall -Wextra -O3 -pipe -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include #-Werror
+CFLAGS          =       -g3 -Wall -Wextra -Ofast -pipe -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include #-Werror
 MLXFLAGS		=		-L $(MLX_DIR) -l mlx -l Xext -l X11 -l m -I $(MLX_DIR)
 
 #--debug flags-----------------------------------------------------------------#

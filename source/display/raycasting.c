@@ -6,16 +6,14 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/04 13:08:03 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:33:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	raycasting(t_game *g, float angle)
+void	ray_init(t_game *g, float angle)
 {
-	float	len;
-
 	ft_bzero(g->ray->ray_len, 2);
 	ft_bzero(g->ray->step, 2);
 	g->ray->map_check[0] = (int)g->player->fx;
@@ -24,10 +22,14 @@ float	raycasting(t_game *g, float angle)
 	g->ray->ray_start[1] = g->player->fy;
 	g->ray->ray_dir[0] = cosf(angle);
 	g->ray->ray_dir[1] = sinf(angle);
-	g->ray->step_size[0] = sqrt(1 + (g->ray->ray_dir[1] / g->ray->ray_dir[0]) * (g->ray->ray_dir[1] / g->ray->ray_dir[0]));
-	g->ray->step_size[1] = sqrt(1 + (g->ray->ray_dir[0] / g->ray->ray_dir[1]) * (g->ray->ray_dir[0] / g->ray->ray_dir[1]));
+	g->ray->step_size[0] = sqrt(1 + (g->ray->ray_dir[1] / g->ray->ray_dir[0]) \
+	* (g->ray->ray_dir[1] / g->ray->ray_dir[0]));
+	g->ray->step_size[1] = sqrt(1 + (g->ray->ray_dir[0] / g->ray->ray_dir[1]) \
+	* (g->ray->ray_dir[0] / g->ray->ray_dir[1]));
+}
 
-
+void	ray_start(t_game *g)
+{
 	if (g->ray->ray_dir[0] < 0)
 	{
 		g->ray->step[0] = -1;
@@ -48,31 +50,44 @@ float	raycasting(t_game *g, float angle)
 		g->ray->step[1] = 1;
 		g->ray->ray_len[1] = ((float)(g->ray->map_check[1] + 1) - g->ray->ray_start[1]) * g->ray->step_size[1];
 	}
+}
 
-	g->ray->tile_found = false;
-	len = 0.0;
+float	ray_step(t_game *g)
+{
+	float	len;
+
+	if (g->ray->ray_len[0] < g->ray->ray_len[1])
+	{
+		g->ray->map_check[0] += g->ray->step[0];
+		len = g->ray->ray_len[0];
+		g->ray->ray_len[0] += g->ray->step_size[0];
+		if (g->ray->step[0] > 0)
+			g->ray->wall_found = EAST;
+		else
+			g->ray->wall_found = WEST;
+	}
+	else
+	{
+		g->ray->map_check[1] += g->ray->step[1];
+		len = g->ray->ray_len[1];
+		g->ray->ray_len[1] += g->ray->step_size[1];
+		if (g->ray->step[1] > 0)
+			g->ray->wall_found = SOUTH;
+		else
+			g->ray->wall_found = NORTH;
+	}
+	return (len);
+}
+
+float	raycasting(t_game *g, float angle)
+{
+	float	len;
+
+	ray_init(g, angle);
+	ray_start(g);
 	while (1)
 	{
-		if (g->ray->ray_len[0] < g->ray->ray_len[1])
-		{
-			g->ray->map_check[0] += g->ray->step[0];
-			len = g->ray->ray_len[0];
-			g->ray->ray_len[0] += g->ray->step_size[0];
-			if (g->ray->step[0] > 0)
-				g->ray->wall_found = EAST;
-			else
-				g->ray->wall_found = WEST;
-		}
-		else
-		{
-			g->ray->map_check[1] += g->ray->step[1];
-			len = g->ray->ray_len[1];
-			g->ray->ray_len[1] += g->ray->step_size[1];
-			if (g->ray->step[1] > 0)
-				g->ray->wall_found = SOUTH;
-			else
-				g->ray->wall_found = NORTH;
-		}
+		len = ray_step(g);
 		if (g->smap->map[g->ray->map_check[1]][g->ray->map_check[0]] != '0')
 			break;
 	}

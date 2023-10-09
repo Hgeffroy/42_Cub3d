@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/04 12:55:10 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:26:42 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-typedef struct s_player
+typedef struct	s_player
 {
 	int		x;
 	int		y;
@@ -24,7 +24,7 @@ typedef struct s_player
 	float	angle;
 }	t_player;
 
-typedef struct s_textures
+typedef struct	s_textures
 {
 	char	*north;
 	char	*south;
@@ -32,7 +32,7 @@ typedef struct s_textures
 	char	*east;
 }	t_textures;
 
-typedef struct s_colors
+typedef struct	s_colors
 {
 	char	*rgb_floor;
 	char	*rgb_roof;
@@ -40,7 +40,7 @@ typedef struct s_colors
 	int		hexa_roof;
 }	t_colors;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	char	**map;
 	char	**map_cpy;
@@ -56,7 +56,7 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_walltext
+typedef struct	s_walltext
 {
 	void	*img;
 	char	*addr;
@@ -77,21 +77,32 @@ typedef struct	s_movement
 	bool	rotate_left;
 }	t_movement;
 
-typedef struct s_ray
+typedef struct	s_ray
 {
 	float	ray_len[2];
 	float	ray_start[2];
 	float	ray_dir[2];
 	float	step_size[2];
 	float	impact[2];
-	bool	tile_found;
 	int		map_check[2];
 	int		step[2];
 	int		wall_found;
 }	t_ray;
 
+typedef struct	s_minimap
+{
+	float	display_x;
+	float	display_y;
+	float	display_y_start;
+	float	map_x;
+	float	map_y;
+	float	map_y_start;
+	float	ratio;
+	int		center[2];
 
-typedef struct s_game
+}	t_minimap;
+
+typedef struct	s_game
 {
 	void			*mlx;
 	void			*win;

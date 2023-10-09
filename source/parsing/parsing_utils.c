@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:04:36 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/25 13:43:27 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:17:17 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,11 @@ int	is_mapline(char *line)
 	}
 	return (YES);
 }
+
+int	is_whitespace(char c)
+{
+	if (c == ' ' || (c > 8 && c < 13))
+		return (YES);
+	return (NO);
+}
+
