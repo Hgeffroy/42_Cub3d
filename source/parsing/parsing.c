@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 08:02:47 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:10:50 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	init_tgame(t_game **g)
 	(*g)->colors = (t_colors *)malloc(sizeof(t_colors));
 	if (!((*g)->colors))
 		return (free(*g), -1);
-	(*g)->textures = (t_textures *)malloc(sizeof(t_textures));
-	if (!((*g)->textures))
-		return (free((*g)->colors), free(*g), -1);
+	// (*g)->textures = (t_textures *)malloc(sizeof(t_textures));
+	// if (!((*g)->textures))
+	// 	return (free((*g)->colors), free(*g), -1);
 	(*g)->player = (t_player *)malloc(sizeof(t_player));
 	if (!(*g)->player)
-		return (free((*g)->textures), free((*g)->colors), free(*g), -1);
+		return (free((*g)->colors), free(*g), -1);
 	// (*g)->display = (t_img *)malloc(sizeof(t_img));
 	// if (!((*g)->display))
 	// 	return(/*Tout free*/-1);
@@ -69,10 +69,10 @@ t_game	*parsing(char *file)
 
 void	print_parsing(t_game *g)
 {
-	printf("Texture Nord : %s", g->textures->north);
-	printf("Texture Sud : %s", g->textures->south);
-	printf("Texture Est : %s", g->textures->east);
-	printf("Texture Ouest : %s", g->textures->west);
+	printf("Texture Nord : %s", g->textures.north);
+	printf("Texture Sud : %s", g->textures.south);
+	printf("Texture Est : %s", g->textures.east);
+	printf("Texture Ouest : %s", g->textures.west);
 	printf("Texture Plafond : %s", g->colors->rgb_roof);
 	printf("Texture Sol : %s\n", g->colors->rgb_floor);
 	print_tab(g->smap.map);

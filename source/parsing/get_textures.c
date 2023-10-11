@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:03:48 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 15:00:30 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:07:53 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	fill_texture(t_game **g, char *line)
 	else if (line[0] == 'F')
 		(*g)->colors->rgb_floor = ft_strdup(line); // Protection malloc, passer les whitespaces.
 	else if (line[0] == 'N')
-		(*g)->textures->north = ft_strdup(line); // Protection malloc, passer les whitespaces.
+		(*g)->textures.north = ft_strdup(line); // Protection malloc, passer les whitespaces.
 	else if (line[0] == 'S')
-		(*g)->textures->south = ft_strdup(line); // Protection malloc, passer les whitespaces.
+		(*g)->textures.south = ft_strdup(line); // Protection malloc, passer les whitespaces.
 	else if (line[0] == 'W')
-		(*g)->textures->west = ft_strdup(line); // Protection malloc, passer les whitespaces.
+		(*g)->textures.west = ft_strdup(line); // Protection malloc, passer les whitespaces.
 	else if (line[0] == 'E')
-		(*g)->textures->east = ft_strdup(line); // Protection malloc, passer les whitespaces.
+		(*g)->textures.east = ft_strdup(line); // Protection malloc, passer les whitespaces.
 }
 
 int	is_textstart(char *line)
@@ -117,16 +117,16 @@ int	init_walls(t_game *g)
 	g->south_wall = (t_walltext *)malloc(sizeof(t_walltext));
 	g->west_wall = (t_walltext *)malloc(sizeof(t_walltext));
 	g->east_wall = (t_walltext *)malloc(sizeof(t_walltext));
-	texture = set_texture(g->textures->north);
+	texture = set_texture(g->textures.north);
 	g->north_wall->img = mlx_xpm_file_to_image(g->mlx, texture, &g->north_wall->width, &g->north_wall->height);
 	g->north_wall->addr = mlx_get_data_addr(g->north_wall->img, &g->north_wall->bits_per_pixel, &g->north_wall->line_len, &g->north_wall->endian);
 	if (!g->north_wall->img)
 		puts("lala");
 	free(texture);
 	return (0);
-	// g->south_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->south, &g->south_wall->width, &g->south_wall->height);
-	// g->west_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->west, &g->west_wall->width, &g->west_wall->height);
-	// g->east_wall->img = mlx_xpm_file_to_image(g->mlx, g->textures->east, &g->east_wall->width, &g->east_wall->height);
+	// g->south_wall->img = mlx_xpm_file_to_image(g->mlx, &(g->textures.south), &g->south_wall->width, &g->south_wall->height);
+	// g->east_wall->img = mlx_xpm_file_to_image(g->mlx, &(g->textures.east), &g->east_wall->width, &g->east_wall->height);
+	// g->west_wall->img = mlx_xpm_file_to_image(g->mlx, &(g->textures.west), &g->west_wall->width, &g->west_wall->height);
 }
 
 int	get_textures(t_game **g, int fd)
