@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:04:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/26 10:23:52 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:02:25 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ char	*go_to_map(int fd)
 	return (line);
 }
 
-t_map	*malloc_map(t_map *smap, char *file)
+t_map	malloc_map(char *file)
 {
 	int		fd;
 	int		mapsz;
 	char	*line;
+	t_map	smap;
 
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
+	// if (fd < 0)
+	// 	return (NULL);
 	line = go_to_map(fd);
 	mapsz = 1;
 	while (is_mapline(line) == YES)
@@ -46,17 +47,17 @@ t_map	*malloc_map(t_map *smap, char *file)
 	}
 	if (line)
 		free(line);
-	smap->map = (char **)malloc(sizeof(char *) * (mapsz + 1));
-	if (!smap->map)
-		return (NULL);
-	smap->mapsize = (int *)malloc(sizeof(char *) * mapsz);
-	if (!smap->mapsize)
-		return (NULL);
+	smap.map = (char **)malloc(sizeof(char *) * (mapsz + 1));
+	// if (!smap.map)
+	// 	return (NULL);
+	smap.mapsize = (int *)malloc(sizeof(char *) * mapsz);
+	// if (!smap.mapsize)
+	// 	return (NULL);
 	close (fd);
 	return (smap);
 }
 
-t_map	*fill_map(t_map *smap, char *line, int fd)
+int	fill_map(t_map *smap, char *line, int fd)
 {
 	int	i;
 	
@@ -72,29 +73,29 @@ t_map	*fill_map(t_map *smap, char *line, int fd)
 		free(line);
 	smap->map[i] = NULL;
 	smap->map_cpy = tab_dup(smap->map);
-	return (smap);
+	return (0);
 }
 
-t_map	*get_map(char *file)
+t_map	get_map(char *file)
 {
-	t_map	*smap;
+	t_map	smap;
 	int		fd;
 	char	*line;
 
-	smap = (t_map *)malloc(sizeof(t_map));
-	if (!smap)
-		return (NULL);
-	smap = malloc_map(smap, file);
-	if (!smap)
-		return(NULL);
+	// smap = (t_map *)malloc(sizeof(t_map));
+	// if (!smap)
+	// 	return (NULL);
+	smap = malloc_map(file);
+	// if (!smap)
+	// 	return(NULL);
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
+	// if (fd < 0)
+	// 	return (NULL);
 	line = NULL;
 	line = go_to_map(fd);
-	smap = fill_map(smap, line, fd);
-	if (!smap)
-		return (NULL);
+	fill_map(&smap, line, fd);
+	// if (!smap)
+	// 	return (NULL);
 	close(fd);	
 	return (smap);
 }

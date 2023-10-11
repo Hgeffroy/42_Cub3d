@@ -6,56 +6,56 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 08:19:09 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 16:28:26 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 07:49:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_left(t_map *smap, int x, int y)
+int	check_left(t_map smap, int x, int y)
 {
 	if (x <= 0)
 		return (OPEN);
-	if (smap->map_cpy[y][x - 1] == '1')
+	if (smap.map_cpy[y][x - 1] == '1')
 		return (WALL);
-	if (smap->map_cpy[y][x - 1] != '0')
+	if (smap.map_cpy[y][x - 1] != '0')
 		return (OPEN);
 	return (0);
 }
 
-int	check_right(t_map *smap, int x, int y)
+int	check_right(t_map smap, int x, int y)
 {
-	if (x >= smap->mapsize[y] - 1)
+	if (x >= smap.mapsize[y] - 1)
 		return (OPEN);
-	if (smap->map_cpy[y][x + 1] == '1')
+	if (smap.map_cpy[y][x + 1] == '1')
 		return (WALL);
-	if (smap->map_cpy[y][x + 1] != '0')
+	if (smap.map_cpy[y][x + 1] != '0')
 		return (OPEN);
 	return (0);
 }
 
-int	check_up(t_map *smap, int x, int y)
+int	check_up(t_map smap, int x, int y)
 {
 	if (y <= 0)
 		return (OPEN);
-	if (x >= smap->mapsize[y - 1] - 1)
+	if (x >= smap.mapsize[y - 1] - 1)
 		return (OPEN);
-	if (smap->map_cpy[y - 1][x] == '1')
+	if (smap.map_cpy[y - 1][x] == '1')
 		return (WALL);
-	if (smap->map_cpy[y - 1][x] != '0')
+	if (smap.map_cpy[y - 1][x] != '0')
 		return (OPEN);
 	return (0);
 }
 
-int	check_down(t_map *smap, int x, int y)
+int	check_down(t_map smap, int x, int y)
 {
-	if (y >= tab_len(smap->map_cpy) - 1)
+	if (y >= tab_len(smap.map_cpy) - 1)
 		return (OPEN);
-	if (x >= smap->mapsize[y + 1])
+	if (x >= smap.mapsize[y + 1])
 		return (OPEN);
-	if (smap->map_cpy[y + 1][x] == '1')
+	if (smap.map_cpy[y + 1][x] == '1')
 		return (WALL);
-	if (smap->map_cpy[y + 1][x] != '0')
+	if (smap.map_cpy[y + 1][x] != '0')
 		return (OPEN);
 	return (0);
 }

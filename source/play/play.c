@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/10 15:48:57 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 07:43:08 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	display(t_game *g)
 {
 	draw_display(g);
 	draw_minimap(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->display->img, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->display.img, 0, 0);
 	mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-180-*-*");
 	mlx_string_put(g->mlx, g->win, \
 			6 * TILE_SZ * cosf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, \

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/09/27 16:58:57 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 07:47:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int	player_here(t_game *g, int y, int x)
 {
-	if (g->smap->map[y][x] == 'N')
+	if (g->smap.map[y][x] == 'N')
 	{
 		g->player->x = x;
 		g->player->y = y;
 		g->player->angle = M_PI_2 * (-1);
 		return (YES);
 	}
-	else if (g->smap->map[y][x] == 'S')
+	else if (g->smap.map[y][x] == 'S')
 	{
 		g->player->x = x;
 		g->player->y = y;
 		g->player->angle = M_PI_2;
 		return (YES);
 	}
-	else if (g->smap->map[y][x] == 'E')
+	else if (g->smap.map[y][x] == 'E')
 	{
 		g->player->x = x;
 		g->player->y = y;
 		g->player->angle = 0;
 		return (YES);
 	}
-	else if (g->smap->map[y][x] == 'W')
+	else if (g->smap.map[y][x] == 'W')
 	{
 		g->player->x = x;
 		g->player->y = y;
@@ -51,14 +51,14 @@ int	get_player(t_game *g)
 	int	x;
 	
 	y = 0;
-	while(g->smap->map[y])
+	while(g->smap.map[y])
 	{
 		x = 0;
-		while(g->smap->map[y][x])
+		while(g->smap.map[y][x])
 		{
 			if (player_here(g, y, x) == YES)
 			{
-				g->smap->map[y][x] = '0';
+				g->smap.map[y][x] = '0';
 				return (0);
 			}
 			x++;	
@@ -70,7 +70,7 @@ int	get_player(t_game *g)
 
 int	backtracking(t_game *g, int y, int x)
 {
-	g->smap->map_cpy[y][x] = '1';
+	g->smap.map_cpy[y][x] = '1';
 	if (check_around(g, x, y) == OPEN)
 		return (OPEN);
 	if (check_up(g->smap, x, y) == 0 && backtracking(g, y - 1, x) == OPEN)
@@ -90,7 +90,7 @@ int	check_map(t_game *g)
 		return (1);
 	if (backtracking(g, g->player->y, g->player->x) == OPEN)
 	{
-		print_tab(g->smap->map_cpy);
+		print_tab(g->smap.map_cpy);
 		ft_printf("Map open");
 		return (1);
 	}

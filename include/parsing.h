@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 16:17:24 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 07:50:32 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_game	*parsing(char *file);
 int		get_textures(t_game **g, int fd);
 int		is_mapline(char *line);
 int		check_file(char *file);
-t_map	*get_map(char *file);
+t_map	get_map(char *file);
 void	print_parsing(t_game *g);
 
 int		check_around(t_game *g, int x, int y);
-int		check_up(t_map *smap, int x, int y);
-int		check_down(t_map *smap, int x, int y);
-int		check_right(t_map *smap, int x, int y);
-int		check_left(t_map *smap, int x, int y);
+int		check_up(t_map smap, int x, int y);
+int		check_down(t_map smap, int x, int y);
+int		check_right(t_map smap, int x, int y);
+int		check_left(t_map smap, int x, int y);
 int		check_map(t_game *g);
 
 int		init_walls(t_game *g);

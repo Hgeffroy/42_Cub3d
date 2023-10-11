@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/10 13:50:31 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 07:45:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceiling(t_game *g)
 		i = 0;
 		while (i < 1920)
 		{
-			my_mlx_pixel_put(g->display, i, j, g->colors->hexa_roof);
+			my_mlx_pixel_put(&(g->display), i, j, g->colors->hexa_roof);
 			i++;
 		}
 		j++;
@@ -33,7 +33,7 @@ void	draw_floor_ceiling(t_game *g)
 		i = 0;
 		while (i < 1920)
 		{
-			my_mlx_pixel_put(g->display, i, j, g->colors->hexa_floor);
+			my_mlx_pixel_put(&(g->display), i, j, g->colors->hexa_floor);
 			i++;
 		}
 		j++;
@@ -61,8 +61,8 @@ void	wallray_init_col(t_game *g, t_wallray *wallray)
 	(1920 * 6 / (2 * M_PI))) + g->player->angle + 0.0001;
 	wallray->len = raycasting(g, wallray->angle) * \
 	cosf(wallray->angle - g->player->angle);
-	wallray->x_impact = g->ray->impact[0] * g->north_wall->width;
-	wallray->y_impact = g->ray->impact[1] * g->north_wall->width;
+	wallray->x_impact = g->ray.impact[0] * g->north_wall->width;
+	wallray->y_impact = g->ray.impact[1] * g->north_wall->width;
 	wallray->height = SCREEN_DIST * WALL_HEIGHT / wallray->len;
 	wallray->y_ratio = g->north_wall->height / wallray->height;
 	if (wallray->height > 1080)
@@ -80,7 +80,7 @@ int	draw_walls(t_game *g)
 		wallray_init_col(g, &wallray);
 		while (wallray.height > 0)
 		{
-			if (g->ray->wall_found == NORTH || g->ray->wall_found == SOUTH)
+			if (g->ray.wall_found == NORTH || g->ray.wall_found == SOUTH)
 				wallray.color = get_color(g->north_wall, wallray.x_impact, \
 				(int)(g->north_wall->height / 2 - \
 				(wallray.height - wallray.half_height) * wallray.y_ratio));
@@ -88,7 +88,7 @@ int	draw_walls(t_game *g)
 				wallray.color = get_color(g->north_wall, wallray.y_impact, \
 				(int)(g->north_wall->height / 2 - \
 				(wallray.height - wallray.half_height) * wallray.y_ratio));
-			my_mlx_pixel_put(g->display, wallray.x, \
+			my_mlx_pixel_put(&(g->display), wallray.x, \
 			(1080 / 2) + wallray.height - wallray.half_height, wallray.color);
 			wallray.height -= 1;
 		}

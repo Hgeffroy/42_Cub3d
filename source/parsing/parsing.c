@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/01 13:39:59 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:02:47 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,13 @@ int	init_tgame(t_game **g)
 	(*g)->player = (t_player *)malloc(sizeof(t_player));
 	if (!(*g)->player)
 		return (free((*g)->textures), free((*g)->colors), free(*g), -1);
-	(*g)->display = (t_img *)malloc(sizeof(t_img));
-	if (!((*g)->display))
-		return(/*Tout free*/-1);
+	// (*g)->display = (t_img *)malloc(sizeof(t_img));
+	// if (!((*g)->display))
+	// 	return(/*Tout free*/-1);
 	(*g)->movement = (t_movement *)malloc(sizeof(t_movement));
 	if (!((*g)->movement))
 		return(/*Tout free*/-1);	
 	init_movement(*g);
-	(*g)->ray = (t_ray *)malloc(sizeof(t_ray));
-	if (!(*g)->ray)
-		return (/*Tout free*/-1);
 	return (0);
 }
 
@@ -63,8 +60,8 @@ t_game	*parsing(char *file)
 		return (close (fd), NULL);
 	close (fd);
 	g->smap = get_map(file);
-	if (!(g->smap))
-		return (NULL);
+	// if (!(g->smap))
+	// 	return (NULL);
 	if (check_map(g))
 		return (NULL);
 	return (g);
@@ -78,7 +75,7 @@ void	print_parsing(t_game *g)
 	printf("Texture Ouest : %s", g->textures->west);
 	printf("Texture Plafond : %s", g->colors->rgb_roof);
 	printf("Texture Sol : %s\n", g->colors->rgb_floor);
-	print_tab(g->smap->map);
+	print_tab(g->smap.map);
 	printf("\n\n");
-	print_tab(g->smap->map_cpy);
+	print_tab(g->smap.map_cpy);
 }
