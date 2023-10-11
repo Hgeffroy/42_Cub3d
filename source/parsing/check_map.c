@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:18:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 07:47:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:45:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,30 @@ int	player_here(t_game *g, int y, int x)
 {
 	if (g->smap.map[y][x] == 'N')
 	{
-		g->player->x = x;
-		g->player->y = y;
-		g->player->angle = M_PI_2 * (-1);
+		g->player.x = x;
+		g->player.y = y;
+		g->player.angle = M_PI_2 * (-1);
 		return (YES);
 	}
 	else if (g->smap.map[y][x] == 'S')
 	{
-		g->player->x = x;
-		g->player->y = y;
-		g->player->angle = M_PI_2;
+		g->player.x = x;
+		g->player.y = y;
+		g->player.angle = M_PI_2;
 		return (YES);
 	}
 	else if (g->smap.map[y][x] == 'E')
 	{
-		g->player->x = x;
-		g->player->y = y;
-		g->player->angle = 0;
+		g->player.x = x;
+		g->player.y = y;
+		g->player.angle = 0;
 		return (YES);
 	}
 	else if (g->smap.map[y][x] == 'W')
 	{
-		g->player->x = x;
-		g->player->y = y;
-		g->player->angle = M_PI;
+		g->player.x = x;
+		g->player.y = y;
+		g->player.angle = M_PI;
 		return (YES);
 	}
 	return (NO);
@@ -88,7 +88,7 @@ int	check_map(t_game *g)
 {
 	if (get_player(g))
 		return (1);
-	if (backtracking(g, g->player->y, g->player->x) == OPEN)
+	if (backtracking(g, g->player.y, g->player.x) == OPEN)
 	{
 		print_tab(g->smap.map_cpy);
 		ft_printf("Map open");
