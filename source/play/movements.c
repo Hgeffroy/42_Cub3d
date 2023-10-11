@@ -6,20 +6,20 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:03:02 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/04 10:56:16 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:49:14 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rotate_left(t_game *g)
+void	rotate_left(t_game *g, int ratio)
 {
-	g->player->angle -= M_PI / 90;
+	g->player->angle -= ratio * M_PI / 600;
 }
 
-void	rotate_right(t_game *g)
+void	rotate_right(t_game *g, int ratio)
 {
-	g->player->angle += M_PI / 90;
+	g->player->angle += ratio * M_PI / 600;
 }
 
 void	move_forward(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 16:17:08 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:50:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,42 +48,51 @@ int	get_color(t_walltext *w, int x, int y)
 	return (*(unsigned int*)addr);
 }
 
+void	wallray_init(t_game *g, t_wallray *wallray)
+{
+	wallray->angle = g->player->angle - M_PI / 6;
+	wallray->x = 0;
+	wallray->len = raycasting(g, wallray->angle);
+}
+
+void	wallray_init_col(t_game *g, t_wallray *wallray)
+{
+	wallray->angle = atanf((wallray->x + 0.0001 - (1920 / 2)) / \
+	(1920 * 6 / (2 * M_PI))) + g->player->angle + 0.0001;
+	wallray->len = raycasting(g, wallray->angle) * \
+	cosf(wallray->angle - g->player->angle);
+	wallray->x_impact = g->ray->impact[0] * g->north_wall->width;
+	wallray->y_impact = g->ray->impact[1] * g->north_wall->width;
+	wallray->height = SCREEN_DIST * WALL_HEIGHT / wallray->len;
+	wallray->y_ratio = g->north_wall->height / wallray->height;
+	if (wallray->height > 1080)
+		wallray->height = 1080;
+	wallray->half_height = wallray->height / 2;
+}
+
 int	draw_walls(t_game *g)
 {
-	float	len;
-	float	height;
-	float 	half_height;
-	int		x;
-	int		color;
-	float	y_ratio;
-	float	angle;
-	float	x_impact;
-	float	y_impact;
+	t_wallray	wallray;
 
-	angle = g->player->angle - M_PI / 6;
-	x = 0;
-	len = raycasting(g, angle);
-	while (x < 1920)
+	wallray_init(g, &wallray);
+	while (wallray.x < 1920)
 	{
-		angle = atanf((x + 0.0001 - (1920 / 2)) / (1920 * 6 / (2 * M_PI))) + g->player->angle + 0.0001;
-		len = raycasting(g, angle) * cosf(angle - g->player->angle);
-		x_impact = g->ray->impact[0] * g->north_wall->width;
-		y_impact = g->ray->impact[1] * g->north_wall->width;
-		height = SCREEN_DIST * WALL_HEIGHT / len;
-		y_ratio = g->north_wall->height / height;
-		if (height > 1080)
-			height = 1080;
-		half_height = height / 2;
-		while (height > 0)
+		wallray_init_col(g, &wallray);
+		while (wallray.height > 0)
 		{
 			if (g->ray->wall_found == NORTH || g->ray->wall_found == SOUTH)
-				color = get_color(g->north_wall, x_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
+				wallray.color = get_color(g->north_wall, wallray.x_impact, \
+				(int)(g->north_wall->height / 2 - \
+				(wallray.height - wallray.half_height) * wallray.y_ratio));
 			else
-				color = get_color(g->north_wall, y_impact, (int)(g->north_wall->height / 2 - (height - half_height) * y_ratio));
-			my_mlx_pixel_put(g->display, x, (1080 / 2) + height - half_height, color);
-			height -= 1;
+				wallray.color = get_color(g->north_wall, wallray.y_impact, \
+				(int)(g->north_wall->height / 2 - \
+				(wallray.height - wallray.half_height) * wallray.y_ratio));
+			my_mlx_pixel_put(g->display, wallray.x, \
+			(1080 / 2) + wallray.height - wallray.half_height, wallray.color);
+			wallray.height -= 1;
 		}
-		x++;
+		wallray.x++;
 	}
 	return (0);
 }

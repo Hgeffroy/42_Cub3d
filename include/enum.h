@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/02 09:06:21 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:29:41 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,15 @@ enum	e_keycode
 	alt_l_key	=	65513,
 	alt_r_key	=	65514,
 	majlock_key	=	65509
+};
+
+enum	e_mousecode
+{
+	m_left_key		=    1,
+    scroll_key		=    2,
+    m_right_key		=    3,
+    m_down_key		=    4,
+    m_up_key		=    5
 };
 
 enum	e_yesno

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 16:26:42 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:36:04 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_wallray
+{
+	float	len;
+	float	height;
+	float 	half_height;
+	int		x;
+	int		color;
+	float	y_ratio;
+	float	angle;
+	float	x_impact;
+	float	y_impact;
+}	t_wallray;
+
+
 typedef struct	s_walltext
 {
 	void	*img;
@@ -75,6 +89,8 @@ typedef struct	s_movement
 	bool	move_left;
 	bool	rotate_right;
 	bool	rotate_left;
+	bool	mouse;
+	int		last_x;
 }	t_movement;
 
 typedef struct	s_ray

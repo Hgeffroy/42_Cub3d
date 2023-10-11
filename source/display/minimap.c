@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/09 16:17:54 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:52:34 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ void	draw_tile(t_game *g, float x, float y, float a, float b, int *centre)
 	
 	tmpa = a;
 	tmpb = b;
-	a = tmpa * cosf((-1) * g->player->angle - M_PI_2) - tmpb * sinf((-1) * g->player->angle - M_PI_2);
-	b = tmpa * sinf((-1) * g->player->angle - M_PI_2) + tmpb * cosf((-1) * g->player->angle - M_PI_2);
-	if (g->smap->map[(int)y][(int)x] - '0' == FTILE && a + centre[0] >= 0 && b + centre[1] >= 0)
+	a = tmpa * cosf((-1) * g->player->angle - M_PI_2) - \
+	tmpb * sinf((-1) * g->player->angle - M_PI_2);
+	b = tmpa * sinf((-1) * g->player->angle - M_PI_2) + \
+	tmpb * cosf((-1) * g->player->angle - M_PI_2);
+	if (g->smap->map[(int)y][(int)x] - '0' == FTILE && \
+	a + centre[0] >= 0 && b + centre[1] >= 0)
 		my_mlx_pixel_put(g->display, a + centre[0], b + centre[1], H_WHITE);
-	else if (g->smap->map[(int)y][(int)x] - '0' == WALL && a + centre[0] >= 0 && b + centre[1] >= 0)
+	else if (g->smap->map[(int)y][(int)x] - '0' == WALL &&\
+	 a + centre[0] >= 0 && b + centre[1] >= 0)
 		my_mlx_pixel_put(g->display, a + centre[0], b + centre[1], H_GREY);
 }
 
@@ -47,7 +51,8 @@ void	draw_circle(t_game *g, int *centre, int radius, int color)
 		y = centre[1] - radius;
 		while (y < centre[1] + radius)
 		{
-			if ((pow(x - centre[0], 2)) + (pow(y - centre[1], 2)) < pow(radius, 2))
+			if ((pow(x - centre[0], 2)) + (pow(y - centre[1], 2)) \
+			< pow(radius, 2))
 				my_mlx_pixel_put(g->display, x, y, color);
 			y++;
 		}
@@ -70,7 +75,8 @@ float	minimap_ray(t_game *g, float angle)
 	ix = 7.f * TILE_SZ;
 	iy = 7.f * TILE_SZ;
 	while(g->smap->map[(int)y][(int)x] == '0' && \
-	(pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) < pow(3 * TILE_SZ, 2))
+	(pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) \
+	< pow(3 * TILE_SZ, 2))
 	{
 		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
 			color = H_ORANGE + 3 * j * (1 + 256);
@@ -115,7 +121,8 @@ void	init_minimap(t_game *g)
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, 1920, 1080, "cub3d");
 	g->display->img = mlx_new_image(g->mlx, 1920, 1080);
-	g->display->addr = mlx_get_data_addr(g->display->img, &g->display->bits_per_pixel, &g->display->line_len, \
+	g->display->addr = mlx_get_data_addr(g->display->img, \
+	&g->display->bits_per_pixel, &g->display->line_len, \
 								&g->display->endian);
 }
 
@@ -154,10 +161,13 @@ void	draw_minimap(t_game *g)
 	{
 		minimap.map_y = minimap.map_y_start;
 		minimap.display_y = minimap.display_y_start;
-		while (g->smap->map[(int)minimap.map_x][(int)minimap.map_y] && minimap.map_y < g->player->fx + 6)
+		while (g->smap->map[(int)minimap.map_x][(int)minimap.map_y] && \
+		minimap.map_y < g->player->fx + 6)
 		{
-			if (minimap.display_x * minimap.display_x + minimap.display_y * minimap.display_y < 6 * 6 * TILE_SZ * TILE_SZ)
-				draw_tile(g, minimap.map_y, minimap.map_x, minimap.display_y, minimap.display_x, minimap.center);
+			if (minimap.display_x * minimap.display_x + minimap.display_y * \
+			minimap.display_y < 6 * 6 * TILE_SZ * TILE_SZ)
+				draw_tile(g, minimap.map_y, minimap.map_x, minimap.display_y, \
+				minimap.display_x, minimap.center);
 			minimap.map_y += minimap.ratio;
 			minimap.display_y += 0.5;
 		}
