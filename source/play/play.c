@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 07:43:08 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:40:10 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	mlx_close(t_game *g)
 
 int	init_game(t_game *g)
 {
-	g->player->fx = g->player->x + 0.5;
-	g->player->fy = g->player->y + 0.5;
+	g->player.fx = g->player.x + 0.5;
+	g->player.fy = g->player.y + 0.5;
 	init_minimap(g);
 	init_walls(g);
 	return (0);
@@ -34,24 +34,25 @@ int	display(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->display.img, 0, 0);
 	mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-180-*-*");
 	mlx_string_put(g->mlx, g->win, \
-			6 * TILE_SZ * cosf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, \
-			6 * TILE_SZ * sinf((-1) * g->player->angle + M_PI) + 7 * TILE_SZ, \
+			6 * TILE_SZ * cosf((-1) * g->player.angle + M_PI) + 7 * TILE_SZ, \
+			6 * TILE_SZ * sinf((-1) * g->player.angle + M_PI) + 7 * TILE_SZ, \
 			H_RED, "N");
+	return (0);
 }
 
 int	mlx_play(t_game *g)
 {
-	if (g->movement->rotate_left)
+	if (g->movement.rotate_left)
 		rotate_left(g, 10);
-	if (g->movement->rotate_right)
+	if (g->movement.rotate_right)
 		rotate_right(g, 10);
-	if (g->movement->move_up)
+	if (g->movement.move_up)
 		move_forward(g);
-	if (g->movement->move_down)
+	if (g->movement.move_down)
 		move_backward(g);
-	if (g->movement->move_left)
+	if (g->movement.move_left)
 		move_left(g);
-	if (g->movement->move_right)
+	if (g->movement.move_right)
 		move_right(g);
 	display(g);
 	return (0);

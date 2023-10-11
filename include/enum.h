@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/10 15:29:41 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:59:20 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,23 @@ enum	e_mousecode
 
 enum	e_yesno
 {
-	YES	=	0,
-	NO	=	1
+	YES,
+	NO
 };
 
 enum	e_map
 {
-	FTILE	= 0,
-	WALL	= 1,
-	OPEN	= 2
+	FTILE,
+	WALL,
+	OPEN
 };
 
 enum	e_wall
 {
-	NORTH	= 0,
-	SOUTH	= 1,
-	EAST	= 2,
-	WEST	= 3
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
 };
 
 enum	e_error

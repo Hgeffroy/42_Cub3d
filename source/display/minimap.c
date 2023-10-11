@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 07:47:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:45:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	draw_tile(t_game *g, float x, float y, float a, float b, int *centre)
 	
 	tmpa = a;
 	tmpb = b;
-	a = tmpa * cosf((-1) * g->player->angle - M_PI_2) - \
-	tmpb * sinf((-1) * g->player->angle - M_PI_2);
-	b = tmpa * sinf((-1) * g->player->angle - M_PI_2) + \
-	tmpb * cosf((-1) * g->player->angle - M_PI_2);
+	a = tmpa * cosf((-1) * g->player.angle - M_PI_2) - \
+	tmpb * sinf((-1) * g->player.angle - M_PI_2);
+	b = tmpa * sinf((-1) * g->player.angle - M_PI_2) + \
+	tmpb * cosf((-1) * g->player.angle - M_PI_2);
 	if (g->smap.map[(int)y][(int)x] - '0' == FTILE && \
 	a + centre[0] >= 0 && b + centre[1] >= 0)
 		my_mlx_pixel_put(&(g->display), a + centre[0], b + centre[1], H_WHITE);
@@ -70,8 +70,8 @@ float	minimap_ray(t_game *g, float angle)
 	int		color = H_ORANGE;
 	int		j = 0;
 	
-	x = g->player->fx;
-	y = g->player->fy;
+	x = g->player.fx;
+	y = g->player.fy;
 	ix = 7.f * TILE_SZ;
 	iy = 7.f * TILE_SZ;
 	while(g->smap.map[(int)y][(int)x] == '0' && \
@@ -81,8 +81,8 @@ float	minimap_ray(t_game *g, float angle)
 		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
 			color = H_ORANGE + 3 * j * (1 + 256);
 		my_mlx_pixel_put(&(g->display), ix, iy, color);
-		x += cosf(angle + g->player->angle) / TILE_SZ;
-		y += sinf(angle + g->player->angle) / TILE_SZ;
+		x += cosf(angle + g->player.angle) / TILE_SZ;
+		y += sinf(angle + g->player.angle) / TILE_SZ;
 		iy -= cos(angle);
 		ix += sin (angle);
 		j++;
@@ -131,7 +131,7 @@ void	set_minimap(t_game *g, t_minimap *minimap)
 	minimap->ratio = 1.f / (2 * TILE_SZ);
 	minimap->center[0] = TILE_SZ * 7;
 	minimap->center[1] = TILE_SZ * 7;
-	minimap->map_x = (g->player->fy - 6);
+	minimap->map_x = (g->player.fy - 6);
 	minimap->display_x = (-1.f) * 6.f * TILE_SZ;
 	minimap->display_y_start = (-1.f) * 6.f * TILE_SZ;
 	while (minimap->map_x < 0)
@@ -139,7 +139,7 @@ void	set_minimap(t_game *g, t_minimap *minimap)
 		minimap->display_x++;
 		minimap->map_x += 2 * minimap->ratio;
 	}
-	minimap->map_y_start = (g->player->fx - 6);
+	minimap->map_y_start = (g->player.fx - 6);
 	while (minimap->map_y_start < 0)
 	{
 		minimap->display_y_start++;
@@ -157,12 +157,12 @@ void	draw_minimap(t_game *g)
 	t_minimap	minimap;
 	
 	set_minimap(g, &minimap);
-	while (g->smap.map[(int)minimap.map_x] && minimap.map_x < g->player->fy + 6)
+	while (g->smap.map[(int)minimap.map_x] && minimap.map_x < g->player.fy + 6)
 	{
 		minimap.map_y = minimap.map_y_start;
 		minimap.display_y = minimap.display_y_start;
 		while (g->smap.map[(int)minimap.map_x][(int)minimap.map_y] && \
-		minimap.map_y < g->player->fx + 6)
+		minimap.map_y < g->player.fx + 6)
 		{
 			if (minimap.display_x * minimap.display_x + minimap.display_y * \
 			minimap.display_y < 6 * 6 * TILE_SZ * TILE_SZ)
