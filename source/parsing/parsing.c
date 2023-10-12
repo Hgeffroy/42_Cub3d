@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:35:37 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 12:57:03 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:46:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void	print_parsing(t_game *g)
 	print_tab(g->smap.map);
 	printf("\n\n");
 	print_tab(g->smap.map_cpy);
+	printf("\n\n");
 }

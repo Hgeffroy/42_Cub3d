@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 15:40:10 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:48:19 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	init_game(t_game *g)
 {
 	g->player.fx = g->player.x + 0.5;
 	g->player.fy = g->player.y + 0.5;
+	// mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-180-*-*");
 	init_minimap(g);
 	init_walls(g);
 	return (0);
@@ -32,7 +33,6 @@ int	display(t_game *g)
 	draw_display(g);
 	draw_minimap(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->display.img, 0, 0);
-	mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-180-*-*");
 	mlx_string_put(g->mlx, g->win, \
 			6 * TILE_SZ * cosf((-1) * g->player.angle + M_PI) + 7 * TILE_SZ, \
 			6 * TILE_SZ * sinf((-1) * g->player.angle + M_PI) + 7 * TILE_SZ, \
@@ -61,6 +61,10 @@ int	mlx_play(t_game *g)
 void	play(t_game *g)
 {
 	init_game(g);
+	printf("North addr: %p\n", g->walls[NORTH].addr);
+	printf("South addr: %p\n", g->walls[SOUTH].addr);
+	printf("West addr: %p\n", g->walls[WEST].addr);
+	printf("East addr: %p\n\n\n", g->walls[EAST].addr);
 	mlx_hook(g->win, 17, 1L << 17, &mlx_close, g);
 	mlx_hook(g->win, 2, 1L << 0, &press_key, g);
 	mlx_hook(g->win, 3, 1L << 1, &release_key, g);
