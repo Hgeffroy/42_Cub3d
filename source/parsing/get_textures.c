@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:03:48 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 16:01:34 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:04:08 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,22 +111,26 @@ char	*set_texture(char *texture)
 
 int	init_walls(t_game *g)
 {
-	char	*texture;
+	char	*texture[4];
 	
-	texture = set_texture(g->textures.north);
-	g->walls[NORTH].img = mlx_xpm_file_to_image(g->mlx, texture, &g->walls[NORTH].width, &g->walls[NORTH].height);
+	texture[0] = set_texture(g->textures.north);
+	texture[1] = set_texture(g->textures.south);
+	texture[2] = set_texture(g->textures.west);
+	texture[3] = set_texture(g->textures.east);
+
+	g->walls[NORTH].img = mlx_xpm_file_to_image(g->mlx, texture[0], &g->walls[NORTH].width, &g->walls[NORTH].height);
 	if (!g->walls[NORTH].img)
 		return (-1);
 	g->walls[NORTH].addr = mlx_get_data_addr(g->walls[NORTH].img, &g->walls[NORTH].bits_per_pixel, &g->walls[NORTH].line_len, &g->walls[NORTH].endian);
-	g->walls[SOUTH].img = mlx_xpm_file_to_image(g->mlx, texture, &g->walls[SOUTH].width, &g->walls[SOUTH].height);
+	g->walls[SOUTH].img = mlx_xpm_file_to_image(g->mlx, texture[1], &g->walls[SOUTH].width, &g->walls[SOUTH].height);
 	if (!g->walls[SOUTH].img)
 		return (-1);
 	g->walls[SOUTH].addr = mlx_get_data_addr(g->walls[SOUTH].img, &g->walls[SOUTH].bits_per_pixel, &g->walls[SOUTH].line_len, &g->walls[SOUTH].endian);
-	g->walls[WEST].img = mlx_xpm_file_to_image(g->mlx, texture, &g->walls[WEST].width, &g->walls[WEST].height);
+	g->walls[WEST].img = mlx_xpm_file_to_image(g->mlx, texture[2], &g->walls[WEST].width, &g->walls[WEST].height);
 	if (!g->walls[WEST].img)
 		return (-1);
 	g->walls[WEST].addr = mlx_get_data_addr(g->walls[WEST].img, &g->walls[WEST].bits_per_pixel, &g->walls[WEST].line_len, &g->walls[WEST].endian);
-	g->walls[EAST].img = mlx_xpm_file_to_image(g->mlx, texture, &g->walls[EAST].width, &g->walls[EAST].height);
+	g->walls[EAST].img = mlx_xpm_file_to_image(g->mlx, texture[3], &g->walls[EAST].width, &g->walls[EAST].height);
 	if (!g->walls[EAST].img)
 		return (-1);
 	g->walls[EAST].addr = mlx_get_data_addr(g->walls[EAST].img, &g->walls[EAST].bits_per_pixel, &g->walls[EAST].line_len, &g->walls[EAST].endian);

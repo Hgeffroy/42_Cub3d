@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:03:20 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/12 09:20:48 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:56:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	get_north_color(t_game *g, t_wallray *wallray)
 {
+	// puts("color north");
 	wallray->color = get_color(g->walls[NORTH], wallray->x_impact, \
 					(int)(g->walls[NORTH].height / 2 - \
 					(wallray->height - wallray->half_height) * wallray->y_ratio));
@@ -21,6 +22,7 @@ void	get_north_color(t_game *g, t_wallray *wallray)
 
 void	get_south_color(t_game *g, t_wallray *wallray)
 {
+	// puts("color south");
 	wallray->color = get_color(g->walls[SOUTH], wallray->x_impact, \
 					(int)(g->walls[SOUTH].height / 2 - \
 					(wallray->height - wallray->half_height) * wallray->y_ratio));
@@ -28,6 +30,7 @@ void	get_south_color(t_game *g, t_wallray *wallray)
 
 void	get_west_color(t_game *g, t_wallray *wallray)
 {
+	// puts("color west");
 	wallray->color = get_color(g->walls[WEST], wallray->y_impact, \
 					(int)(g->walls[WEST].height / 2 - \
 					(wallray->height - wallray->half_height) * wallray->y_ratio));
@@ -35,6 +38,7 @@ void	get_west_color(t_game *g, t_wallray *wallray)
 
 void	get_east_color(t_game *g, t_wallray *wallray)
 {
+	// puts("color east");
 	wallray->color = get_color(g->walls[EAST], wallray->y_impact, \
 					(int)(g->walls[EAST].height / 2 - \
 					(wallray->height - wallray->half_height) * wallray->y_ratio));
