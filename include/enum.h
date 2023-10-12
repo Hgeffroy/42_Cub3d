@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 15:59:20 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 08:54:59 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ enum	e_wall
 {
 	NORTH,
 	SOUTH,
-	EAST,
-	WEST
+	WEST,
+	EAST
 };
 
 enum	e_error
