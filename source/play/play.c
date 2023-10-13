@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/12 12:48:19 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/13 08:16:12 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 int	mlx_close(t_game *g)
 {
-	(void)g;
+	int	i;
+
+	i = 0;
+	mlx_destroy_image(g->mlx, g->display.img);
+	while (i < 4)
+	{
+		mlx_destroy_image(g->mlx, g->walls[i].img);
+		i++;
+	}
+	mlx_destroy_window(g->mlx, g->win);
+	free(g);
 	exit (0);
 }
 
@@ -22,7 +32,6 @@ int	init_game(t_game *g)
 {
 	g->player.fx = g->player.x + 0.5;
 	g->player.fy = g->player.y + 0.5;
-	// mlx_set_font(g->mlx, g->win, "-*-*-*-*-*-*-*-*-*-*-*-180-*-*");
 	init_minimap(g);
 	init_walls(g);
 	return (0);

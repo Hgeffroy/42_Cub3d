@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:03:48 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/12 13:04:08 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:42:58 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int	init_walls(t_game *g)
 	texture[1] = set_texture(g->textures.south);
 	texture[2] = set_texture(g->textures.west);
 	texture[3] = set_texture(g->textures.east);
-
 	g->walls[NORTH].img = mlx_xpm_file_to_image(g->mlx, texture[0], &g->walls[NORTH].width, &g->walls[NORTH].height);
 	if (!g->walls[NORTH].img)
 		return (-1);
