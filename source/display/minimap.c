@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 12:45:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:46:15 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void	draw_player(t_game *g)
 void	init_minimap(t_game *g)
 {
 	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, 1920, 1080, "cub3d");
-	g->display.img = mlx_new_image(g->mlx, 1920, 1080);
+	g->win = mlx_new_window(g->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+	g->display.img = mlx_new_image(g->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	g->display.addr = mlx_get_data_addr(g->display.img, \
 	&g->display.bits_per_pixel, &g->display.line_len, \
 								&g->display.endian);

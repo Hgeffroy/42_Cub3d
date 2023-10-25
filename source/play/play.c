@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/13 08:16:12 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:50:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ int	mlx_play(t_game *g)
 void	play(t_game *g)
 {
 	init_game(g);
-	printf("North addr: %p\n", g->walls[NORTH].addr);
-	printf("South addr: %p\n", g->walls[SOUTH].addr);
-	printf("West addr: %p\n", g->walls[WEST].addr);
-	printf("East addr: %p\n\n\n", g->walls[EAST].addr);
-	mlx_hook(g->win, 17, 1L << 17, &mlx_close, g);
 	mlx_hook(g->win, 2, 1L << 0, &press_key, g);
 	mlx_hook(g->win, 3, 1L << 1, &release_key, g);
 	mlx_hook(g->win, 4, 1L << 2, &press_mouse, g);

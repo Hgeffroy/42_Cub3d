@@ -6,7 +6,7 @@
 #    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/10/09 14:24:33 by hgeffroy         ###   ########.fr        #
+#    Updated: 2023/10/25 10:02:38 by hgeffroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ DEBUG           =       no
 #--includes & libraries--------------------------------------------------------#
 
 INC_DIR         =       include
-LIBFT_DIR       =       source/libft
-MLX_DIR			=		source/minilibx-linux
+LIBFT_DIR       =       libft
+MLX_DIR			=		minilibx-linux
 
 #--sources & objects-----------------------------------------------------------#
 
@@ -30,7 +30,7 @@ OBJ_DIR         =       .objs
 
 #--flags-----------------------------------------------------------------------#
 
-CFLAGS          =       -g3 -Wall -Wextra -Ofast -pipe -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include #-Werror
+CFLAGS          =       -g3 -Wall -Wextra -Werror -Ofast -pipe -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include
 MLXFLAGS		=		-L $(MLX_DIR) -l mlx -l Xext -l X11 -l m -I $(MLX_DIR)
 
 #--debug flags-----------------------------------------------------------------#
@@ -56,12 +56,12 @@ OBJECTS =       $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 #--compilation rules-----------------------------------------------------------#
 
 all:
-		$(MAKE) -C ./source/minilibx-linux
-		$(MAKE) -C ./source/libft
+		$(MAKE) -C minilibx-linux
+		$(MAKE) -C libft
 		$(MAKE) $(NAME) -j
 
-$(NAME): $(OBJECTS) $(LIBFT)
-		$(CC) $^ $(CFLAGS) $(MLXFLAGS) -o $@
+$(NAME): $(OBJECTS) $(HEADERS) $(LIBFT)
+		$(CC) $(OBJECTS) $(CFLAGS) $(MLXFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS) 
 		mkdir -p $(dir $@)
