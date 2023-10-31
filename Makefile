@@ -1,98 +1,214 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/20 14:14:21 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/10/25 10:02:38 by hgeffroy         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+########################################################################################################################
+#                                                       VARIABLE                                                       #
+########################################################################################################################
+SRCS		:=	\
+				cub3D.c\
+				display/get_wall_color.c\
+				display/init_col.c\
+				display/minimap.c\
+				display/raycasting.c\
+				display/texturing.c\
+				parsing/check_map.c\
+				parsing/check_map_utils.c\
+				parsing/get_map.c\
+				parsing/get_map_file.c\
+				parsing/get_new_map.c\
+				parsing/get_txr_and_rgb.c\
+				parsing/parsing.c\
+				parsing/utils.c\
+				play/doors.c\
+				play/hook.c\
+				play/movements.c\
+				play/play.c\
 
-include config/sources.mk
+SRCS_B		=	$(SRCS)\
+				parsing/parsing_bonus.c
 
-#--variables-------------------------------------------------------------------#
+HEAD		:=	\
+				cub3D.h\
+				colors.h\
+				structs.h\
+				cub3D.h\
+				define.h\
+				display.h\
+				enum.h\
+				parsing.h\
+				play.h\
 
-NAME            =       cub3D
-DEBUG           =       no
+SRCS_D		:=	srcs/
 
-#--includes & libraries--------------------------------------------------------#
+HEAD_D		:=	incs/
 
-INC_DIR         =       include
-LIBFT_DIR       =       libft
-MLX_DIR			=		minilibx-linux
+OBJS_D		:=	objs/
 
-#--sources & objects-----------------------------------------------------------#
+OBJS_B_D	:=	objs_bonus/
 
-SRC_DIR         =       source
-OBJ_DIR         =       .objs
+OBJS		=	$(SRCS:%.c=$(OBJS_D)%.o)
 
-#--flags-----------------------------------------------------------------------#
+OBJS_B		=	$(SRCS_B:%.c=$(OBJS_B_D)%.o)
 
-CFLAGS          =       -g3 -Wall -Wextra -Werror -Ofast -pipe -I $(LIBFT_DIR)/header -I $(INC_DIR) -I /usr/include
-MLXFLAGS		=		-L $(MLX_DIR) -l mlx -l Xext -l X11 -l m -I $(MLX_DIR)
+HEAD_A		:=	$(addprefix $(HEAD_D), $(HEAD))
 
-#--debug flags-----------------------------------------------------------------#
+NAME		:=	cub3D
 
-DFLAGS          =       -g3 -fsanitize=address
+NAME_B		:=	cub3D_bonus
 
-ifeq ($(DEBUG), yes)
-CFLAGS          +=      $(DFLAGS)
+########################################################################################################################
+#                                                         LIB                                                          #
+########################################################################################################################
+LIB			:=	libft.a
+
+LIB_D		:=	libft/
+
+LIB_I		:=	$(LIB_D)$(HEAD_D)
+
+LIB_H		:=	$(LIB_I)libft.h
+
+LIB_A		:=	$(LIB_D)$(LIB)
+
+MLX			:=	libmlx.a
+
+UNAME_S		:=	$(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+MLX_D		:=	MLX_Linux/
+
+MLX_F		:=	-L$(MLX_D) -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+
+endif
+ifeq ($(UNAME_S),Darwin)
+MLX_D		:=	MLX_MacOS/
+
+MLX_F		:=	-framework OpenGL -framework AppKit
+
 endif
 
-#--libs------------------------------------------------------------------------#
+MLX_I		:=	$(MLX_D)
 
-LIBFT   =       $(LIBFT_DIR)/libft.a
+MLX_H		:=	$(MLX_I)mlx.h
 
-#--objects---------------------------------------------------------------------#
+MLX_A		:=	$(MLX_D)$(MLX)
 
-OBJECTS =       $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
+########################################################################################################################
+#                                                        FLAGS                                                         #
+########################################################################################################################
+CC			:=	cc
 
-#--global rules----------------------------------------------------------------#
+RM			:=	rm -rf
 
-.DEFAULT_GOAL = all
+CFLAGS		:=	-Wall -Wextra -Werror -g3
 
-#--compilation rules-----------------------------------------------------------#
+OPTI_F		:=	-O3 #-Ofast -march=native -fomit-frame-pointer -funroll-loops
 
-all:
-		$(MAKE) -C minilibx-linux
-		$(MAKE) -C libft
-		$(MAKE) $(NAME) -j
+BFLAGS		:=	-DIS_BONUS=true
 
-$(NAME): $(OBJECTS) $(HEADERS) $(LIBFT)
-		$(CC) $(OBJECTS) $(CFLAGS) $(MLXFLAGS) -o $@
+MAPS		?=	maps/g_clean.cub
 
-$(OBJ_DIR)/%.o: %.c $(HEADERS) 
-		mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) $(MLXFLAGS) -c $< -o $@
+########################################################################################################################
+#                                                        DEBUG                                                         #
+########################################################################################################################
+DEBUG		:=	no
 
-#--libs, debugs & bonus--------------------------------------------------------#
+ifeq ($(DEBUG), yes)
+ASAN_F		:=	-fsanitize=address
+endif
 
-lib:
-		$(MAKE) -C $(LIBFT_DIR)
+IGN_LEAK	:=	valgrind_ignore_leaks.txt
 
-debug:
-		$(MAKE) re -j DEBUG=yes
+VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all\
+				--track-fds=yes --show-mismatched-frees=yes --read-var-info=yes -s
 
-#--re, clean & fclean----------------------------------------------------------#
+########################################################################################################################
+#                                                        COLORS                                                        #
+########################################################################################################################
+BLUE		:=	\001\033[34m\002
 
-re:
-		clear
-		$(MAKE) fclean
-		$(MAKE) -j all
+BOLD		:=	\001\033[1m\002
 
-clean:
-		$(MAKE) -C $(LIBFT_DIR) clean
-		$(MAKE) -C $(MLX_DIR) clean
-		$(RM) -rf $(OBJECTS)
+RESET		:=	\001\033[0m\002
 
-fclean:
-		clear
-		$(MAKE) clean
-		$(MAKE) -C $(LIBFT_DIR) fclean
-		$(RM) $(NAME)
+########################################################################################################################
+#                                                        RULES                                                         #
+########################################################################################################################
+all			:	$(NAME) banner
 
-#--PHONY-----------------------------------------------------------------------#
+$(NAME)		:	$(OBJS_D) $(OBJS) $(LIB_A) $(MLX_A) Makefile
+			$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
 
-.PHONY: all lib debug re clean fclean
+$(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_A) $(LIB_H) $(MLX_H)
+			$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -I$(HEAD_D) -I$(LIB_I) -I$(MLX_I) -c $< -o $@
+
+$(OBJS_D)	:
+			mkdir -p $(OBJS_D)
+			mkdir -p $(OBJS_D)display
+			mkdir -p $(OBJS_D)parsing
+			mkdir -p $(OBJS_D)play
+
+$(LIB_A)	:	$(LIB_D)
+			$(MAKE) -C $(LIB_D)
+
+$(MLX_A)	:	$(MLX_D)
+			$(MAKE) -j -C $(MLX_D) 2>/dev/null
+
+leaks		:	all
+			$(VALGRIND) ./$(NAME) $(MAPS)
+
+run			:	all
+			./$(NAME) $(MAPS)
+
+fsan		:
+			$(MAKE) re DEBUG=yes
+
+########################################################################################################################
+#                                                     BONUS RULES                                                      #
+########################################################################################################################
+bonus		:	$(NAME_B) banner
+
+$(NAME_B)	:	$(OBJS_B_D) $(OBJS_B) $(LIB_A) $(MLX_A) Makefile
+			$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) $(BFLAGS) -o $(NAME_B) $(OBJS_B) $(MLX_A) $(LIB_A) $(MLX_F)
+
+$(OBJS_B)	:	$(OBJS_B_D)%.o: $(SRCS_D)%.c $(HEAD_A) $(LIB_H) $(MLX_H)
+			$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) $(BFLAGS) -I$(HEAD_D) -I$(LIB_I) -I$(MLX_I) -c $< -o $@
+
+$(OBJS_B_D)	:
+			mkdir -p $(OBJS_B_D)
+			mkdir -p $(OBJS_B_D)display
+			mkdir -p $(OBJS_B_D)parsing
+			mkdir -p $(OBJS_B_D)play
+
+bleaks		:	bonus
+			$(VALGRIND) ./$(NAME_B) $(MAPS)
+
+brun		:	all
+			./$(NAME_B) $(MAPS)
+
+bfsan		:
+			$(MAKE) fclean bonus DEBUG=yes
+
+banner		:
+			@echo -e '$(BLUE)'
+			@echo -e '   ______        __    _____  ____ '
+			@echo -e '  / ____/__  __ / /_  |__  / / __ \'
+			@echo -e ' / /    / / / // __ \  /_ < / / / /'
+			@echo -e '/ /___ / /_/ // /_/ /___/ // /_/ / '
+			@echo -e '\____/ \__,_//_.___//____//_____/  '
+			@echo -e '     _/_/_/            _/        _/_/_/    _/_/_/    '
+			@echo -e '  _/        _/    _/  _/_/_/          _/  _/    _/   '
+			@echo -e ' _/        _/    _/  _/    _/    _/_/    _/    _/    '
+			@echo -e '_/        _/    _/  _/    _/        _/  _/    _/     '
+			@echo -e ' _/_/_/   _/_/_/   _/_/_/    _/_/_/    _/_/_/        '
+			@echo -e '$(BOLD)'
+			@echo -e '                                        🍦    xcharra'
+			@echo -e '$(RESET)'
+
+clean		:
+			$(RM) $(OBJS) $(OBJS_D) $(OBJS_B) $(OBJS_B_D)
+			$(MAKE) clean -C $(LIB_D)
+
+fclean		:	clean
+			$(RM) $(NAME) $(NAME_B)
+			$(MAKE) fclean -C $(LIB_D)
+			$(MAKE) clean -C $(MLX_D)
+
+re			:	fclean all
+
+.PHONY		:	all bonus leaks run fsan banner clean fclean re
