@@ -21,7 +21,7 @@ int	press_key(int keycode, t_data *cub)
 	if (keycode == up_key || keycode == w_key)
 		cub->movement.move_up = true;
 	if (keycode == down_key || keycode == s_key)
-		cub->movement.move_down= true;
+		cub->movement.move_down = true;
 	if (keycode == a_key)
 		cub->movement.move_left = true;
 	if (keycode == d_key)

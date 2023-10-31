@@ -27,7 +27,7 @@ void	move_forward(t_data *cub)
 {
 	float	nextx;
 	float	nexty;
-	
+
 	nextx = cub->player.fx + cos (cub->player.angle) * SPEED;
 	nexty = cub->player.fy + sin (cub->player.angle) * SPEED;
 	if (cub->map[(int)(cub->player.fy)][(int)(nextx)] == '0')
@@ -40,7 +40,7 @@ void	move_backward(t_data *cub)
 {
 	float	nextx;
 	float	nexty;
-	
+
 	nextx = cub->player.fx + cos (cub->player.angle + M_PI) * SPEED;
 	nexty = cub->player.fy + sin (cub->player.angle + M_PI) * SPEED;
 	if (cub->map[(int)(cub->player.fy)][(int)(nextx)] == '0')
@@ -53,7 +53,7 @@ void	move_left(t_data *cub)
 {
 	float	nextx;
 	float	nexty;
-	
+
 	nextx = cub->player.fx + cos (cub->player.angle - M_PI_2) * SPEED;
 	nexty = cub->player.fy + sin (cub->player.angle - M_PI_2) * SPEED;
 	if (cub->map[(int)(cub->player.fy)][(int)(nextx)] == '0')
@@ -66,7 +66,7 @@ void	move_right(t_data *cub)
 {
 	float	nextx;
 	float	nexty;
-	
+
 	nextx = cub->player.fx + cos (cub->player.angle + M_PI_2) * SPEED;
 	nexty = cub->player.fy + sin (cub->player.angle + M_PI_2) * SPEED;
 	if (cub->map[(int)(cub->player.fy)][(int)(nextx)] == '0')

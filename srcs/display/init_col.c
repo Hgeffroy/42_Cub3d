@@ -48,6 +48,6 @@ void	init_col(t_data *cub, t_wallray *wallray)
 {
 	const t_init_col	tab[] = {&init_col_n, &init_col_s, &init_col_w, \
 								&init_col_w};
-								
+
 	(*tab[cub->ray.wall_found])(cub, wallray);
 }
