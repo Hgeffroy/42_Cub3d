@@ -1,107 +1,102 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/13 12:02:18 by hgeffroy          #+#    #+#              #
-#    Updated: 2023/09/26 07:56:49 by hgeffroy         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS			=	ft_atoi.c\
+					ft_atoi_safe.c\
+					ft_atoll.c\
+					ft_bzero.c\
+					ft_calloc.c\
+					ft_dtoa.c\
+					ft_fdprintf.c\
+					ft_isalnum.c\
+					ft_isalpha.c\
+					ft_isascii.c\
+					ft_ischarset.c\
+					ft_isdigit.c\
+					ft_isprint.c\
+					ft_itoa.c\
+					ft_lstadd_back.c\
+					ft_lstadd_front.c\
+					ft_lstclear.c\
+					ft_lstdelone.c\
+					ft_lstiter.c\
+					ft_lstlast.c\
+					ft_lstmap.c\
+					ft_lstnew.c\
+					ft_lstsize.c\
+					ft_memchr.c\
+					ft_memcmp.c\
+					ft_memcpy.c\
+					ft_memmove.c\
+					ft_memset.c\
+					ft_printf.c\
+					ft_putchar_fd.c\
+					ft_putchar.c\
+					ft_putendl_fd.c\
+					ft_putnbr_base.c\
+					ft_putnbr_fd.c\
+					ft_putnbr.c\
+					ft_putstr_fd.c\
+					ft_putstr.c\
+					ft_putunbr.c\
+					ft_split.c\
+					ft_strchr.c\
+					ft_strdup.c\
+					ft_strischarset.c\
+					ft_striteri.c\
+					ft_strjoin.c\
+					ft_strlcat.c\
+					ft_strlcpy.c\
+					ft_strlen.c\
+					ft_strmapi.c\
+					ft_strcmp.c\
+					ft_strncmp.c\
+					ft_strnstr.c\
+					ft_strrchr.c\
+					ft_strtrim.c\
+					ft_substr.c\
+					ft_tabdup.c\
+					ft_tabfree.c\
+					ft_tolower.c\
+					ft_toupper.c\
+					get_next_line.c\
 
-#Variables
+SRCS_D			=	srcs/
 
-NAME = libft.a
-HEADER = header/
-FLAGS = -Wall -Werror -Wextra
-AR = ar rcs
-CC = cc
-RM = rm -f
-OBJ_DIR = ./obj/
+OBJS			=	$(SRCS:%.c=$(OBJS_D)%.o)
 
-#Files
+OBJS_D			=	objs/
 
-SRC_F = free_tab.c \
-		ft_atoi.c \
-		ft_bzero.c \
-		ft_calloc.c \
-		ft_dprintf.c \
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isdigit.c \
-		ft_isstrdigit.c \
-		ft_isprint.c \
-		ft_itoa.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_memcpy.c \
-		ft_memmove.c \
-		ft_memset.c \
-		ft_putchar_fd.c \
-		ft_putendl_fd.c \
-		ft_putnbr_fd.c \
-		ft_putstr_fd.c \
-		ft_split.c \
-		ft_strchr.c \
-		ft_strcmp.c \
-		ft_strdup.c \
-		ft_striteri.c \
-		ft_strjoin.c \
-		ft_strlcat.c \
-		ft_strlcpy.c \
-		ft_strlen.c \
-		ft_strmapi.c \
-		ft_strncmp.c \
-		ft_strndup.c \
-		ft_strnstr.c \
-		ft_strrchr.c \
-		ft_strtrim.c \
-		ft_substr.c \
-		ft_tolower.c \
-		ft_toupper.c \
-		ft_printf.c \
-		ft_printf_nb.c \
-		ft_printf_unb.c \
-		ft_printf_char.c \
-		ft_lstadd_back.c \
-		ft_lstadd_front.c \
-		ft_lstclear.c \
-		ft_lstdelone.c \
-		ft_lstiter.c \
-		ft_lstlast.c \
-		ft_lstmap.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
-		get_next_line.c \
-		get_next_line_utils.c \
-		print_tab_int.c \
-		print_tab.c \
-		tab_len.c \
-		tab_dup.c
+HEAD			=	libft.h
 
-OBJ = $(addprefix $(OBJ_DIR), $(SRC_F:.c=.o))
+HEAD_D			=	incs/
 
-#Rules
+NAME			=	libft.a
 
-all : $(NAME)
+AR				=	ar
 
-$(OBJ_DIR)%.o : %.c $(HEADER) Makefile
-	$(CC) $(FLAGS) -c $< -o $@ -I $(HEADER)
+ARFLAGS			=	rcs
 
-$(NAME) : $(OBJ_DIR) $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+CC				=	cc
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+RM				=	rm -rf
 
-clean :
-	$(RM) -r $(OBJ_DIR)
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
-fclean : clean
-	$(RM) $(NAME)
+all				:	$(NAME)
 
-re : fclean all
+$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD)
+				$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-.PHONY : re fclean clean all
+$(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD)
+				$(CC) $(CFLAGS) -I$(HEAD_D) -c $< -o $@
+
+clean			:
+				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
+
+fclean			:	clean
+				$(RM) $(NAME) $(OBJS_B)
+
+$(OBJS_D)		:
+				mkdir -p $(OBJS_D)
+
+re				:	fclean all
+
+.PHONY			:	all clean fclean re
