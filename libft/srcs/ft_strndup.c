@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 12:17:17 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:42:04 by hgeffroy         ###   ########.fr       */
+/*   Created: 2023/10/31 16:39:45 by hgeffroy          #+#    #+#             */
+/*   Updated: 2023/10/31 16:40:08 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strndup(const char *s, int n)
 {
-	t_data	cub;
-//	t_game	*g;
-	
-	if (ac != 2)
-		return (ft_fdprintf(2, "This program should be ran with one argument.\n"));
-	if (parsing(av[1], &cub))
-		return (0);
-	play(&cub);
-	return (0);
+	char		*sdup;
+	size_t		len;
+	int			i;
+
+	len = ft_strlen(s);
+	sdup = (char *)malloc(sizeof(char) * (len + 1));
+	if (!sdup)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < n)
+	{
+		sdup[i] = ((char *)s)[i];
+		i++;
+	}
+	sdup[i] = '\0';
+	return (sdup);
 }
