@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:49:53 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 13:33:36 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:22:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	parsing(char *map_path, t_data *cub)
 	if (get_map(cub))
 		return (free_txr(cub->txr), ft_tabfree(cub->map_file), 1);
 	ft_tabfree(cub->map_file);
-	clear_parsing(cub);
+	// clear_parsing(cub);
 	return (0);
 }

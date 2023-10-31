@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:18:28 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:18:41 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	rgb_converter(t_data *cub)
 
 void	print_parsing(t_data *cub)
 {
-	print_tab_msg(cub->map_file, GREEN"map file:\n"RESET);
+	// print_tab_msg(cub->map_file, GREEN"map file:\n"RESET);
 	if (!cub->map_file)
 		ft_printf(BLUE"(null)"RESET);
 	ft_printf(GREEN"\ntextures paths:\n"RESET);
