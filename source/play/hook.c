@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:59:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 15:40:00 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:52:42 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	press_key(int keycode, t_game *g)
 		g->movement.move_right = true;
 	if (keycode == esc_key)
 		mlx_close(g);
+		// if (keycode == space_key)
+		// 	open_door(g);
 	return (0);
 }
 
@@ -83,8 +85,8 @@ int	move_mouse(int x, int y, t_game *g)
 	mlx_mouse_get_pos(g->mlx, g->win, &mouse_x, &mouse_y);
 	if (mouse_x > 1850 || mouse_y > 1000)
 	{
-		mlx_mouse_move(g->mlx, g->win, 1920 / 2, 1080 / 2);
-		g->movement.last_x = 1920 / 2;
+		mlx_mouse_move(g->mlx, g->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		g->movement.last_x = SCREEN_WIDTH / 2;
 		return (0);
 	}
 	g->movement.last_x += diff_x;

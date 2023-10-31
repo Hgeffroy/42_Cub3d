@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:59:10 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/05 08:52:11 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:45:39 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@
 # define SCREEN_DIST		10
 # define WALL_HEIGHT		150
 # define SPEED				0.04
+# define SCREEN_HEIGHT		960
+# define SCREEN_WIDTH		1707
 
 #endif

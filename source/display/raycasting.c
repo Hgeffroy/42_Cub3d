@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/11 12:45:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:07:49 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,12 @@ float	raycasting(t_game *g, float angle)
 	while (1)
 	{
 		len = ray_step(g);
-		if (g->smap.map[g->ray.map_check[1]][g->ray.map_check[0]] != '0')
+		if (g->smap.map[g->ray.map_check[1]][g->ray.map_check[0]] != '0') // Cas de la porte ?
+		{
+			if(g->smap.map[g->ray.map_check[1]][g->ray.map_check[0]] == /*Porte*/ 0)
+				g->ray.wall_found = DOOR;
 			break;
+		}
 	}
 	g->ray.impact[0] = g->player.fx + len * cosf(angle) - \
 	(int)(g->player.fx + len * cosf(angle));
