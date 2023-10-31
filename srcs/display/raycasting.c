@@ -22,10 +22,10 @@ void	ray_init(t_data *cub, float angle)
 	cub->ray.ray_start[1] = cub->player.fy;
 	cub->ray.ray_dir[0] = cosf(angle);
 	cub->ray.ray_dir[1] = sinf(angle);
-	cub->ray.step_size[0] = sqrt(1 + (cub->ray.ray_dir[1] / cub->ray.ray_dir[0]) \
-	* (cub->ray.ray_dir[1] / cub->ray.ray_dir[0]));
-	cub->ray.step_size[1] = sqrt(1 + (cub->ray.ray_dir[0] / cub->ray.ray_dir[1]) \
-	* (cub->ray.ray_dir[0] / cub->ray.ray_dir[1]));
+	cub->ray.step_size[0] = sqrt(1 + (cub->ray.ray_dir[1] / cub->ray.ray_dir[0])
+			* (cub->ray.ray_dir[1] / cub->ray.ray_dir[0]));
+	cub->ray.step_size[1] = sqrt(1 + (cub->ray.ray_dir[0] / cub->ray.ray_dir[1])
+			* (cub->ray.ray_dir[0] / cub->ray.ray_dir[1]));
 }
 
 void	ray_start(t_data *cub)
@@ -96,7 +96,7 @@ float	raycasting(t_data *cub, float angle)
 		{
 			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == /*Porte*/ 0)
 				cub->ray.wall_found = DOOR;
-			break;
+			break ;
 		}
 	}
 	cub->ray.impact[0] = cub->player.fx + len * cosf(angle) - \

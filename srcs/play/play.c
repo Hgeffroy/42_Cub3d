@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 17:30:01 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:55:12 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*set_texture(char *texture)
 {
 	int		i;
 	char	*res;
-	
+
 	i = 0;
 	while (is_whitespace(texture[i]) == YES)
 		i++;
@@ -51,32 +51,39 @@ int	init_walls(t_data *cub)
 {
 	char	*texture[4];
 
-	int	i = 0;
-	
 	texture[0] = set_texture(cub->txr.north);
 	texture[1] = set_texture(cub->txr.south);
 	texture[2] = set_texture(cub->txr.west);
 	texture[3] = set_texture(cub->txr.east);
 
-	while (i < 4)
-		printf("lala: %s\n", texture[i++]);
-	
-	cub->walls[NORTH].img = mlx_xpm_file_to_image(cub->mlx, texture[0], &cub->walls[NORTH].width, &cub->walls[NORTH].height);
+	cub->walls[NORTH].img = mlx_xpm_file_to_image(cub->mlx, texture[0],
+			&cub->walls[NORTH].width, &cub->walls[NORTH].height);
 	if (!cub->walls[NORTH].img)
 		return (-1);
-	cub->walls[NORTH].addr = mlx_get_data_addr(cub->walls[NORTH].img, &cub->walls[NORTH].bits_per_pixel, &cub->walls[NORTH].line_len, &cub->walls[NORTH].endian);
-	cub->walls[SOUTH].img = mlx_xpm_file_to_image(cub->mlx, texture[1], &cub->walls[SOUTH].width, &cub->walls[SOUTH].height);
+	cub->walls[NORTH].addr = mlx_get_data_addr(cub->walls[NORTH].img,
+			&cub->walls[NORTH].bits_per_pixel, &cub->walls[NORTH].line_len,
+			&cub->walls[NORTH].endian);
+	cub->walls[SOUTH].img = mlx_xpm_file_to_image(cub->mlx, texture[1],
+			&cub->walls[SOUTH].width, &cub->walls[SOUTH].height);
 	if (!cub->walls[SOUTH].img)
 		return (-1);
-	cub->walls[SOUTH].addr = mlx_get_data_addr(cub->walls[SOUTH].img, &cub->walls[SOUTH].bits_per_pixel, &cub->walls[SOUTH].line_len, &cub->walls[SOUTH].endian);
-	cub->walls[WEST].img = mlx_xpm_file_to_image(cub->mlx, texture[2], &cub->walls[WEST].width, &cub->walls[WEST].height);
+	cub->walls[SOUTH].addr = mlx_get_data_addr(cub->walls[SOUTH].img,
+			&cub->walls[SOUTH].bits_per_pixel, &cub->walls[SOUTH].line_len,
+			&cub->walls[SOUTH].endian);
+	cub->walls[WEST].img = mlx_xpm_file_to_image(cub->mlx, texture[2],
+			&cub->walls[WEST].width, &cub->walls[WEST].height);
 	if (!cub->walls[WEST].img)
 		return (-1);
-	cub->walls[WEST].addr = mlx_get_data_addr(cub->walls[WEST].img, &cub->walls[WEST].bits_per_pixel, &cub->walls[WEST].line_len, &cub->walls[WEST].endian);
-	cub->walls[EAST].img = mlx_xpm_file_to_image(cub->mlx, texture[3], &cub->walls[EAST].width, &cub->walls[EAST].height);
+	cub->walls[WEST].addr = mlx_get_data_addr(cub->walls[WEST].img,
+			&cub->walls[WEST].bits_per_pixel, &cub->walls[WEST].line_len,
+			&cub->walls[WEST].endian);
+	cub->walls[EAST].img = mlx_xpm_file_to_image(cub->mlx, texture[3],
+			&cub->walls[EAST].width, &cub->walls[EAST].height);
 	if (!cub->walls[EAST].img)
 		return (-1);
-	cub->walls[EAST].addr = mlx_get_data_addr(cub->walls[EAST].img, &cub->walls[EAST].bits_per_pixel, &cub->walls[EAST].line_len, &cub->walls[EAST].endian);
+	cub->walls[EAST].addr = mlx_get_data_addr(cub->walls[EAST].img,
+			&cub->walls[EAST].bits_per_pixel, &cub->walls[EAST].line_len,
+			&cub->walls[EAST].endian);
 	return (0);
 }
 
@@ -91,7 +98,7 @@ int	init_game(t_data *cub)
 	if (cub->player.dir == 'W')
 		cub->player.angle = M_PI;
 	if (cub->player.dir == 'S')
-		cub->player.angle = - M_PI_2;
+		cub->player.angle = -M_PI_2;
 	init_minimap(cub);
 	init_walls(cub);
 	return (0);

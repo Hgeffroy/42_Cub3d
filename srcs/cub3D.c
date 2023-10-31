@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 		return (ft_fdprintf(2, E_NARGS), 1);
 	if (parsing(av[1], &cub))
 		return (0);
-	print_parsing(&cub);
+//	print_parsing(&cub);
 	play(&cub);
 	return (0);
 }

@@ -17,7 +17,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	dst = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	draw_tile(t_data *cub, float x, float y, float a, float b, int *centre)
@@ -25,18 +25,18 @@ void	draw_tile(t_data *cub, float x, float y, float a, float b, int *centre)
 	float	tmpa;
 	float	tmpb;
 
-	
 	tmpa = a;
 	tmpb = b;
 	a = tmpa * cosf((-1) * cub->player.angle - M_PI_2) - \
 	tmpb * sinf((-1) * cub->player.angle - M_PI_2);
 	b = tmpa * sinf((-1) * cub->player.angle - M_PI_2) + \
 	tmpb * cosf((-1) * cub->player.angle - M_PI_2);
-	if (cub->map[(int)y][(int)x] - '0' == FTILE && \
-	a + centre[0] >= 0 && b + centre[1] >= 0)
-		my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1], H_WHITE);
-	else if (cub->map[(int)y][(int)x] - '0' == WALL &&\
-	 a + centre[0] >= 0 && b + centre[1] >= 0)
+	if (cub->map[(int)y][(int)x] - '0' == FTILE
+		&& a + centre[0] >= 0 && b + centre[1] >= 0)
+		my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1],
+			H_WHITE);
+	else if (cub->map[(int)y][(int)x] - '0' == WALL
+		&& a + centre[0] >= 0 && b + centre[1] >= 0)
 		my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1], H_GREY);
 }
 
@@ -44,7 +44,7 @@ void	draw_circle(t_data *cub, int *centre, int radius, int color)
 {
 	int	x;
 	int	y;
-	
+
 	x = centre[0] - radius;
 	while (x < centre[0] + radius)
 	{
@@ -69,14 +69,13 @@ float	minimap_ray(t_data *cub, float angle)
 
 	int		color = H_ORANGE;
 	int		j = 0;
-	
+
 	x = cub->player.fx;
 	y = cub->player.fy;
 	ix = 7.f * TILE_SZ;
 	iy = 7.f * TILE_SZ;
-	while(cub->map[(int)y][(int)x] == '0' && \
-	(pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) \
-	< pow(3 * TILE_SZ, 2))
+	while (cub->map[(int)y][(int)x] == '0' && (pow(ix - 7 * TILE_SZ, 2))
+		+ (pow(iy - 7 * TILE_SZ, 2)) < pow(3 * TILE_SZ, 2))
 	{
 		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
 			color = H_ORANGE + 3 * j * (1 + 256);
@@ -95,7 +94,7 @@ void	draw_fov(t_data *cub)
 	float	angle;
 	int		i;
 
-	angle = M_PI / 6 * (- 1);
+	angle = M_PI / 6 * (-1);
 	i = 0;
 	while (angle < M_PI / 6)
 	{
@@ -121,9 +120,9 @@ void	init_minimap(t_data *cub)
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	cub->display.img = mlx_new_image(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	cub->display.addr = mlx_get_data_addr(cub->display.img, \
-	&cub->display.bits_per_pixel, &cub->display.line_len, \
-								&cub->display.endian);
+	cub->display.addr = mlx_get_data_addr(cub->display.img,
+			&cub->display.bits_per_pixel, &cub->display.line_len,
+			&cub->display.endian);
 }
 
 void	set_minimap(t_data *cub, t_minimap *minimap)
@@ -155,7 +154,7 @@ Donc quand j'augmente a de x, i augmente de ratio.
 void	draw_minimap(t_data *cub)
 {
 	t_minimap	minimap;
-	
+
 	set_minimap(cub, &minimap);
 	while (cub->map[(int)minimap.map_x] && minimap.map_x < cub->player.fy + 6)
 	{
