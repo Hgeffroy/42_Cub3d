@@ -6,11 +6,11 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:18:15 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 15:41:07 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3D.h"
+#include "cub3D.h"
 
 static char	*_get_txr_path(char *map_line, char *dir)
 {

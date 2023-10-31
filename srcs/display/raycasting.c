@@ -6,11 +6,11 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 15:49:03 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3D.h"
+#include "cub3D.h"
 
 void	ray_init(t_game *g, float angle)
 {

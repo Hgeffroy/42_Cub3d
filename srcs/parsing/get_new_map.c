@@ -6,11 +6,11 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:41:01 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 15:41:07 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3D.h"
+#include "cub3D.h"
 
 static char	**_rectangulate(t_data *cub)
 {

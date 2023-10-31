@@ -6,11 +6,11 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:08 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:02:08 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3D.h"
+#include "cub3D.h"
 
 int	mlx_close(t_game *g)
 {

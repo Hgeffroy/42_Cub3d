@@ -6,11 +6,11 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:49:53 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 15:41:07 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3D.h"
+#include "cub3D.h"
 
 static char	**_start_tab(char *line)
 {

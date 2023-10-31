@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODES_H
-# define KEYCODES_H
+#ifndef ENUM_H
+# define ENUM_H
 
-enum	e_keycode
+enum e_keycode
 {
 	a_key		=	97,
 	b_key		=	98,
@@ -82,11 +82,11 @@ enum	e_keycode
 
 enum	e_mousecode
 {
-	m_left_key		=    1,
-    scroll_key		=    2,
-    m_right_key		=    3,
-    m_down_key		=    4,
-    m_up_key		=    5
+	m_left_key		= 1,
+	scroll_key		= 2,
+	m_right_key		= 3,
+	m_down_key		= 4,
+	m_up_key		= 5
 };
 
 enum	e_yesno

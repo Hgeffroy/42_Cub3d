@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 08:07:59 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:02:08 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:05:49 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 // A del
 # include <stdio.h>
 
-# include "../MLX_Linux/mlx.h"
-# include "../libft/incs/libft.h"
+# include "mlx.h"
+# include "libft.h"
 # include "define.h"
 # include "structs.h"
 # include "enum.h"
