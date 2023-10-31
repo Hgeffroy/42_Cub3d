@@ -3,51 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   init_col.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 08:51:36 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:55:13 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_col_n(t_game *g, t_wallray *wallray)
+void	init_col_n(t_data *cub, t_wallray *wallray)
 {
 	// puts("init north");
-	wallray->x_impact = g->ray.impact[0] * g->walls[NORTH].width;
-	wallray->y_impact = g->ray.impact[1] * g->walls[NORTH].width;
-	wallray->y_ratio = g->walls[NORTH].height / wallray->height;
+	wallray->x_impact = cub->ray.impact[0] * cub->walls[NORTH].width;
+	wallray->y_impact = cub->ray.impact[1] * cub->walls[NORTH].width;
+	wallray->y_ratio = cub->walls[NORTH].height / wallray->height;
 }
 
-void	init_col_s(t_game *g, t_wallray *wallray)
+void	init_col_s(t_data *cub, t_wallray *wallray)
 {
 	// puts("init south");
-	wallray->x_impact = g->ray.impact[0] * g->walls[SOUTH].width;
-	wallray->y_impact = g->ray.impact[1] * g->walls[SOUTH].width;
-	wallray->y_ratio = g->walls[SOUTH].height / wallray->height;
+	wallray->x_impact = cub->ray.impact[0] * cub->walls[SOUTH].width;
+	wallray->y_impact = cub->ray.impact[1] * cub->walls[SOUTH].width;
+	wallray->y_ratio = cub->walls[SOUTH].height / wallray->height;
 }
 
-void	init_col_w(t_game *g, t_wallray *wallray)
+void	init_col_w(t_data *cub, t_wallray *wallray)
 {
 	// puts("init west");
-	wallray->x_impact = g->ray.impact[0] * g->walls[WEST].width;
-	wallray->y_impact = g->ray.impact[1] * g->walls[WEST].width;
-	wallray->y_ratio = g->walls[WEST].height / wallray->height;
+	wallray->x_impact = cub->ray.impact[0] * cub->walls[WEST].width;
+	wallray->y_impact = cub->ray.impact[1] * cub->walls[WEST].width;
+	wallray->y_ratio = cub->walls[WEST].height / wallray->height;
 }
 
-void	init_col_e(t_game *g, t_wallray *wallray)
+void	init_col_e(t_data *cub, t_wallray *wallray)
 {
 	// puts("init east");
-	wallray->x_impact = g->ray.impact[0] * g->walls[EAST].width;
-	wallray->y_impact = g->ray.impact[1] * g->walls[EAST].width;
-	wallray->y_ratio = g->walls[EAST].height / wallray->height;
+	wallray->x_impact = cub->ray.impact[0] * cub->walls[EAST].width;
+	wallray->y_impact = cub->ray.impact[1] * cub->walls[EAST].width;
+	wallray->y_ratio = cub->walls[EAST].height / wallray->height;
 }
 
-void	init_col(t_game *g, t_wallray *wallray)
+void	init_col(t_data *cub, t_wallray *wallray)
 {
 	const t_init_col	tab[] = {&init_col_n, &init_col_s, &init_col_w, \
 								&init_col_w};
 								
-	(*tab[g->ray.wall_found])(g, wallray);
+	(*tab[cub->ray.wall_found])(cub, wallray);
 }

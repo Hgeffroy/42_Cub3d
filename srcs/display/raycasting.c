@@ -3,105 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:55:33 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ray_init(t_game *g, float angle)
+void	ray_init(t_data *cub, float angle)
 {
-	ft_bzero(g->ray.ray_len, 2);
-	ft_bzero(g->ray.step, 2);
-	g->ray.map_check[0] = (int)g->player.fx;
-	g->ray.map_check[1] = (int)g->player.fy;
-	g->ray.ray_start[0] = g->player.fx;
-	g->ray.ray_start[1] = g->player.fy;
-	g->ray.ray_dir[0] = cosf(angle);
-	g->ray.ray_dir[1] = sinf(angle);
-	g->ray.step_size[0] = sqrt(1 + (g->ray.ray_dir[1] / g->ray.ray_dir[0]) \
-	* (g->ray.ray_dir[1] / g->ray.ray_dir[0]));
-	g->ray.step_size[1] = sqrt(1 + (g->ray.ray_dir[0] / g->ray.ray_dir[1]) \
-	* (g->ray.ray_dir[0] / g->ray.ray_dir[1]));
+	ft_bzero(cub->ray.ray_len, 2);
+	ft_bzero(cub->ray.step, 2);
+	cub->ray.map_check[0] = (int)cub->player.fx;
+	cub->ray.map_check[1] = (int)cub->player.fy;
+	cub->ray.ray_start[0] = cub->player.fx;
+	cub->ray.ray_start[1] = cub->player.fy;
+	cub->ray.ray_dir[0] = cosf(angle);
+	cub->ray.ray_dir[1] = sinf(angle);
+	cub->ray.step_size[0] = sqrt(1 + (cub->ray.ray_dir[1] / cub->ray.ray_dir[0]) \
+	* (cub->ray.ray_dir[1] / cub->ray.ray_dir[0]));
+	cub->ray.step_size[1] = sqrt(1 + (cub->ray.ray_dir[0] / cub->ray.ray_dir[1]) \
+	* (cub->ray.ray_dir[0] / cub->ray.ray_dir[1]));
 }
 
-void	ray_start(t_game *g)
+void	ray_start(t_data *cub)
 {
-	if (g->ray.ray_dir[0] < 0)
+	if (cub->ray.ray_dir[0] < 0)
 	{
-		g->ray.step[0] = -1;
-		g->ray.ray_len[0] = (g->ray.ray_start[0] - \
-		(float)(g->ray.map_check[0])) * g->ray.step_size[0];
+		cub->ray.step[0] = -1;
+		cub->ray.ray_len[0] = (cub->ray.ray_start[0] - \
+		(float)(cub->ray.map_check[0])) * cub->ray.step_size[0];
 	}
 	else
 	{
-		g->ray.step[0] = 1;
-		g->ray.ray_len[0] = ((float)(g->ray.map_check[0] + 1) - \
-		g->ray.ray_start[0]) * g->ray.step_size[0];
+		cub->ray.step[0] = 1;
+		cub->ray.ray_len[0] = ((float)(cub->ray.map_check[0] + 1) - \
+		cub->ray.ray_start[0]) * cub->ray.step_size[0];
 	}
-	if (g->ray.ray_dir[1] < 0)
+	if (cub->ray.ray_dir[1] < 0)
 	{
-		g->ray.step[1] = -1;
-		g->ray.ray_len[1] = (g->ray.ray_start[1] - \
-		(float)(g->ray.map_check[1])) * g->ray.step_size[1];
+		cub->ray.step[1] = -1;
+		cub->ray.ray_len[1] = (cub->ray.ray_start[1] - \
+		(float)(cub->ray.map_check[1])) * cub->ray.step_size[1];
 	}
 	else
 	{
-		g->ray.step[1] = 1;
-		g->ray.ray_len[1] = ((float)(g->ray.map_check[1] + 1) - \
-		g->ray.ray_start[1]) * g->ray.step_size[1];
+		cub->ray.step[1] = 1;
+		cub->ray.ray_len[1] = ((float)(cub->ray.map_check[1] + 1) - \
+		cub->ray.ray_start[1]) * cub->ray.step_size[1];
 	}
 }
 
-float	ray_step(t_game *g)
+float	ray_step(t_data *cub)
 {
 	float	len;
 
-	if (g->ray.ray_len[0] < g->ray.ray_len[1])
+	if (cub->ray.ray_len[0] < cub->ray.ray_len[1])
 	{
-		g->ray.map_check[0] += g->ray.step[0];
-		len = g->ray.ray_len[0];
-		g->ray.ray_len[0] += g->ray.step_size[0];
-		if (g->ray.step[0] > 0)
-			g->ray.wall_found = EAST;
+		cub->ray.map_check[0] += cub->ray.step[0];
+		len = cub->ray.ray_len[0];
+		cub->ray.ray_len[0] += cub->ray.step_size[0];
+		if (cub->ray.step[0] > 0)
+			cub->ray.wall_found = EAST;
 		else
-			g->ray.wall_found = WEST;
+			cub->ray.wall_found = WEST;
 	}
 	else
 	{
-		g->ray.map_check[1] += g->ray.step[1];
-		len = g->ray.ray_len[1];
-		g->ray.ray_len[1] += g->ray.step_size[1];
-		if (g->ray.step[1] > 0)
-			g->ray.wall_found = SOUTH;
+		cub->ray.map_check[1] += cub->ray.step[1];
+		len = cub->ray.ray_len[1];
+		cub->ray.ray_len[1] += cub->ray.step_size[1];
+		if (cub->ray.step[1] > 0)
+			cub->ray.wall_found = SOUTH;
 		else
-			g->ray.wall_found = NORTH;
+			cub->ray.wall_found = NORTH;
 	}
 	return (len);
 }
 
-float	raycasting(t_game *g, float angle)
+float	raycasting(t_data *cub, float angle)
 {
 	float	len;
 
-	ray_init(g, angle);
-	ray_start(g);
+	ray_init(cub, angle);
+	ray_start(cub);
 	while (1)
 	{
-		len = ray_step(g);
-		if (g->smap.map[g->ray.map_check[1]][g->ray.map_check[0]] != '0') // Cas de la porte ?
+		len = ray_step(cub);
+		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0') // Cas de la porte ?
 		{
-			if(g->smap.map[g->ray.map_check[1]][g->ray.map_check[0]] == /*Porte*/ 0)
-				g->ray.wall_found = DOOR;
+			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == /*Porte*/ 0)
+				cub->ray.wall_found = DOOR;
 			break;
 		}
 	}
-	g->ray.impact[0] = g->player.fx + len * cosf(angle) - \
-	(int)(g->player.fx + len * cosf(angle));
-	g->ray.impact[1] = g->player.fy + len * sinf(angle) - \
-	(int)(g->player.fy + len * sinf(angle));
+	cub->ray.impact[0] = cub->player.fx + len * cosf(angle) - \
+	(int)(cub->player.fx + len * cosf(angle));
+	cub->ray.impact[1] = cub->player.fy + len * sinf(angle) - \
+	(int)(cub->player.fy + len * sinf(angle));
 	return (len);
 }

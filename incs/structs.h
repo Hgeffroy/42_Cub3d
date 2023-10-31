@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:49 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:22:22 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,20 +119,6 @@ typedef struct s_minimap
 
 }	t_minimap;
 
-typedef struct s_game
-{
-	void			*mlx;
-	void			*win;
-	t_ray			ray;
-	t_img			display;
-	t_walltext		walls[4];
-	t_map			smap;
-	t_textures		textures;
-	t_colors		colors;
-	t_player		player;
-	t_movement		movement;
-}	t_game;
-
 typedef enum e_rgb
 {
 	R,
@@ -149,6 +135,8 @@ typedef struct s_door
 
 typedef struct s_data
 {
+	void		*mlx;
+	void		*win;
 	char		**map_file;
 	t_textures	txr;
 	int			c_rgb[3];
@@ -157,11 +145,30 @@ typedef struct s_data
 	int			rgb_f;
 	int			end_desc;
 	char		**map;
-	t_player	player;
+	t_player	player; //Angle a init
 	t_door		*doors;
 	size_t		start;
 	size_t		max_y;
 	size_t		max_x;
+	t_ray		ray;
+	t_img		display;
+	t_walltext	walls[4]; //A init
+	t_movement	movement;
+
 }	t_data;
+
+typedef struct s_game
+{
+	void			*mlx;
+	void			*win;
+	t_ray			ray;
+	t_img			display;
+	t_walltext		walls[4];
+	t_map			smap;
+	t_textures		textures;
+	t_colors		colors;
+	t_player		player;
+	t_movement		movement;
+}	t_game;
 
 #endif

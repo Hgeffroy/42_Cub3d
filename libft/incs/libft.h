@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:38:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/29 13:35:33 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:42:48 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char			**ft_tabdup(char **tab);
 char			*ft_strchr(const char *str, int c);
 
 char			*ft_strdup(const char *src);
+
+char			*ft_strndup(const char *src, int n);
 
 int				ft_strischarset(char *str, char *charset);
 
