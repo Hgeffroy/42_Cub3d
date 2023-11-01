@@ -18,6 +18,7 @@ SRCS		:=	\
 				parsing/utils.c\
 				play/doors.c\
 				play/hook.c\
+				play/init_walls.c\
 				play/movements.c\
 				play/play.c\
 

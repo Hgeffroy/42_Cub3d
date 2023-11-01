@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:22:22 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:25:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,18 +157,18 @@ typedef struct s_data
 
 }	t_data;
 
-typedef struct s_game
-{
-	void			*mlx;
-	void			*win;
-	t_ray			ray;
-	t_img			display;
-	t_walltext		walls[4];
-	t_map			smap;
-	t_textures		textures;
-	t_colors		colors;
-	t_player		player;
-	t_movement		movement;
-}	t_game;
+// typedef struct s_game
+// {
+// 	void			*mlx;
+// 	void			*win;
+// 	t_ray			ray;
+// 	t_img			display;
+// 	t_walltext		walls[4];
+// 	t_map			smap;
+// 	t_textures		textures;
+// 	t_colors		colors;
+// 	t_player		player;
+// 	t_movement		movement;
+// }	t_game;
 
 #endif
