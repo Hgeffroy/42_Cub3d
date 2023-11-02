@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 14:32:41 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:23:57 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_color(t_walltext w, int x, int y)
 	char	*addr;
 
 	addr = w.addr + y * w.line_len + x * (w.bits_per_pixel / 8);
-	return (*(unsigned int*)addr);
+	return (*(unsigned int *)addr);
 }
 
 void	wallray_init(t_data *cub, t_wallray *wallray)
@@ -57,10 +57,10 @@ void	wallray_init(t_data *cub, t_wallray *wallray)
 
 void	wallray_init_col(t_data *cub, t_wallray *wallray)
 {
-	wallray->angle = atanf((wallray->x + 0.0001 - (SCREEN_WIDTH / 2)) / \
-	(SCREEN_WIDTH * 6 / (2 * M_PI))) + cub->player.angle + 0.0001;
-	wallray->len = raycasting(cub, wallray->angle) * \
-	cosf(wallray->angle - cub->player.angle);
+	wallray->angle = atanf((wallray->x + 0.0001 - (SCREEN_WIDTH / 2))
+			/ (SCREEN_WIDTH * 6 / (2 * M_PI))) + cub->player.angle + 0.0001;
+	wallray->len = raycasting(cub, wallray->angle)
+		* cosf(wallray->angle - cub->player.angle);
 	wallray->height = SCREEN_DIST * WALL_HEIGHT / wallray->len;
 	init_col(cub, wallray);
 	if (wallray->height > SCREEN_HEIGHT)
@@ -95,4 +95,3 @@ int	draw_display(t_data *cub)
 	draw_walls(cub);
 	return (0);
 }
-

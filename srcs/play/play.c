@@ -38,7 +38,7 @@ int	init_game(t_data *cub)
 	if (cub->player.dir == 'W')
 		cub->player.angle = M_PI;
 	if (cub->player.dir == 'S')
-		cub->player.angle = - M_PI_2;
+		cub->player.angle = -M_PI_2;
 	init_minimap(cub);
 	if (init_walls(cub) < 0)
 		return (-1);

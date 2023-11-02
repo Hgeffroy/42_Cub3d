@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:01:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 13:53:46 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:10:41 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int		press_mouse(int keycode, int x, int y, t_data *cub);
 int		move_doors(t_data *cub);
 int		find_door(t_data *cub, int x, int y);
 int		set_door(t_data *cub);
+int		init_door(t_data *cub);
 int		init_walls(t_data *cub);
 
-typedef	int	(*t_init_wall)(t_data *cub);
+typedef int	(*t_init_wall)(t_data *cub);
 
 #endif

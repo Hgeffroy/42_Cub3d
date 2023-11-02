@@ -110,6 +110,5 @@ int	check_map(t_data *cub)
 	}
 	if (BONUS && cub->doors)
 		replace_doors(cub);
-//	print_tab_msg(cub->map, UNDERLINE"DEBUG: After is closed and replace_doors function :\n"RESET);
 	return (0);
 }

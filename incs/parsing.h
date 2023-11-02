@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:38:26 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 15:41:07 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/02 18:20:14 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,6 @@ void	replace_doors(t_data *cub);
 
 void	print_parsing(t_data *cub); //!del
 void	print_tab_msg(char **tab, char *msg);
-
-# include <stdio.h>
-# define DEBUG(x)	ft_fdprintf(2, RED"return here: %s =>"RESET, x)
-
-
+//# define DEBUG(x)	ft_fdprintf(2, RED"return here: %s =>"RESET, x)
 
 #endif

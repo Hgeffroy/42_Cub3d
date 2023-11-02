@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 12:52:07 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:19:06 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_player
 	char	dir;
 	float	fx;
 	float	fy;
-	float	angle; //convert dir in angle
+	float	angle;
 }	t_player;
 
 typedef struct s_textures
@@ -69,7 +69,6 @@ typedef struct s_wallray
 	float	x_impact;
 	float	y_impact;
 }	t_wallray;
-
 
 typedef struct s_walltext
 {
@@ -147,21 +146,6 @@ typedef struct s_data
 	t_img		display;
 	t_walltext	walls[5];
 	t_movement	movement;
-
 }	t_data;
-
-// typedef struct s_game
-// {
-// 	void			*mlx;
-// 	void			*win;
-// 	t_ray			ray;
-// 	t_img			display;
-// 	t_walltext		walls[4];
-// 	t_map			smap;
-// 	t_textures		textures;
-// 	t_colors		colors;
-// 	t_player		player;
-// 	t_movement		movement;
-// }	t_game;
 
 #endif

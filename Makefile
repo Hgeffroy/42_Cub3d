@@ -18,9 +18,11 @@ SRCS		:=	\
 				parsing/utils.c\
 				play/doors.c\
 				play/hook.c\
+				play/init_doors.c\
 				play/init_walls.c\
 				play/movements.c\
 				play/play.c\
+				play/rotation.c\
 
 SRCS_B		=	$(SRCS)\
 				parsing/parsing_bonus.c

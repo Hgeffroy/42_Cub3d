@@ -103,7 +103,7 @@ float	raycasting(t_data *cub, float angle)
 					break ;
 			}
 			else
-				break;
+				break ;
 		}
 	}
 	cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
