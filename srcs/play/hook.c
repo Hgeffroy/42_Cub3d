@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:59:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:56:19 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:53:02 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	press_key(int keycode, t_data *cub)
 		cub->movement.move_right = true;
 	if (keycode == esc_key)
 		mlx_close(cub);
-		// if (keycode == space_key)
-		// 	open_door(cub);
+	if (keycode == space_key && BONUS)
+		set_door(cub);
 	return (0);
 }
 
@@ -79,9 +79,9 @@ int	move_mouse(int x, int y, t_data *cub)
 		return (0);
 	diff_x = x - cub->movement.last_x;
 	if (diff_x > 0.5)
-		rotate_right(cub, diff_x);
+		rotate_right(cub, diff_x / 10);
 	else if (diff_x < - 0.5)
-		rotate_right(cub, diff_x);
+		rotate_right(cub, diff_x / 10);
 	mlx_mouse_get_pos(cub->mlx, cub->win, &mouse_x, &mouse_y);
 	if (mouse_x > 1850 || mouse_y > 1000)
 	{

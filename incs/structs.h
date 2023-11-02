@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 15:35:24 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:52:07 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ typedef struct s_data
 	size_t		max_x;
 	t_ray		ray;
 	t_img		display;
-	t_walltext	walls[4];
+	t_walltext	walls[5];
 	t_movement	movement;
 
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:03:20 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 12:50:21 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:17:46 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,21 @@ void	get_east_color(t_data *cub, t_wallray *wallray)
 				- (wallray->height - wallray->half_height) * wallray->y_ratio));
 }
 
+void	get_door_color(t_data *cub, t_wallray *wallray)
+{
+	// puts("color door")
+	wallray->color = get_color(cub->walls[DOOR], wallray->y_impact,
+			cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2
+				- (wallray->height - wallray->half_height) * wallray->y_ratio));
+				
+	// (void)cub;
+	// wallray->color = H_BLUE;
+}
+
 void	get_wall_color(t_data *cub, t_wallray *wallray)
 {
 	const t_wall_color	tab[] = {&get_north_color, &get_south_color,
-		&get_west_color, &get_east_color};
+		&get_west_color, &get_east_color, &get_door_color};
 
 	(*tab[cub->ray.wall_found])(cub, wallray);
 }

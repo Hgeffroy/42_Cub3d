@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 15:04:25 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:08:33 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ enum	e_doorstate
 {
 	NEUTRAL,
 	OPENING,
-	CLOSING
+	CLOSING,
+	LAST
 };
 
 #endif
