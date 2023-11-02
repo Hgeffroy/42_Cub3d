@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 10:25:21 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:35:24 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,41 +118,34 @@ typedef struct s_minimap
 	int		center[2];
 
 }	t_minimap;
-
-typedef enum e_rgb
-{
-	R,
-	G,
-	B,
-}	t_rgb;
-
 typedef struct s_door
 {
-	size_t	x;
-	size_t	y;
-	float	state;
+	int		x;
+	int		y;
+	float	pos;
+	int		state;
 }	t_door;
 
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
+	char		**map;
 	char		**map_file;
-	t_textures	txr;
 	int			c_rgb[3];
 	int			rgb_c;
 	int			f_rgb[3];
 	int			rgb_f;
 	int			end_desc;
-	char		**map;
-	t_player	player; //Angle a init
+	t_textures	txr;
+	t_player	player;
 	t_door		*doors;
 	size_t		start;
 	size_t		max_y;
 	size_t		max_x;
 	t_ray		ray;
 	t_img		display;
-	t_walltext	walls[4]; //A init
+	t_walltext	walls[4];
 	t_movement	movement;
 
 }	t_data;

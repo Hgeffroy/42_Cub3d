@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 10:47:59 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:46:25 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ int	init_game(t_data *cub)
 int	display(t_data *cub)
 {
 	draw_display(cub);
-	draw_minimap(cub);
+	if (BONUS)
+		draw_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->display.img, 0, 0);
-	mlx_string_put(cub->mlx, cub->win, \
+	if (BONUS)
+		mlx_string_put(cub->mlx, cub->win, \
 			6 * TILE_SZ * cosf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ, \
 			6 * TILE_SZ * sinf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ, \
 			H_RED, "N");
@@ -72,6 +74,8 @@ int	mlx_play(t_data *cub)
 		move_left(cub);
 	if (cub->movement.move_right)
 		move_right(cub);
+	// if (BONUS)
+	// 	move_doors(cub);
 	display(cub);
 	return (0);
 }
@@ -84,7 +88,8 @@ int	play(t_data *cub)
 	mlx_hook(cub->win, 3, 1L << 1, &release_key, cub);
 	mlx_hook(cub->win, 4, 1L << 2, &press_mouse, cub);
 	mlx_hook(cub->win, 5, 1L << 3, &release_mouse, cub);
-	mlx_hook(cub->win, 6, 1L << 6, &move_mouse, cub);
+	if (BONUS)
+		mlx_hook(cub->win, 6, 1L << 6, &move_mouse, cub);
 	mlx_loop_hook(cub->mlx, &mlx_play, cub);
 	mlx_loop(cub->mlx);
 	return (0);

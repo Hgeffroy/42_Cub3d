@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:03:20 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:55:03 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:50:21 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void	get_north_color(t_data *cub, t_wallray *wallray)
 {
 	// puts("color north");
 	wallray->color = get_color(cub->walls[NORTH], wallray->x_impact,
-			(int)(cub->walls[NORTH].height / 2
+			cub->walls[NORTH].width - (int)(cub->walls[NORTH].height / 2
 				- (wallray->height - wallray->half_height) * wallray->y_ratio));
 }
 
 void	get_south_color(t_data *cub, t_wallray *wallray)
 {
 	// puts("color south");
-	wallray->color = get_color(cub->walls[SOUTH], wallray->x_impact,
-			(int)(cub->walls[SOUTH].height / 2
+	wallray->color = get_color(cub->walls[SOUTH], cub->walls[SOUTH].width - wallray->x_impact,
+			cub->walls[SOUTH].width - (int)(cub->walls[SOUTH].height / 2
 				- (wallray->height - wallray->half_height) * wallray->y_ratio));
 }
 
 void	get_west_color(t_data *cub, t_wallray *wallray)
 {
 	// puts("color west");
-	wallray->color = get_color(cub->walls[WEST], wallray->y_impact,
-			(int)(cub->walls[WEST].height / 2
+	wallray->color = get_color(cub->walls[WEST], cub->walls[WEST].width - wallray->y_impact,
+			cub->walls[WEST].width - (int)(cub->walls[WEST].height / 2
 				- (wallray->height - wallray->half_height) * wallray->y_ratio));
 }
 
@@ -40,7 +40,7 @@ void	get_east_color(t_data *cub, t_wallray *wallray)
 {
 	// puts("color east");
 	wallray->color = get_color(cub->walls[EAST], wallray->y_impact,
-			(int)(cub->walls[EAST].height / 2
+			cub->walls[EAST].width - (int)(cub->walls[EAST].height / 2
 				- (wallray->height - wallray->half_height) * wallray->y_ratio));
 }
 

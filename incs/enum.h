@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:50:28 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/23 14:55:15 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:04:25 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,20 @@ enum	e_error
 {
 	NOPLAYER	= 1,
 	NBTEXT		= 2
+};
+
+enum	e_rgb
+{
+	R,
+	G,
+	B
+};
+
+enum	e_doorstate
+{
+	NEUTRAL,
+	OPENING,
+	CLOSING
 };
 
 #endif

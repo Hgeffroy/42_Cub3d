@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:34:38 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 10:45:59 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:14:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	init_wall_north(t_data *cub)
 	cub->walls[NORTH].addr = mlx_get_data_addr(cub->walls[NORTH].img,
 			&cub->walls[NORTH].bits_per_pixel, &cub->walls[NORTH].line_len,
 			&cub->walls[NORTH].endian);
+	if (!cub->walls[NORTH].addr)
+		return (-1);
 	return (0);
 }
 
@@ -33,6 +35,8 @@ int	init_wall_south(t_data *cub)
 	cub->walls[SOUTH].addr = mlx_get_data_addr(cub->walls[SOUTH].img,
 			&cub->walls[SOUTH].bits_per_pixel, &cub->walls[SOUTH].line_len,
 			&cub->walls[SOUTH].endian);
+	if (!cub->walls[SOUTH].addr)
+		return (-1);
 	return (0);
 }
 
@@ -45,6 +49,8 @@ int	init_wall_west(t_data *cub)
 	cub->walls[WEST].addr = mlx_get_data_addr(cub->walls[WEST].img,
 			&cub->walls[WEST].bits_per_pixel, &cub->walls[WEST].line_len,
 			&cub->walls[WEST].endian);
+	if (!cub->walls[WEST].addr)
+		return (-1);
 	return (0);
 }
 
@@ -57,6 +63,8 @@ int	init_wall_east(t_data *cub)
 	cub->walls[EAST].addr = mlx_get_data_addr(cub->walls[EAST].img,
 			&cub->walls[EAST].bits_per_pixel, &cub->walls[EAST].line_len,
 			&cub->walls[EAST].endian);
+	if (!cub->walls[EAST].addr)
+		return (-1);
 	return (0);
 }
 
