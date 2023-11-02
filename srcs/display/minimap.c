@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:55:24 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:19:33 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ void	draw_tile(t_data *cub, float x, float y, float a, float b, int *centre)
 	else if (cub->map[(int)y][(int)x] - '0' == WALL
 		&& a + centre[0] >= 0 && b + centre[1] >= 0)
 		my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1], H_GREY);
+	else if (cub->map[(int)y][(int)x] == 'D'
+		&& a + centre[0] >= 0 && b + centre[1] >= 0)
+	{
+		if (cub->doors[find_door(cub, x, y)].pos > 0.001)
+			my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1], H_BLUE);
+		else
+			my_mlx_pixel_put(&(cub->display), a + centre[0], b + centre[1], H_WHITE);
+	}
 }
 
 void	draw_circle(t_data *cub, int *centre, int radius, int color)
@@ -74,7 +82,7 @@ float	minimap_ray(t_data *cub, float angle)
 	y = cub->player.fy;
 	ix = 7.f * TILE_SZ;
 	iy = 7.f * TILE_SZ;
-	while (cub->map[(int)y][(int)x] == '0' && (pow(ix - 7 * TILE_SZ, 2))
+	while ((cub->map[(int)y][(int)x] == '0' || (cub->map[(int)y][(int)x] == 'D' && cub->doors[find_door(cub, x, y)].pos < 0.001)) && (pow(ix - 7 * TILE_SZ, 2))
 		+ (pow(iy - 7 * TILE_SZ, 2)) < pow(3 * TILE_SZ, 2))
 	{
 		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)

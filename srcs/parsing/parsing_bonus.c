@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:18:01 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/01 14:48:58 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:10:42 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_door	*_init_doors(size_t size)
 		doors[i].pos = 1;
 		doors[i].x = 0;
 		doors[i].y = 0;
+		doors[i].state = NEUTRAL;
 		i++;
 	}
 	doors[i].pos = -1;

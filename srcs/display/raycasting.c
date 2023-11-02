@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/01 15:14:27 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:44:56 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ float	ray_step(t_data *cub)
 float	raycasting(t_data *cub, float angle)
 {
 	float	len;
+	int		doornb;
 
 	ray_init(cub, angle);
 	ray_start(cub);
@@ -95,8 +96,14 @@ float	raycasting(t_data *cub, float angle)
 		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0') // Cas de la porte ?
 		{
 			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
+			{
 				cub->ray.wall_found = DOOR;
-			break ;
+				doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
+				if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
+					break ;
+			}
+			else
+				break;
 		}
 	}
 	cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
