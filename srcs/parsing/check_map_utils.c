@@ -49,7 +49,6 @@ static int	_is_closed(char **map, int x, int y)
 int	is_closed_map(t_data *cub)
 {
 	_flood_fill_map(cub->map, cub->player.x, cub->player.y);
-//	print_tab_msg(cub->map, UNDERLINE"DEBUG: After flood filling :\n"RESET);
 	if (!_is_closed(cub->map, cub->player.x, cub->player.y))
 		return (ft_fdprintf(2, E_MNCLOSED), 0);
 	return (1);

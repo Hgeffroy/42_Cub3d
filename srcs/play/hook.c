@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:59:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:55 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:07:50 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	release_key(int keycode, t_data *cub)
 	if (keycode == up_key || keycode == w_key)
 		cub->movement.move_up = false;
 	if (keycode == down_key || keycode == s_key)
-		cub->movement.move_down= false;
+		cub->movement.move_down = false;
 	if (keycode == a_key)
 		cub->movement.move_left = false;
 	if (keycode == d_key)
@@ -70,17 +70,17 @@ int	release_mouse(int keycode, int x, int y, t_data *cub)
 
 int	move_mouse(int x, int y, t_data *cub)
 {
-	(void)y;
 	int	diff_x;
 	int	mouse_x;
 	int	mouse_y;
 
+	(void)y;
 	if (cub->movement.mouse)
 		return (0);
 	diff_x = x - cub->movement.last_x;
 	if (diff_x > 0.5)
 		rotate_right(cub, diff_x / 10);
-	else if (diff_x < - 0.5)
+	else if (diff_x < -0.5)
 		rotate_right(cub, diff_x / 10);
 	mlx_mouse_get_pos(cub->mlx, cub->win, &mouse_x, &mouse_y);
 	if (mouse_x > SCREEN_WIDTH - 50 || mouse_y > SCREEN_HEIGHT - 50)

@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:18:28 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 17:54:10 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/02 18:21:21 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	rgb_converter(t_data *cub)
 
 void	print_parsing(t_data *cub)
 {
-	// print_tab_msg(cub->map_file, GREEN"map file:\n"RESET);
+	print_tab_msg(cub->map_file, GREEN"map file:\n"RESET);
 	if (!cub->map_file)
 		ft_printf(BLUE"(null)"RESET);
 	ft_printf(GREEN"\ntextures paths:\n"RESET);
@@ -65,4 +65,3 @@ void	print_parsing(t_data *cub)
 	print_tab_msg(cub->map, GREEN"map file:\n"RESET);
 	ft_printf(RED"max_x: %d\n"RESET, cub->max_x);
 }
-

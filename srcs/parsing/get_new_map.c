@@ -54,13 +54,11 @@ static void	_find_player(t_data *cub)
 
 int	get_new_map(t_data *cub)
 {
-//	print_tab_msg(cub->map, UNDERLINE"DEBUG: Before rectangulation :\n"RESET);
 	cub->map = _rectangulate(cub);
 	if (!cub->map)
 		return (1);
 	if (!cub->map[0])
 		return (free(cub->map), ft_fdprintf(2, E_NOMAP), 1);
-//	print_tab_msg(cub->map, UNDERLINE"DEBUG: After rectangulation :\n"RESET);
 	_find_player(cub);
 	if (BONUS)
 		if (get_doors(cub) && !cub->doors)

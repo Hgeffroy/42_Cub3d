@@ -69,6 +69,5 @@ int	parsing(char *map_path, t_data *cub)
 	if (get_map(cub))
 		return (free_txr(cub->txr), ft_tabfree(cub->map_file), 1);
 	ft_tabfree(cub->map_file);
-	// clear_parsing(cub);
 	return (0);
 }

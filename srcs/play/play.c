@@ -38,7 +38,7 @@ int	init_game(t_data *cub)
 	if (cub->player.dir == 'W')
 		cub->player.angle = M_PI;
 	if (cub->player.dir == 'S')
-		cub->player.angle = - M_PI_2;
+		cub->player.angle = -M_PI_2;
 	init_minimap(cub);
 	if (init_walls(cub) < 0)
 		return (-1);
@@ -53,9 +53,9 @@ int	display(t_data *cub)
 		draw_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->display.img, 0, 0);
 	if (BONUS)
-		mlx_string_put(cub->mlx, cub->win, \
-			6 * TILE_SZ * cosf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ, \
-			6 * TILE_SZ * sinf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ, \
+		mlx_string_put(cub->mlx, cub->win,
+			6 * TILE_SZ * cosf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ,
+			6 * TILE_SZ * sinf((-1) * cub->player.angle + M_PI) + 7 * TILE_SZ,
 			H_RED, "N");
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:34:38 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 13:11:38 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:07:48 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_wall_north(t_data *cub)
+static int	_init_wall_north(t_data *cub)
 {
 	cub->walls[NORTH].img = mlx_xpm_file_to_image(cub->mlx, cub->txr.north,
 			&cub->walls[NORTH].width, &cub->walls[NORTH].height);
@@ -26,7 +26,7 @@ int	init_wall_north(t_data *cub)
 	return (0);
 }
 
-int	init_wall_south(t_data *cub)
+static int	_init_wall_south(t_data *cub)
 {
 	cub->walls[SOUTH].img = mlx_xpm_file_to_image(cub->mlx, cub->txr.south,
 			&cub->walls[SOUTH].width, &cub->walls[SOUTH].height);
@@ -40,7 +40,7 @@ int	init_wall_south(t_data *cub)
 	return (0);
 }
 
-int	init_wall_west(t_data *cub)
+static int	_init_wall_west(t_data *cub)
 {
 	cub->walls[WEST].img = mlx_xpm_file_to_image(cub->mlx, cub->txr.west,
 			&cub->walls[WEST].width, &cub->walls[WEST].height);
@@ -54,7 +54,7 @@ int	init_wall_west(t_data *cub)
 	return (0);
 }
 
-int	init_wall_east(t_data *cub)
+static int	_init_wall_east(t_data *cub)
 {
 	cub->walls[EAST].img = mlx_xpm_file_to_image(cub->mlx, cub->txr.east,
 			&cub->walls[EAST].width, &cub->walls[EAST].height);
@@ -68,27 +68,12 @@ int	init_wall_east(t_data *cub)
 	return (0);
 }
 
-int	init_door(t_data *cub)
-{
-	cub->walls[DOOR].img = mlx_xpm_file_to_image(cub->mlx, DOORTXR,
-			&cub->walls[DOOR].width, &cub->walls[DOOR].height);
-	if (!cub->walls[DOOR].img)
-		return (-1);
-	cub->walls[DOOR].addr = mlx_get_data_addr(cub->walls[DOOR].img,
-			&cub->walls[DOOR].bits_per_pixel, &cub->walls[DOOR].line_len,
-			&cub->walls[DOOR].endian);
-	if (!cub->walls[DOOR].addr)
-		return (-1);
-	return (0);
-}
-
 int	init_walls(t_data *cub)
 {
-	int	i;
+	const t_init_wall	tab[] = {&_init_wall_north, &_init_wall_south,
+		&_init_wall_west, &_init_wall_east, &init_door};
+	int					i;
 
-	const t_init_wall	tab[] = {&init_wall_north, &init_wall_south, \
-									&init_wall_west, &init_wall_east, &init_door};
-									
 	i = 0;
 	while (i < 5)
 	{
