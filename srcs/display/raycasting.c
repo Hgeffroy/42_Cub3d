@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 16:55:33 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:14:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ float	raycasting(t_data *cub, float angle)
 		len = ray_step(cub);
 		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0') // Cas de la porte ?
 		{
-			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == /*Porte*/ 0)
+			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
 				cub->ray.wall_found = DOOR;
 			break ;
 		}

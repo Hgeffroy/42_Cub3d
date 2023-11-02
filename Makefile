@@ -18,6 +18,7 @@ SRCS		:=	\
 				parsing/utils.c\
 				play/doors.c\
 				play/hook.c\
+				play/init_walls.c\
 				play/movements.c\
 				play/play.c\
 
@@ -124,6 +125,8 @@ BLUE		:=	\001\033[34m\002
 
 BOLD		:=	\001\033[1m\002
 
+ITALIC		:=	\001\033[3m\002
+
 RESET		:=	\001\033[0m\002
 
 ########################################################################################################################
@@ -196,8 +199,8 @@ banner		:
 			@echo -e ' _/        _/    _/  _/    _/    _/_/    _/    _/    '
 			@echo -e '_/        _/    _/  _/    _/        _/  _/    _/     '
 			@echo -e ' _/_/_/   _/_/_/   _/_/_/    _/_/_/    _/_/_/        '
-			@echo -e '$(BOLD)'
-			@echo -e '                                        🍦    xcharra'
+			@echo -e '$(BOLD)''$(ITALIC)'
+			@echo -e '                           🙃  hgeffroy   🍦  xcharra'
 			@echo -e '$(RESET)'
 
 clean		:

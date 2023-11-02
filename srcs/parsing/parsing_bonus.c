@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:18:01 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/01 14:48:58 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ static t_door	*_init_doors(size_t size)
 		return (NULL);
 	while (i < size)
 	{
-		doors[i].state = 1;
+		doors[i].pos = 1;
 		doors[i].x = 0;
 		doors[i].y = 0;
 		i++;
 	}
-	doors[i].state = -1;
+	doors[i].pos = -1;
 	return (doors);
 }
 
@@ -84,7 +84,7 @@ void	replace_doors(t_data *cub)
 	size_t	i;
 
 	i = 0;
-	while (cub->doors && cub->doors[i].state != -1)
+	while (cub->doors && cub->doors[i].pos != -1)
 	{
 		cub->map[cub->doors[i].y][cub->doors[i].x] = 'D';
 		i++;

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/10/31 17:27:07 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:35:39 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int	draw_walls(t_data *cub)
 		while (wallray.height > 0)
 		{
 			get_wall_color(cub, &wallray);
-			my_mlx_pixel_put(&(cub->display), wallray.x, \
-			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height, wallray.color);
+			my_mlx_pixel_put(&(cub->display), wallray.x - 1, \
+			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height, \
+			wallray.color);
 			wallray.height -= 1;
 		}
 		wallray.x++;
