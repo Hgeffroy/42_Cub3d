@@ -29,6 +29,8 @@ SRCS		:=	\
 
 SRCS_B		=	\
 				$(SRCS)\
+				\
+				display/doors_display.c\
 				display/minimap.c\
 				parsing/parsing_bonus.c\
 				play/hook_bonus.c\

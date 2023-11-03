@@ -79,7 +79,7 @@ int	init_walls(t_data *cub)
 		tab[4] = init_door;
 	while (tab[i])
 	{
-		if ((*tab[i])(cub) < 0)
+		if (tab[i](cub) < 0)
 			return (-1);
 		i++;
 	}
