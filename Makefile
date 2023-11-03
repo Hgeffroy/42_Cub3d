@@ -3,11 +3,13 @@
 ########################################################################################################################
 SRCS		:=	\
 				cub3D.c\
+				\
 				display/get_wall_color.c\
 				display/init_col.c\
-				display/minimap.c\
+				display/mlx_utils.c\
 				display/raycasting.c\
 				display/texturing.c\
+				\
 				parsing/check_map.c\
 				parsing/check_map_utils.c\
 				parsing/get_map.c\
@@ -16,6 +18,7 @@ SRCS		:=	\
 				parsing/get_txr_and_rgb.c\
 				parsing/parsing.c\
 				parsing/utils.c\
+				\
 				play/doors.c\
 				play/hook.c\
 				play/init_doors.c\
@@ -24,8 +27,13 @@ SRCS		:=	\
 				play/play.c\
 				play/rotation.c\
 
-SRCS_B		=	$(SRCS)\
-				parsing/parsing_bonus.c
+SRCS_B		=	\
+				$(SRCS)\
+				\
+				display/doors_display.c\
+				display/minimap.c\
+				parsing/parsing_bonus.c\
+				play/hook_bonus.c\
 
 HEAD		:=	\
 				cub3D.h\

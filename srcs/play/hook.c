@@ -67,28 +67,3 @@ int	release_mouse(int keycode, int x, int y, t_data *cub)
 		cub->movement.mouse = false;
 	return (0);
 }
-
-int	move_mouse(int x, int y, t_data *cub)
-{
-	int	diff_x;
-	int	mouse_x;
-	int	mouse_y;
-
-	(void)y;
-	if (cub->movement.mouse)
-		return (0);
-	diff_x = x - cub->movement.last_x;
-	if (diff_x > 0.5)
-		rotate_right(cub, diff_x / 10);
-	else if (diff_x < -0.5)
-		rotate_right(cub, diff_x / 10);
-	mlx_mouse_get_pos(cub->mlx, cub->win, &mouse_x, &mouse_y);
-	if (mouse_x > SCREEN_WIDTH - 50 || mouse_y > SCREEN_HEIGHT - 50)
-	{
-		mlx_mouse_move(cub->mlx, cub->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-		cub->movement.last_x = SCREEN_WIDTH / 2;
-		return (0);
-	}
-	cub->movement.last_x += diff_x;
-	return (0);
-}

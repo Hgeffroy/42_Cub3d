@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:34:38 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:07:48 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:04:40 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,16 @@ static int	_init_wall_east(t_data *cub)
 
 int	init_walls(t_data *cub)
 {
-	const t_init_wall	tab[] = {&_init_wall_north, &_init_wall_south,
-		&_init_wall_west, &_init_wall_east, &init_door};
+	static t_init_wall	tab[] = {&_init_wall_north, &_init_wall_south,
+		&_init_wall_west, &_init_wall_east, NULL, NULL};
 	int					i;
 
 	i = 0;
-	while (i < 5)
+	if (BONUS)
+		tab[4] = init_door;
+	while (tab[i])
 	{
-		if ((*tab[i])(cub) < 0)
+		if (tab[i](cub) < 0)
 			return (-1);
 		i++;
 	}
