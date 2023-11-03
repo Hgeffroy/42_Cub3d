@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:18:01 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/02 14:10:42 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 08:52:32 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	get_doors(t_data *cub)
 	size_t	doors;
 
 	doors = _count_doors(cub->map);
-	if (doors == 0)
-		return (0);
+	// if (doors == 0) --> sinon segfault dans move_doors, est-ce que ca peut te poser un pb ?
+	// 	return (0);
 	cub->doors = _init_doors(doors);
 	if (!cub->doors)
 		return (1);
