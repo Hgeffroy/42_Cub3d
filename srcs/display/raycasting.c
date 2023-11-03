@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 13:44:56 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:38:09 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,19 @@ float	raycasting(t_data *cub, float angle)
 		{
 			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
 			{
-				cub->ray.wall_found = DOOR;
 				doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
-				if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
-					break ;
+				if (cub->ray.wall_found == NORTH || cub->ray.wall_found == SOUTH)
+				{
+					cub->ray.wall_found = DOOR;
+					if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
+						break ;
+				}
+				else if (cub->ray.wall_found == EAST || cub->ray.wall_found == WEST)
+				{
+					cub->ray.wall_found = DOOR;
+					if (cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)) < cub->doors[doornb].pos)
+						break ;
+				}
 			}
 			else
 				break ;
