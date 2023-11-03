@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:53:17 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 14:10:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:47:18 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	set_door(t_data *cub)
 {
 	int	doornb;
 
-	if (raycasting(cub, cub->player.angle) < 3 && cub->ray.wall_found == DOOR)
+	if (raycasting(cub, cub->player.angle, 1) < 3 && cub->ray.wall_found == DOOR)
 	{
 		doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
 		printf("pos : %f, state : %d\n", cub->doors[doornb].pos,

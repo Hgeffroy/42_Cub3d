@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 09:38:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:46:20 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ float	ray_step(t_data *cub)
 	return (len);
 }
 
-float	raycasting(t_data *cub, float angle)
+float	raycasting(t_data *cub, float angle, int optn)
 {
 	float	len;
 	int		doornb;
@@ -97,6 +97,11 @@ float	raycasting(t_data *cub, float angle)
 		{
 			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
 			{
+				if (optn)
+				{
+					cub->ray.wall_found = DOOR;
+					break ;
+				}
 				doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
 				if (cub->ray.wall_found == NORTH || cub->ray.wall_found == SOUTH)
 				{

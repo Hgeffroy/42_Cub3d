@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:23:57 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/03 09:47:07 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	wallray_init(t_data *cub, t_wallray *wallray)
 {
 	wallray->angle = cub->player.angle - M_PI / 6;
 	wallray->x = 0;
-	wallray->len = raycasting(cub, wallray->angle);
+	wallray->len = raycasting(cub, wallray->angle, 0);
 }
 
 void	wallray_init_col(t_data *cub, t_wallray *wallray)
 {
 	wallray->angle = atanf((wallray->x + 0.0001 - (SCREEN_WIDTH / 2))
 			/ (SCREEN_WIDTH * 6 / (2 * M_PI))) + cub->player.angle + 0.0001;
-	wallray->len = raycasting(cub, wallray->angle)
+	wallray->len = raycasting(cub, wallray->angle, 0)
 		* cosf(wallray->angle - cub->player.angle);
 	wallray->height = SCREEN_DIST * WALL_HEIGHT / wallray->len;
 	init_col(cub, wallray);
