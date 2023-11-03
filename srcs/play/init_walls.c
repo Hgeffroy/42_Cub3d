@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:34:38 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:07:48 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:04:40 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	init_walls(t_data *cub)
 
 	i = 0;
 	if (BONUS)
-		tab[5] = &init_door;
+		tab[4] = init_door;
 	while (tab[i])
 	{
 		if ((*tab[i])(cub) < 0)
