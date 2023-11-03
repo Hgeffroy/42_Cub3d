@@ -67,6 +67,7 @@ int		get_txr_and_rgb(t_data *cub);
 void	free_txr(t_textures txr);
 void	rgb_converter(t_data *cub);
 
+void	clear_parsing(t_data *cub);
 /* bonus parsing */
 int		get_doors(t_data *cub);
 void	replace_doors(t_data *cub);

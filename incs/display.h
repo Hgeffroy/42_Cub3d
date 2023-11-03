@@ -15,7 +15,7 @@
 
 # include "cub3D.h"
 
-void	init_minimap(t_data *cub);
+void	init_mlx(t_data *cub);
 void	draw_minimap(t_data *cub);
 float	minimap_ray(t_data *cub, float angle);
 float	raycasting(t_data *cub, float angle, int optn);
