@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 13:38:49 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:14:59 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,18 +116,35 @@ float	raycasting(t_data *cub, float angle, int optn)
 					cub->ray.wall_found = DOOR;
 					
 					// Nord
-					if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
-						break ;
-					if (!(angle > M_PI && angle <= 3 * M_PI_2))
-						continue ;
-					dx = cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle));
-					dx = dx - cub->doors[doornb].pos;
-					dy = dx * tanf(M_PI_2 - (3 * M_PI_2 - angle));
-					printf ("%f\n", dy);
-					if (dy < 1)
+					if (cub->ray.door_type == NORTH)
 					{
-						len += sqrtf(dx * dx + dy * dy);
-						break ;
+						if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
+							break ;
+						if (!(angle > M_PI && angle <= 3 * M_PI_2))
+							continue ;
+						dx = cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle));
+						dx = dx - cub->doors[doornb].pos;
+						dy = dx * tanf(M_PI_2 - (3 * M_PI_2 - angle));
+						if (dy < 1)
+						{
+							len += sqrtf(dx * dx + dy * dy);
+							break ;
+						}
+					}
+					else // Sud
+					{
+						if (cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)) < cub->doors[doornb].pos)
+							break ;
+						if (!(angle > M_PI_2 && angle <= M_PI))
+							continue ;
+						dx = cub->player.fx + len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle));
+						dx = dx - cub->doors[doornb].pos;
+						dy = dx * tanf(M_PI_2 - fabs(M_PI_2 - angle));
+						if (dy < 1)
+						{
+							len += sqrtf(dx * dx + dy * dy);
+							break ;
+						}
 					}
 				}
 				
@@ -136,19 +153,35 @@ float	raycasting(t_data *cub, float angle, int optn)
 					cub->ray.door_type = cub->ray.wall_found;
 					cub->ray.wall_found = DOOR;
 					
-					//Est
-					if (cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)) < cub->doors[doornb].pos)
-						break ;
-					if (!(angle > 3 * M_PI_2 && angle <= 2 * M_PI))
-						continue ;
-					dx = cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle));
-					dx = /* 1 -  */dx - cub->doors[doornb].pos;
-					dy = dx * tanf(M_PI_2 - (2 * M_PI - angle));
-					printf ("%f\n", dy);
-					if (dy < 1)
+					if (cub->ray.door_type == EAST)
 					{
-						len += sqrtf(dx * dx + dy * dy);
-						break ;
+						if (cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)) < cub->doors[doornb].pos)
+							break ;
+						if (!(angle > 3 * M_PI_2 && angle <= 2 * M_PI))
+							continue ;
+						dx = cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle));
+						dx = dx - cub->doors[doornb].pos;
+						dy = dx * tanf(M_PI_2 - (2 * M_PI - angle));
+						if (dy < 1)
+						{
+							len += sqrtf(dx * dx + dy * dy);
+							break ;
+						}
+					}
+					else
+					{
+						if (cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)) < cub->doors[doornb].pos)
+							break ;
+						if (!(angle > M_PI && angle <= 3 * M_PI_2))
+							continue ;
+						dx = cub->player.fy + len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle));
+						dx = dx - cub->doors[doornb].pos;
+						dy = dx * tanf(M_PI_2 - fabs(M_PI - angle));
+						if (dy < 1)
+						{
+							len += sqrtf(dx * dx + dy * dy);
+							break ;
+						}
 					}
 				}
 			}
