@@ -70,12 +70,14 @@ static int	_init_wall_east(t_data *cub)
 
 int	init_walls(t_data *cub)
 {
-	const t_init_wall	tab[] = {&_init_wall_north, &_init_wall_south,
-		&_init_wall_west, &_init_wall_east, &init_door};
+	static t_init_wall	tab[] = {&_init_wall_north, &_init_wall_south,
+		&_init_wall_west, &_init_wall_east, NULL, NULL};
 	int					i;
 
 	i = 0;
-	while (i < 5)
+	if (BONUS)
+		tab[5] = &init_door;
+	while (tab[i])
 	{
 		if ((*tab[i])(cub) < 0)
 			return (-1);

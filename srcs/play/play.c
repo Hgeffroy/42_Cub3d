@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 16:48:42 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/03 16:57:35 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	init_game(t_data *cub)
 	if (cub->player.dir == 'S')
 		cub->player.angle = M_PI_2;
 	init_mlx(cub);
-	if (init_walls(cub) < 0) //with doors in bonus cases (2 ft arr with init door in plus)
+	if (init_walls(cub) < 0)
 		return (-1);
 	ft_bzero(&(cub->movement), 8);
 	return (0);
