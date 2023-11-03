@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:19:34 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/03 09:45:17 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	init_minimap(t_data *cub);
 void	draw_minimap(t_data *cub);
 float	minimap_ray(t_data *cub, float angle);
-float	raycasting(t_data *cub, float angle);
+float	raycasting(t_data *cub, float angle, int optn);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		draw_display(t_data *cub);
 void	init_col(t_data *cub, t_wallray *wallray);

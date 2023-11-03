@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 08:51:36 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 12:58:44 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:59:31 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	init_col_e(t_data *cub, t_wallray *wallray)
 void	init_col_d(t_data *cub, t_wallray *wallray)
 {
 	// puts("init door");
-	wallray->x_impact = cub->ray.impact[0] * cub->walls[EAST].width;
-	wallray->y_impact = cub->ray.impact[1] * cub->walls[EAST].width;
+	wallray->x_impact = cub->ray.impact[0] * cub->walls[DOOR].width;
+	wallray->y_impact = cub->ray.impact[1] * cub->walls[DOOR].width;
 	wallray->y_ratio = cub->walls[DOOR].height / wallray->height;
 }
 
