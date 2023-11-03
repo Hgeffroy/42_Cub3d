@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 08:42:04 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:12:32 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	init_game(t_data *cub)
 	if (cub->player.dir == 'E')
 		cub->player.angle = 0;
 	if (cub->player.dir == 'N')
-		cub->player.angle = M_PI_2;
+		cub->player.angle = 3 * M_PI_2;
 	if (cub->player.dir == 'W')
 		cub->player.angle = M_PI;
 	if (cub->player.dir == 'S')
-		cub->player.angle = -M_PI_2;
+		cub->player.angle = M_PI_2;
 	init_minimap(cub);
 	if (init_walls(cub) < 0)
 		return (-1);
