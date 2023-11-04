@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 10:56:10 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:03:06 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ float	ray_step(t_data *cub)
 void	set_impact(t_data *cub, float angle, float len)
 {
 	int	doornb;
-	
+
 	if (cub->ray.wall_found == DOOR)
 	{
 		doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
 		if (cub->ray.door_type == NORTH || cub->ray.door_type == SOUTH)
 		{
-			cub->ray.impact[0] = cub->doors[doornb].pos - (cub->player.fx + len * cosf(angle)
-				- (int)(cub->player.fx + len * cosf(angle)));
+			cub->ray.impact[0] = cub->doors[doornb].pos - (cub->player.fx + \
+				len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)));
 			cub->ray.impact[1] = cub->player.fy + len * sinf(angle)
 				- (int)(cub->player.fy + len * sinf(angle));
 		}
@@ -105,10 +105,10 @@ void	set_impact(t_data *cub, float angle, float len)
 		{
 			cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
 				- (int)(cub->player.fx + len * cosf(angle));
-			cub->ray.impact[1] = cub->doors[doornb].pos - (cub->player.fy + len * sinf(angle)
-				- (int)(cub->player.fy + len * sinf(angle)));
+			cub->ray.impact[1] = cub->doors[doornb].pos - (cub->player.fy + \
+				len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)));
 		}
-		return ;	
+		return ;
 	}
 	cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
 		- (int)(cub->player.fx + len * cosf(angle));
@@ -125,13 +125,13 @@ float	raycasting(t_data *cub, float angle, int optn)
 	while (1)
 	{
 		len = ray_step(cub);
-		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0') // Cas de la porte ?
+		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0')
 		{
-			if(BONUS && \
+			if (BONUS && \
 				cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
 			{
 				if (test(cub, angle, &len, optn))
-					break;
+					break ;
 			}
 			else
 				break ;
