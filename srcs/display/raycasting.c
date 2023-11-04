@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 10:28:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:56:10 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,35 @@ float	ray_step(t_data *cub)
 	return (len);
 }
 
+void	set_impact(t_data *cub, float angle, float len)
+{
+	int	doornb;
+	
+	if (cub->ray.wall_found == DOOR)
+	{
+		doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
+		if (cub->ray.door_type == NORTH || cub->ray.door_type == SOUTH)
+		{
+			cub->ray.impact[0] = cub->doors[doornb].pos - (cub->player.fx + len * cosf(angle)
+				- (int)(cub->player.fx + len * cosf(angle)));
+			cub->ray.impact[1] = cub->player.fy + len * sinf(angle)
+				- (int)(cub->player.fy + len * sinf(angle));
+		}
+		else
+		{
+			cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
+				- (int)(cub->player.fx + len * cosf(angle));
+			cub->ray.impact[1] = cub->doors[doornb].pos - (cub->player.fy + len * sinf(angle)
+				- (int)(cub->player.fy + len * sinf(angle)));
+		}
+		return ;	
+	}
+	cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
+		- (int)(cub->player.fx + len * cosf(angle));
+	cub->ray.impact[1] = cub->player.fy + len * sinf(angle)
+		- (int)(cub->player.fy + len * sinf(angle));
+}
+
 float	raycasting(t_data *cub, float angle, int optn)
 {
 	float	len;
@@ -108,9 +137,6 @@ float	raycasting(t_data *cub, float angle, int optn)
 				break ;
 		}
 	}
-	cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
-		- (int)(cub->player.fx + len * cosf(angle));
-	cub->ray.impact[1] = cub->player.fy + len * sinf(angle)
-		- (int)(cub->player.fy + len * sinf(angle));
+	set_impact(cub, angle, len);
 	return (len);
 }
