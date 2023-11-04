@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:25:15 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/03 15:25:52 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/04 09:26:16 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 	dst = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	get_color(t_walltext w, int x, int y)
+{
+	char	*addr;
+
+	addr = w.addr + y * w.line_len + x * (w.bits_per_pixel / 8);
+	return (*(unsigned int *)addr);
 }
 
 void	init_mlx(t_data *cub)

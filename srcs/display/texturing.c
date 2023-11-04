@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 09:47:07 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 09:26:09 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ void	draw_floor_ceiling(t_data *cub)
 		}
 		j++;
 	}
-}
-
-int	get_color(t_walltext w, int x, int y)
-{
-	char	*addr;
-
-	addr = w.addr + y * w.line_len + x * (w.bits_per_pixel / 8);
-	return (*(unsigned int *)addr);
 }
 
 void	wallray_init(t_data *cub, t_wallray *wallray)

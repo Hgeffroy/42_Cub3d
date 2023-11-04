@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 18:16:28 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/04 09:21:53 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	get_wall_color(t_data *cub, t_wallray *wallray);
 
 void	init_col_d(t_data *cub, t_wallray *wallray);
 void	get_door_color(t_data *cub, t_wallray *wallray);
+
+int		test(t_data *cub, float angle, float *len, int optn);
 
 typedef void	(*t_init_col)(t_data *cub, t_wallray *wallray);
 typedef void	(*t_wall_color)(t_data *cub, t_wallray *wallray);
