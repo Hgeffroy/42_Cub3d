@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 09:26:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:34:14 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ void	wallray_init_col(t_data *cub, t_wallray *wallray)
 	wallray->half_height = wallray->height / 2;
 }
 
-int	draw_walls(t_data *cub)
+int	draw_display(t_data *cub)
 {
 	t_wallray	wallray;
 
+	draw_floor_ceiling(cub);
 	wallray_init(cub, &wallray);
 	while (wallray.x < SCREEN_WIDTH)
 	{
@@ -78,12 +79,5 @@ int	draw_walls(t_data *cub)
 		}
 		wallray.x++;
 	}
-	return (0);
-}
-
-int	draw_display(t_data *cub)
-{
-	draw_floor_ceiling(cub);
-	draw_walls(cub);
 	return (0);
 }

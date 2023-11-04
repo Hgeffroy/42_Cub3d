@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 09:27:19 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:28:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ float	raycasting(t_data *cub, float angle, int optn)
 		len = ray_step(cub);
 		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0') // Cas de la porte ?
 		{
-			if(cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
+			if(BONUS && \
+				cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
 			{
 				if (test(cub, angle, &len, optn))
 					break;

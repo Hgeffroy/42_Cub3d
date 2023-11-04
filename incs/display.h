@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 09:21:53 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/04 09:57:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		test(t_data *cub, float angle, float *len, int optn);
 
 typedef void	(*t_init_col)(t_data *cub, t_wallray *wallray);
 typedef void	(*t_wall_color)(t_data *cub, t_wallray *wallray);
+typedef	int		(*t_ray_wall)(t_data *cub, float angle, float *len, int doornb);
 
 #endif
