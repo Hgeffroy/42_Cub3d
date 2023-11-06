@@ -1,7 +1,7 @@
 NO ./assets/textures/sculk_like.xpm
-SO ./assets/textures/South.xpm
-WE ./assets/textures/West.xpm
-EA ./assets/textures/East.xpm
+SO ./assets/textures/2x2_ancient_wall_greeny.xpm
+WE ./assets/textures/2x2_enchanted_wall_blue_in.xpm
+EA ./assets/textures/magic_wall_x2048.xpm
 F 220, 100, 12
 C 225, 30, 87
 

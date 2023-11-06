@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 15:00:51 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/06 15:12:14 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	init_game(t_data *cub)
 	init_mlx(cub);
 	if (init_walls(cub) < 0)
 		return (-1);
-	mlx_mouse_hide(cub->mlx, cub->win);
+//	mlx_mouse_hide(cub->mlx, cub->win);
+//	mlx_mouse_show(cub->mlx, cub->win);
 	return (0);
 }
 
