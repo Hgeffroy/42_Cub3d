@@ -23,8 +23,8 @@ void	draw_circle(t_data *cub, int *center, int radius, int color)
 		y = center[1] - radius;
 		while (y < center[1] + radius)
 		{
-			if ((pow(x - center[0], 2)) + (pow(y - center[1], 2)) \
-			< pow(radius, 2))
+			if ((pow(x - center[0], 2)) + (pow(y - center[1], 2))
+				< pow(radius, 2))
 				pixel_put(&(cub->display), x, y, color);
 			y++;
 		}

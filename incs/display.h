@@ -33,9 +33,8 @@ void	draw_circle(t_data *cub, int *center, int radius, int color);
 void	draw_fov(t_data *cub);
 void	draw_tile(t_data *cub, float a, float b, t_minimap m);
 
-
 typedef void	(*t_init_col)(t_data *cub, t_wallray *wallray);
 typedef void	(*t_wall_color)(t_data *cub, t_wallray *wallray);
-typedef	int		(*t_ray_wall)(t_data *cub, float angle, float *len, int doornb);
+typedef int		(*t_ray_wall)(t_data *cub, float angle, float *len, int doornb);
 
 #endif
