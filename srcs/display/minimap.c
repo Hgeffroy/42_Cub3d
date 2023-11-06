@@ -6,13 +6,13 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 14:48:50 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 08:19:48 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_tile(t_data *cub, float *coord, float a, float b, int *center)
+void	draw_tile(t_data *cub, float a, float b, t_minimap m)
 {
 	float	tmpa;
 	float	tmpb;
@@ -23,20 +23,21 @@ void	draw_tile(t_data *cub, float *coord, float a, float b, int *center)
 	tmpb * sinf((-1) * cub->player.angle - M_PI_2);
 	b = tmpa * sinf((-1) * cub->player.angle - M_PI_2) + \
 	tmpb * cosf((-1) * cub->player.angle - M_PI_2);
-	if (cub->map[(int)coord[0]][(int)coord[1]] - '0' == FTILE
-		&& a + center[0] >= 0 && b + center[1] >= 0)
-		my_mlx_pixel_put(&(cub->display), a + center[0], b + center[1],
-			H_WHITE);
-	else if (cub->map[(int)coord[0]][(int)coord[1]] - '0' == WALL
-		&& a + center[0] >= 0 && b + center[1] >= 0)
-		my_mlx_pixel_put(&(cub->display), a + center[0], b + center[1], H_GREY);
-	else if (cub->map[(int)coord[0]][(int)coord[1]] == 'D'
-		&& a + center[0] >= 0 && b + center[1] >= 0)
+	if (cub->map[(int)m.coord[0]][(int)m.coord[1]] - '0' == FTILE
+		&& a + m.center[0] >= 0 && b + m.center[1] >= 0)
+		pixel_put(&(cub->display), a + m.center[0], b + m.center[1], H_WHITE);
+	else if (cub->map[(int)m.coord[0]][(int)m.coord[1]] - '0' == WALL
+		&& a + m.center[0] >= 0 && b + m.center[1] >= 0)
+		pixel_put(&(cub->display), a + m.center[0], b + m.center[1], H_GREY);
+	else if (cub->map[(int)m.coord[0]][(int)m.coord[1]] == 'D'
+		&& a + m.center[0] >= 0 && b + m.center[1] >= 0)
 	{
-		if (cub->doors[find_door(cub, coord[1], coord[0])].pos > 0.001)
-			my_mlx_pixel_put(&(cub->display), a + center[0], b + center[1], H_BLUE);
+		if (cub->doors[find_door(cub, m.coord[1], m.coord[0])].pos > 0.001)
+			pixel_put(&(cub->display), a + m.center[0], b + m.center[1], \
+																	H_BLUE);
 		else
-			my_mlx_pixel_put(&(cub->display), a + center[0], b + center[1], H_WHITE);
+			pixel_put(&(cub->display), a + m.center[0], b + m.center[1], \
+																	H_WHITE);
 	}
 }
 
@@ -53,7 +54,7 @@ void	draw_circle(t_data *cub, int *center, int radius, int color)
 		{
 			if ((pow(x - center[0], 2)) + (pow(y - center[1], 2)) \
 			< pow(radius, 2))
-				my_mlx_pixel_put(&(cub->display), x, y, color);
+				pixel_put(&(cub->display), x, y, color);
 			y++;
 		}
 		x++;
@@ -62,29 +63,29 @@ void	draw_circle(t_data *cub, int *center, int radius, int color)
 
 float	minimap_ray(t_data *cub, float angle)
 {
-	float	x;
-	float	y;
-	float	ix;
-	float	iy;
+	float	coord[2];
+	float	pixel[2];
 	int		color;
-	int		j = 0;
+	int		j;
 
-	x = cub->player.fx;
-	y = cub->player.fy;
-	ix = 7.f * TILE_SZ;
-	iy = 7.f * TILE_SZ;
-	while ((cub->map[(int)y][(int)x] == '0' || (cub->map[(int)y][(int)x] == 'D' \
-			&& cub->doors[find_door(cub, x, y)].pos < 0.001)) && \
-			(pow(ix - 7 * TILE_SZ, 2)) + (pow(iy - 7 * TILE_SZ, 2)) \
+	coord[0] = cub->player.fx;
+	coord[1] = cub->player.fy;
+	pixel[0] = 7.f * TILE_SZ;
+	pixel[1] = 7.f * TILE_SZ;
+	j = 0;
+	while ((cub->map[(int)coord[1]][(int)coord[0]] == '0' || \
+			(cub->map[(int)coord[1]][(int)coord[0]] == 'D' \
+			&& cub->doors[find_door(cub, coord[0], coord[1])].pos < 0.001)) && \
+			(pow(pixel[0] - 7 * TILE_SZ, 2)) + (pow(pixel[1] - 7 * TILE_SZ, 2)) \
 			< pow(3 * TILE_SZ, 2))
 	{
-		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
+		if ((H_ORANGE + 3 * j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE) \
 			color = H_ORANGE + 3 * j * (1 + 256);
-		my_mlx_pixel_put(&(cub->display), ix, iy, color);
-		x += cosf(angle + cub->player.angle) / TILE_SZ;
-		y += sinf(angle + cub->player.angle) / TILE_SZ;
-		iy -= cos(angle);
-		ix += sin (angle);
+		pixel_put(&(cub->display), pixel[0], pixel[1], color);
+		coord[0] += cosf(angle + cub->player.angle) / TILE_SZ;
+		coord[1] += sinf(angle + cub->player.angle) / TILE_SZ;
+		pixel[1] -= cos(angle);
+		pixel[0] += sin (angle);
 		j++;
 	}
 	return (0);
@@ -155,8 +156,7 @@ void	draw_minimap(t_data *cub)
 		{
 			if (minimap.display[0] * minimap.display[0] + minimap.display[1] * \
 			minimap.display[1] < 6 * 6 * TILE_SZ * TILE_SZ)
-				draw_tile(cub, minimap.coord, minimap.display[1], \
-				minimap.display[0], minimap.center);
+				draw_tile(cub, minimap.display[1], minimap.display[0], minimap);
 			minimap.coord[1] += minimap.ratio;
 			minimap.display[1] += 0.5;
 		}
@@ -165,5 +165,3 @@ void	draw_minimap(t_data *cub)
 	}
 	draw_player(cub);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 10:34:14 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 07:58:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceiling(t_data *cub)
 		i = 0;
 		while (i < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&(cub->display), i, j, cub->rgb_c);
+			pixel_put(&(cub->display), i, j, cub->rgb_c);
 			i++;
 		}
 		j++;
@@ -33,7 +33,7 @@ void	draw_floor_ceiling(t_data *cub)
 		i = 0;
 		while (i < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&(cub->display), i, j, cub->rgb_f);
+			pixel_put(&(cub->display), i, j, cub->rgb_f);
 			i++;
 		}
 		j++;
@@ -72,7 +72,7 @@ int	draw_display(t_data *cub)
 		while (wallray.height > 0)
 		{
 			get_wall_color(cub, &wallray);
-			my_mlx_pixel_put(&(cub->display), wallray.x, \
+			pixel_put(&(cub->display), wallray.x, \
 			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height, \
 			wallray.color);
 			wallray.height -= 1;

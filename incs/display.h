@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:55:41 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 09:57:27 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 07:58:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_mlx(t_data *cub);
 void	draw_minimap(t_data *cub);
 float	minimap_ray(t_data *cub, float angle);
 float	raycasting(t_data *cub, float angle, int optn);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	pixel_put(t_img *img, int x, int y, int color);
 int		draw_display(t_data *cub);
 void	init_col(t_data *cub, t_wallray *wallray);
 int		get_color(t_walltext w, int x, int y);

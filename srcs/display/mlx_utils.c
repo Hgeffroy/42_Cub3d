@@ -6,13 +6,13 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:25:15 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/04 09:26:16 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 07:58:40 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
