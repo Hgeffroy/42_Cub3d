@@ -70,6 +70,6 @@ void	get_wall_color(t_data *cub, t_wallray *wallray)
 		&_get_west_color, &_get_east_color, NULL, NULL};
 
 	if (BONUS)
-		tab[4] = get_door_color;
+		tab[4] = &get_door_color;
 	tab[cub->ray.wall_found](cub, wallray);
 }

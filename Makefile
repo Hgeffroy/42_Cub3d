@@ -108,7 +108,7 @@ CC			:=	cc
 
 RM			:=	rm -rf
 
-CFLAGS		:=	-Wall -Wextra #-Werror -g3
+CFLAGS		:=	-Wall -Wextra -Werror -g3
 
 OPTI_F		:=	-O3 #-Ofast -march=native -fomit-frame-pointer -funroll-loops
 

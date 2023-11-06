@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_doors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 09:03:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:04:53 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:46:50 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	test_north(t_data *cub, float angle, float *len, int doornb)
 	float	dx;
 	float	dy;
 
+	dx = 0;
+	dy = 0;
 	cub->ray.door_type = cub->ray.wall_found;
 	cub->ray.wall_found = DOOR;
 	if (cub->player.fx + *len * cosf(angle)
@@ -62,6 +64,8 @@ int	test_south(t_data *cub, float angle, float *len, int doornb)
 	float	dx;
 	float	dy;
 
+	dx = 0;
+	dy = 0;
 	cub->ray.door_type = cub->ray.wall_found;
 	cub->ray.wall_found = DOOR;
 	if (cub->player.fx + *len * cosf(angle)
@@ -87,6 +91,8 @@ int	test_west(t_data *cub, float angle, float *len, int doornb)
 	float	dx;
 	float	dy;
 
+	dx = 0;
+	dy = 0;
 	cub->ray.door_type = cub->ray.wall_found;
 	cub->ray.wall_found = DOOR;
 	if (cub->player.fy + *len * sinf(angle)
@@ -112,6 +118,8 @@ int	test_east(t_data *cub, float angle, float *len, int doornb)
 	float	dx;
 	float	dy;
 
+	dx = 0;
+	dy = 0;
 	cub->ray.door_type = cub->ray.wall_found;
 	cub->ray.wall_found = DOOR;
 	if (cub->player.fy + *len * sinf(angle)

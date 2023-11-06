@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:01:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:00:51 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	mlx_close(t_data *cub)
 	}
 	if (BONUS)
 		mlx_destroy_image(cub->mlx, cub->walls[DOOR].img);
+//	mlx_mouse_show(cub->mlx, cub->win);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
@@ -47,7 +48,7 @@ int	init_game(t_data *cub)
 	init_mlx(cub);
 	if (init_walls(cub) < 0)
 		return (-1);
-	ft_bzero(&(cub->movement), 8);
+	mlx_mouse_hide(cub->mlx, cub->win);
 	return (0);
 }
 

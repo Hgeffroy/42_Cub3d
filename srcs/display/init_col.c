@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_col.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 08:51:36 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:03:30 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:15:05 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	init_col(t_data *cub, t_wallray *wallray)
 		&_init_col_e, NULL, NULL};
 
 	if (BONUS)
-		tab[4] = init_col_d;
+		tab[4] = &init_col_d;
 	tab[cub->ray.wall_found](cub, wallray);
 }
