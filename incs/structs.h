@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 10:07:49 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:26:03 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,15 @@ typedef struct s_ray
 
 typedef struct s_minimap
 {
-	float	display_x;
-	float	display_y;
+	float	display[2];
 	float	display_y_start;
-	float	map_x;
-	float	map_y;
+	float	coord[2];
 	float	map_y_start;
 	float	ratio;
 	int		center[2];
 
 }	t_minimap;
+
 typedef struct s_door
 {
 	int		x;

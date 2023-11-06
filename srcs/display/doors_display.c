@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_door_color.c                                   :+:      :+:    :+:   */
+/*   doors_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:03:20 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 18:16:28 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:23:54 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,24 @@ void	init_col_d(t_data *cub, t_wallray *wallray)
 
 void	get_door_color(t_data *cub, t_wallray *wallray)
 {
+	int	x;
+	int	y;
+	
 	if (cub->ray.door_type == EAST || cub->ray.door_type == WEST)
-		wallray->color = get_color(cub->walls[DOOR],
-				wallray->y_impact,
-				cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2
-					- (wallray->height - wallray->half_height)
-					* wallray->y_ratio));
+	{
+		x = wallray->y_impact;
+		y = cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2
+				- (wallray->height - wallray->half_height) * wallray->y_ratio);
+		if (y > cub->walls[DOOR].height - 1)
+			y = cub->walls[DOOR].height - 1;
+	}
 	else if (cub->ray.door_type == NORTH || cub->ray.door_type == SOUTH)
-		wallray->color = get_color(cub->walls[DOOR],
-				cub->walls[DOOR].width - wallray->x_impact,
-				cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2
-					- (wallray->height - wallray->half_height)
-					* wallray->y_ratio));
+	{
+		x = cub->walls[DOOR].width - wallray->x_impact;
+		y = cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2
+				- (wallray->height - wallray->half_height) * wallray->y_ratio);
+		if (y > cub->walls[DOOR].height - 1)
+			y = cub->walls[DOOR].height - 1;
+	}
+	wallray->color = get_color(cub->walls[DOOR], x, y);
 }

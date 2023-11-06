@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/03 09:47:07 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:54:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceiling(t_data *cub)
 		i = 0;
 		while (i < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&(cub->display), i, j, cub->rgb_c);
+			pixel_put(&(cub->display), i, j, cub->rgb_c);
 			i++;
 		}
 		j++;
@@ -33,19 +33,11 @@ void	draw_floor_ceiling(t_data *cub)
 		i = 0;
 		while (i < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&(cub->display), i, j, cub->rgb_f);
+			pixel_put(&(cub->display), i, j, cub->rgb_f);
 			i++;
 		}
 		j++;
 	}
-}
-
-int	get_color(t_walltext w, int x, int y)
-{
-	char	*addr;
-
-	addr = w.addr + y * w.line_len + x * (w.bits_per_pixel / 8);
-	return (*(unsigned int *)addr);
 }
 
 void	wallray_init(t_data *cub, t_wallray *wallray)
@@ -68,10 +60,11 @@ void	wallray_init_col(t_data *cub, t_wallray *wallray)
 	wallray->half_height = wallray->height / 2;
 }
 
-int	draw_walls(t_data *cub)
+int	draw_display(t_data *cub)
 {
 	t_wallray	wallray;
 
+	draw_floor_ceiling(cub);
 	wallray_init(cub, &wallray);
 	while (wallray.x < SCREEN_WIDTH)
 	{
@@ -79,19 +72,12 @@ int	draw_walls(t_data *cub)
 		while (wallray.height > 0)
 		{
 			get_wall_color(cub, &wallray);
-			my_mlx_pixel_put(&(cub->display), wallray.x, \
-			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height, \
+			pixel_put(&(cub->display), wallray.x, \
+			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height - 1, \
 			wallray.color);
 			wallray.height -= 1;
 		}
 		wallray.x++;
 	}
-	return (0);
-}
-
-int	draw_display(t_data *cub)
-{
-	draw_floor_ceiling(cub);
-	draw_walls(cub);
 	return (0);
 }
