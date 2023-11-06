@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:01:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:37:27 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	mlx_play(t_data *cub)
 		rotate_left(cub, 10);
 	if (cub->movement.rotate_right)
 		rotate_right(cub, 10);
-	if (cub->movement.move_up)
+	if (cub->movement.move_up || cub->movement.move_up_arr)
 		move_forward(cub);
-	if (cub->movement.move_down)
+	if (cub->movement.move_down || cub->movement.move_down_arr)
 		move_backward(cub);
 	if (cub->movement.move_left)
 		move_left(cub);

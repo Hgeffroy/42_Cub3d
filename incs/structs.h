@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 09:26:03 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:32:44 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ typedef struct s_walltext
 typedef struct s_movement
 {
 	bool	move_up;
+	bool	move_up_arr;
 	bool	move_down;
+	bool	move_down_arr;
 	bool	move_right;
 	bool	move_left;
 	bool	rotate_right;
