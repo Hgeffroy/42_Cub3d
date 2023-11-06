@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:59:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:11:35 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:50:30 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	move_mouse(int x, int y, t_data *cub)
 	else if (diff_x < -0.5)
 		rotate_right(cub, diff_x / 10);
 	mlx_mouse_get_pos(cub->mlx, cub->win, &mouse_x, &mouse_y);
-	if (mouse_x > SCREEN_WIDTH - 50 || mouse_y > SCREEN_HEIGHT - 50  || \
+	if (mouse_x > SCREEN_WIDTH - 50 || mouse_y > SCREEN_HEIGHT - 50 || \
 		mouse_x < 50 || mouse_y < 50)
 	{
 		mlx_mouse_move(cub->mlx, cub->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);

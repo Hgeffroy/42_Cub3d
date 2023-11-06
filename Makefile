@@ -33,6 +33,7 @@ SRCS_B		=	\
 				display/doors_display.c\
 				display/raycasting_doors.c\
 				display/minimap.c\
+				display/minimap_utils.c\
 				parsing/parsing_bonus.c\
 				play/hook_bonus.c\
 

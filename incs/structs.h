@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:05:29 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 07:54:11 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:26:03 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_minimap
 	int		center[2];
 
 }	t_minimap;
+
 typedef struct s_door
 {
 	int		x;

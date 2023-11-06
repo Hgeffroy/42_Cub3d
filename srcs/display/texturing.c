@@ -6,7 +6,7 @@
 /*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:49:05 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 07:58:40 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:54:35 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	draw_display(t_data *cub)
 		{
 			get_wall_color(cub, &wallray);
 			pixel_put(&(cub->display), wallray.x, \
-			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height, \
+			(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height - 1, \
 			wallray.color);
 			wallray.height -= 1;
 		}
