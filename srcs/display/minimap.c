@@ -23,6 +23,7 @@ float	minimap_ray(t_data *cub, float angle)
 	coord[1] = cub->player.fy;
 	pixel[0] = 7.f * TILE_SZ;
 	pixel[1] = 7.f * TILE_SZ;
+	color = H_ORANGE;
 	j = -1;
 	while ((cub->map[(int)coord[1]][(int)coord[0]] == '0' || \
 			(cub->map[(int)coord[1]][(int)coord[0]] == 'D' \
