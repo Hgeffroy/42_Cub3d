@@ -1,6 +1,6 @@
-NO ./assets/textures/sculk_like.xpm
-SO ./assets/textures/2x2_ancient_wall_greeny.xpm
-WE ./assets/textures/2x2_enchanted_wall_blue_in.xpm
+NO ./assets/textures/fractol_x4096.xpm
+SO ./assets/textures/cyberpunk_x2048.xpm
+WE ./assets/textures/neon_sunset_x2048.xpm
 EA ./assets/textures/magic_wall_x2048.xpm
 F 220, 100, 12
 C 225, 30, 87
