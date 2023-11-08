@@ -23,7 +23,7 @@ void	get_door_color(t_data *cub, t_wallray *wallray)
 {
 	int	x;
 	int	y;
-	
+
 	if (cub->ray.door_type == EAST || cub->ray.door_type == WEST)
 	{
 		x = wallray->y_impact;
@@ -32,7 +32,7 @@ void	get_door_color(t_data *cub, t_wallray *wallray)
 		if (y > cub->walls[DOOR].height - 1)
 			y = cub->walls[DOOR].height - 1;
 	}
-	else if (cub->ray.door_type == NORTH || cub->ray.door_type == SOUTH)
+	else
 	{
 		x = cub->walls[DOOR].width - wallray->x_impact;
 		y = cub->walls[DOOR].width - (int)(cub->walls[DOOR].height / 2

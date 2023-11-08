@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 09:27:34 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:17:17 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ float	minimap_ray(t_data *cub, float angle)
 	coord[1] = cub->player.fy;
 	pixel[0] = 7.f * TILE_SZ;
 	pixel[1] = 7.f * TILE_SZ;
+	color = H_ORANGE;
 	j = -1;
-	while ((cub->map[(int)coord[1]][(int)coord[0]] == '0' || \
-			(cub->map[(int)coord[1]][(int)coord[0]] == 'D' \
-			&& cub->doors[find_door(cub, coord[0], coord[1])].pos < 0.001)) && \
-			(pow(pixel[0] - 7 * TILE_SZ, 2)) + (pow(pixel[1] - 7 * TILE_SZ, 2)) \
-			< pow(3 * TILE_SZ, 2))
+	while ((cub->map[(int)coord[1]][(int)coord[0]] == '0'
+		|| (cub->map[(int)coord[1]][(int)coord[0]] == 'D'
+		&& cub->doors[find_door(cub, coord[0], coord[1])].pos < 0.001))
+		&& (pow(pixel[0] - 7 * TILE_SZ, 2)) + (pow(pixel[1] - 7 * TILE_SZ, 2))
+		< pow(3 * TILE_SZ, 2))
 	{
 		if ((H_ORANGE + 3 * ++j * (1 + 256)) % (256 * 256 * 256) > H_ORANGE)
 			color = H_ORANGE + 3 * j * (1 + 256);
@@ -88,11 +89,11 @@ void	draw_minimap(t_data *cub)
 	{
 		m.coord[1] = m.map_y_start;
 		m.display[1] = m.display_y_start;
-		while (cub->map[(int)m.coord[0]][(int)m.coord[1]] && \
-		m.coord[1] < cub->player.fx + 6)
+		while (cub->map[(int)m.coord[0]][(int)m.coord[1]]
+			&& m.coord[1] < cub->player.fx + 6)
 		{
-			if (m.display[0] * m.display[0] + m.display[1] * \
-			m.display[1] < 6 * 6 * TILE_SZ * TILE_SZ)
+			if (m.display[0] * m.display[0] + m.display[1]
+				* m.display[1] < 6 * 6 * TILE_SZ * TILE_SZ)
 				draw_tile(cub, m.display[1], m.display[0], m);
 			m.coord[1] += m.ratio;
 			m.display[1] += 0.5;

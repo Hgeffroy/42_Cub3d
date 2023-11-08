@@ -31,9 +31,9 @@ SRCS_B		=	\
 				$(SRCS)\
 				\
 				display/doors_display.c\
-				display/raycasting_doors.c\
 				display/minimap.c\
 				display/minimap_utils.c\
+				display/raycasting_doors.c\
 				parsing/parsing_bonus.c\
 				play/hook_bonus.c\
 
@@ -108,7 +108,7 @@ CC			:=	cc
 
 RM			:=	rm -rf
 
-CFLAGS		:=	-Wall -Wextra #-Werror -g3
+CFLAGS		:=	-Wall -Wextra -Werror -g3
 
 OPTI_F		:=	-O3 #-Ofast -march=native -fomit-frame-pointer -funroll-loops
 

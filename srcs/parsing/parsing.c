@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:49:53 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 17:22:31 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:23:52 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,10 @@ static void	_init_rgb(t_data *cub)
 
 static void	_init_cub(t_data *cub)
 {
-	cub->map_file = NULL;
+	ft_bzero(cub, 472);
 	cub->txr = _init_txr();
 	_init_rgb(cub);
 	cub->end_desc = -1;
-	cub->map = NULL;
-	cub->player.x = 0;
-	cub->player.y = 0;
-	cub->doors = NULL;
-	cub->start = 0;
-	cub->max_y = 0;
-	cub->max_x = 0;
 }
 
 void	clear_parsing(t_data *cub)

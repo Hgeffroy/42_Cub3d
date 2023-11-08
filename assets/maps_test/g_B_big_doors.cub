@@ -1,7 +1,7 @@
-NO ./assets/textures/North.xpm
-SO ./assets/textures/South.xpm
-WE ./assets/textures/West.xpm
-EA ./assets/textures/East.xpm
+NO ./assets/textures/fractol_x4096.xpm
+SO ./assets/textures/cyberpunk_x2048.xpm
+WE ./assets/textures/neon_sunset_x2048.xpm
+EA ./assets/textures/magic_wall_x2048.xpm
 F 220, 100, 12
 C 225, 30, 87
 
