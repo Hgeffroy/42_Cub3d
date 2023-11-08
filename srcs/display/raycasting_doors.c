@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static int	_test_north(t_data *cub, float angle, float *len, int doornb)
+static int	_ray_door_north(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -39,7 +39,7 @@ static int	_test_north(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-static int	_test_south(t_data *cub, float angle, float *len, int doornb)
+static int	_ray_door_south(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -66,7 +66,7 @@ static int	_test_south(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-static int	_test_west(t_data *cub, float angle, float *len, int doornb)
+static int	_ray_door_west(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -93,7 +93,7 @@ static int	_test_west(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-static int	_test_east(t_data *cub, float angle, float *len, int doornb)
+static int	_ray_door_east(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -120,10 +120,10 @@ static int	_test_east(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-int	test(t_data *cub, float angle, float *len, int optn)
+int	ray_door(t_data *cub, float angle, float *len, int optn)
 {
-	static t_ray_wall	tab[] = {&_test_north, &_test_south,
-		&_test_west, &_test_east};
+	static t_ray_wall	tab[] = {&_ray_door_north, &_ray_door_south,
+		&_ray_door_west, &_ray_door_east};
 	int					doornb;
 
 	if (optn)
