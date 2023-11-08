@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:26:26 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 09:27:55 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:30:18 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	draw_tile(t_data *cub, float a, float b, t_minimap m)
 
 	tmpa = a;
 	tmpb = b;
-	a = tmpa * cosf((-1) * cub->player.angle - M_PI_2) - \
-	tmpb * sinf((-1) * cub->player.angle - M_PI_2);
-	b = tmpa * sinf((-1) * cub->player.angle - M_PI_2) + \
-	tmpb * cosf((-1) * cub->player.angle - M_PI_2);
+	a = tmpa * cosf((-1) * cub->player.angle - M_PI_2)
+		- tmpb * sinf((-1) * cub->player.angle - M_PI_2);
+	b = tmpa * sinf((-1) * cub->player.angle - M_PI_2)
+		+ tmpb * cosf((-1) * cub->player.angle - M_PI_2);
 	if (cub->map[(int)m.coord[0]][(int)m.coord[1]] - '0' == FTILE
 		&& a + m.center[0] >= 0 && b + m.center[1] >= 0)
 		pixel_put(&(cub->display), a + m.center[0], b + m.center[1], H_WHITE);
@@ -68,10 +68,10 @@ void	draw_tile(t_data *cub, float a, float b, t_minimap m)
 		&& a + m.center[0] >= 0 && b + m.center[1] >= 0)
 	{
 		if (cub->doors[find_door(cub, m.coord[1], m.coord[0])].pos > 0.001)
-			pixel_put(&(cub->display), a + m.center[0], b + m.center[1], \
-																	H_BLUE);
+			pixel_put(&(cub->display), a + m.center[0], b + m.center[1],
+				H_BLUE);
 		else
-			pixel_put(&(cub->display), a + m.center[0], b + m.center[1], \
-																	H_WHITE);
+			pixel_put(&(cub->display), a + m.center[0], b + m.center[1],
+				H_WHITE);
 	}
 }

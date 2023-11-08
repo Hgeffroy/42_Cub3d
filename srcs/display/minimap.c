@@ -6,11 +6,19 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/06 11:17:17 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:37:37 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	_init_px_coor(float px[2], float coor[2], t_data *cub)
+{
+	coor[0] = cub->player.fx;
+	coor[1] = cub->player.fy;
+	px[0] = 7.f * TILE_SZ;
+	px[1] = 7.f * TILE_SZ;
+}
 
 float	minimap_ray(t_data *cub, float angle)
 {
@@ -19,10 +27,7 @@ float	minimap_ray(t_data *cub, float angle)
 	int		color;
 	int		j;
 
-	coord[0] = cub->player.fx;
-	coord[1] = cub->player.fy;
-	pixel[0] = 7.f * TILE_SZ;
-	pixel[1] = 7.f * TILE_SZ;
+	_init_px_coor(pixel, coord, cub);
 	color = H_ORANGE;
 	j = -1;
 	while ((cub->map[(int)coord[1]][(int)coord[0]] == '0'
@@ -42,7 +47,7 @@ float	minimap_ray(t_data *cub, float angle)
 	return (0);
 }
 
-void	draw_player(t_data *cub)
+static void	_draw_player(t_data *cub)
 {
 	int	center[2];
 
@@ -52,7 +57,7 @@ void	draw_player(t_data *cub)
 	draw_circle(cub, center, PLAYER_SZ, H_BLUE);
 }
 
-void	set_minimap(t_data *cub, t_minimap *minimap)
+static void	_set_minimap(t_data *cub, t_minimap *minimap)
 {
 	minimap->ratio = 1.f / (2 * TILE_SZ);
 	minimap->center[0] = TILE_SZ * 7;
@@ -84,7 +89,7 @@ void	draw_minimap(t_data *cub)
 {
 	t_minimap	m;
 
-	set_minimap(cub, &m);
+	_set_minimap(cub, &m);
 	while (cub->map[(int)m.coord[0]] && m.coord[0] < cub->player.fy + 6)
 	{
 		m.coord[1] = m.map_y_start;
@@ -101,5 +106,5 @@ void	draw_minimap(t_data *cub)
 		m.coord[0] += m.ratio;
 		m.display[0] += 0.5;
 	}
-	draw_player(cub);
+	_draw_player(cub);
 }
