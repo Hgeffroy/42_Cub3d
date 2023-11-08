@@ -128,7 +128,8 @@ endif
 IGN_LEAK	:=	valgrind_ignore_leaks.txt
 
 VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all\
-				--track-fds=yes --show-mismatched-frees=yes --read-var-info=yes -s
+				--track-fds=yes --show-mismatched-frees=yes --read-var-info=yes --track-origins=yes -s
+#				--default-suppressions=no
 
 ########################################################################################################################
 #                                                        COLORS                                                        #

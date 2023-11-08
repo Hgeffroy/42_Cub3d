@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:-s    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:25:15 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/06 07:58:40 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:46:42 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,17 @@ int	get_color(t_walltext w, int x, int y)
 void	init_mlx(t_data *cub)
 {
 	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		return (mlx_close(cub));
 	cub->win = mlx_new_window(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
+	if (!cub->win)
+		return (mlx_close(cub));
 	cub->display.img = mlx_new_image(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (!cub->display.img)
+		return (mlx_close(cub));
 	cub->display.addr = mlx_get_data_addr(cub->display.img,
 			&cub->display.bits_per_pixel, &cub->display.line_len,
 			&cub->display.endian);
+	if (!cub->display.addr)
+		return (mlx_close(cub));
 }

@@ -54,7 +54,8 @@
 # define E_NPLAYER			"There is no player\n"
 # define E_MNCLOSED			"Map not closed\n"
 # define E_OPNTXR			"Can't open texture :%s\n"
-/* */
+
+/* legal charset */
 # define M_CHARSET			"01 NSEW\n"
 # define B_CHARSET			"01 NSEWD\n"
 

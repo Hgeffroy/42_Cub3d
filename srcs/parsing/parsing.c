@@ -36,7 +36,6 @@ static void	_init_rgb(t_data *cub)
 static void	_init_cub(t_data *cub)
 {
 	ft_bzero(cub, sizeof(*cub));
-//	ft_bzero(&cub->txr, sizeof(cub->txr));
 	cub->txr = _init_txr();
 	_init_rgb(cub);
 	cub->end_desc = -1;
