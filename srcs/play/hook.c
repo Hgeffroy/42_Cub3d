@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:59:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:07:50 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/06 11:38:02 by hgeffroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ int	press_key(int keycode, t_data *cub)
 		cub->movement.rotate_left = true;
 	if (keycode == right_key)
 		cub->movement.rotate_right = true;
-	if (keycode == up_key || keycode == w_key)
+	if (keycode == up_key)
+		cub->movement.move_up_arr = true;
+	if (keycode == w_key)
 		cub->movement.move_up = true;
-	if (keycode == down_key || keycode == s_key)
+	if (keycode == down_key)
+		cub->movement.move_down_arr = true;	
+	if (keycode == s_key)
 		cub->movement.move_down = true;
 	if (keycode == a_key)
 		cub->movement.move_left = true;
@@ -39,9 +43,13 @@ int	release_key(int keycode, t_data *cub)
 		cub->movement.rotate_left = false;
 	if (keycode == right_key)
 		cub->movement.rotate_right = false;
-	if (keycode == up_key || keycode == w_key)
+	if (keycode == up_key)
+		cub->movement.move_up_arr = false;
+	if (keycode == w_key)
 		cub->movement.move_up = false;
-	if (keycode == down_key || keycode == s_key)
+	if (keycode == down_key)
+		cub->movement.move_down_arr = false;	
+	if (keycode == s_key)
 		cub->movement.move_down = false;
 	if (keycode == a_key)
 		cub->movement.move_left = false;
