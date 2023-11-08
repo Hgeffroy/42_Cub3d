@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:49:53 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/06 13:23:52 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:53:30 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	_init_rgb(t_data *cub)
 
 static void	_init_cub(t_data *cub)
 {
-	ft_bzero(cub, 472);
+	ft_bzero(cub, sizeof(*cub));
+//	ft_bzero(&cub->txr, sizeof(cub->txr));
 	cub->txr = _init_txr();
 	_init_rgb(cub);
 	cub->end_desc = -1;

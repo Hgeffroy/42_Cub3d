@@ -32,4 +32,14 @@
 # include "play.h"
 # include "colors.h"
 
+# ifndef IS_BONUS
+#  define BONUS		0
+#  define CHARSET	M_CHARSET
+#  define FFCHARSET	"NSEW0"
+# else
+#  define BONUS		1
+#  define CHARSET	B_CHARSET
+#  define FFCHARSET	"NSEW0D"
+# endif
+
 #endif

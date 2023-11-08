@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:17:17 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:04:24 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:36:34 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 		return (ft_fdprintf(2, E_NARGS), 1);
 	if (parsing(av[1], &cub))
 		return (0);
-	play(&cub);
+	if (play(&cub) < 0)
+		return (mlx_close(&cub), 1);
 	return (0);
 }
