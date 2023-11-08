@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:03:06 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:31:51 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	set_impact(t_data *cub, float angle, float len)
 		doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
 		if (cub->ray.door_type == NORTH || cub->ray.door_type == SOUTH)
 		{
-			cub->ray.impact[0] = cub->doors[doornb].pos - (cub->player.fx + \
-				len * cosf(angle) - (int)(cub->player.fx + len * cosf(angle)));
+			cub->ray.impact[0] = cub->doors[doornb].pos - (cub->player.fx + len
+					* cosf(angle) - (int)(cub->player.fx + len * cosf(angle)));
 			cub->ray.impact[1] = cub->player.fy + len * sinf(angle)
 				- (int)(cub->player.fy + len * sinf(angle));
 		}
@@ -105,8 +105,8 @@ void	set_impact(t_data *cub, float angle, float len)
 		{
 			cub->ray.impact[0] = cub->player.fx + len * cosf(angle)
 				- (int)(cub->player.fx + len * cosf(angle));
-			cub->ray.impact[1] = cub->doors[doornb].pos - (cub->player.fy + \
-				len * sinf(angle) - (int)(cub->player.fy + len * sinf(angle)));
+			cub->ray.impact[1] = cub->doors[doornb].pos - (cub->player.fy + len
+					* sinf(angle) - (int)(cub->player.fy + len * sinf(angle)));
 		}
 		return ;
 	}
@@ -127,8 +127,9 @@ float	raycasting(t_data *cub, float angle, int optn)
 		len = ray_step(cub);
 		if (cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] != '0')
 		{
-			if (BONUS && \
-				cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]] == 'D')
+			if (BONUS
+				&& cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]]
+				== 'D')
 			{
 				if (test(cub, angle, &len, optn))
 					break ;

@@ -12,27 +12,7 @@
 
 #include "cub3D.h"
 
-int	test_north(t_data *cub, float angle, float *len, int doornb);
-int	test_south(t_data *cub, float angle, float *len, int doornb);
-int	test_west(t_data *cub, float angle, float *len, int doornb);
-int	test_east(t_data *cub, float angle, float *len, int doornb);
-
-int	test(t_data *cub, float angle, float *len, int optn)
-{
-	static t_ray_wall	tab[] = {&test_north, &test_south,
-		&test_west, &test_east};
-	int					doornb;
-
-	if (optn)
-	{
-		cub->ray.wall_found = DOOR;
-		return (1);
-	}
-	doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
-	return ((*tab[cub->ray.wall_found])(cub, angle, len, doornb));
-}
-
-int	test_north(t_data *cub, float angle, float *len, int doornb)
+static int	_test_north(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -59,7 +39,7 @@ int	test_north(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-int	test_south(t_data *cub, float angle, float *len, int doornb)
+static int	_test_south(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -86,7 +66,7 @@ int	test_south(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-int	test_west(t_data *cub, float angle, float *len, int doornb)
+static int	_test_west(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -113,7 +93,7 @@ int	test_west(t_data *cub, float angle, float *len, int doornb)
 	return (0);
 }
 
-int	test_east(t_data *cub, float angle, float *len, int doornb)
+static int	_test_east(t_data *cub, float angle, float *len, int doornb)
 {
 	float	dx;
 	float	dy;
@@ -138,4 +118,19 @@ int	test_east(t_data *cub, float angle, float *len, int doornb)
 		return (1);
 	}
 	return (0);
+}
+
+int	test(t_data *cub, float angle, float *len, int optn)
+{
+	static t_ray_wall	tab[] = {&_test_north, &_test_south,
+		&_test_west, &_test_east};
+	int					doornb;
+
+	if (optn)
+	{
+		cub->ray.wall_found = DOOR;
+		return (1);
+	}
+	doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
+	return (tab[cub->ray.wall_found](cub, angle, len, doornb));
 }

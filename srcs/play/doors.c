@@ -30,8 +30,8 @@ int	set_door(t_data *cub)
 {
 	int	doornb;
 
-	if (raycasting(cub, cub->player.angle, 1) < 3 && \
-		cub->ray.wall_found == DOOR)
+	if (raycasting(cub, cub->player.angle, 1) < 3
+		&& cub->ray.wall_found == DOOR)
 	{
 		doornb = find_door(cub, cub->ray.map_check[0], cub->ray.map_check[1]);
 		if (cub->doors[doornb].pos > 0.5 && cub->doors[doornb].state == NEUTRAL)
