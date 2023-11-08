@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:00:47 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/08 11:37:37 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:30:10 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	_draw_player(t_data *cub)
 
 static void	_set_minimap(t_data *cub, t_minimap *minimap)
 {
+	ft_bzero(minimap, sizeof(*minimap));
 	minimap->ratio = 1.f / (2 * TILE_SZ);
 	minimap->center[0] = TILE_SZ * 7;
 	minimap->center[1] = TILE_SZ * 7;
@@ -78,13 +79,6 @@ static void	_set_minimap(t_data *cub, t_minimap *minimap)
 	}
 }
 
-/*
-i et j sont les positions en flottants sur la minimap (Le tableau). 
-Ils sont donc strictement positifs.
-a et b sont les positions en pixel sur le display dont le repere est au center 
-de la minimap.
-Donc quand j'augmente a de x, i augmente de ratio.
-*/
 void	draw_minimap(t_data *cub)
 {
 	t_minimap	m;

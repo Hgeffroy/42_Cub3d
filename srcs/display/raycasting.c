@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:06:56 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/08 11:31:51 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:52:47 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ray_init(t_data *cub, float angle)
 		angle -= 2 * M_PI;
 	if (angle < 0)
 		angle += 2 * M_PI;
-	ft_bzero(cub->ray.ray_len, 2);
-	ft_bzero(cub->ray.step, 2);
+	ft_bzero(&cub->ray, sizeof(cub->ray));
 	cub->ray.map_check[0] = (int)cub->player.fx;
 	cub->ray.map_check[1] = (int)cub->player.fy;
 	cub->ray.ray_start[0] = cub->player.fx;

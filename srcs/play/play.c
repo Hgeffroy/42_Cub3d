@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgeffroy <hgeffroy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/04 11:01:09 by hgeffroy         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:52:47 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ int	mlx_close(t_data *cub)
 	int	i;
 
 	i = 0;
-	mlx_destroy_image(cub->mlx, cub->display.img);
+	if (cub->display.img)
+		mlx_destroy_image(cub->mlx, cub->display.img);
 	while (i < 4)
 	{
-		mlx_destroy_image(cub->mlx, cub->walls[i].img);
+		if (cub->walls[i].img)
+			mlx_destroy_image(cub->mlx, cub->walls[i].img);
 		i++;
 	}
-	if (BONUS)
+	if (BONUS && cub->walls[DOOR].img)
 		mlx_destroy_image(cub->mlx, cub->walls[DOOR].img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
 	clear_parsing(cub);
-	exit (0);
+	exit (1);
 }
 
 int	init_game(t_data *cub)
@@ -47,7 +49,7 @@ int	init_game(t_data *cub)
 	init_mlx(cub);
 	if (init_walls(cub) < 0)
 		return (-1);
-	ft_bzero(&(cub->movement), 8);
+	ft_bzero(&cub->movement, sizeof(cub->movement));
 	return (0);
 }
 
