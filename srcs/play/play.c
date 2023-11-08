@@ -97,6 +97,7 @@ int	play(t_data *cub)
 	mlx_hook(cub->win, 3, 1L << 1, &release_key, cub);
 	mlx_hook(cub->win, 4, 1L << 2, &press_mouse, cub);
 	mlx_hook(cub->win, 5, 1L << 3, &release_mouse, cub);
+	mlx_hook(cub->win, 17, 1L << 17, &mlx_close, cub);
 	if (BONUS)
 		mlx_hook(cub->win, 6, 1L << 6, &move_mouse, cub);
 	mlx_loop_hook(cub->mlx, &mlx_play, cub);

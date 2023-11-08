@@ -130,7 +130,7 @@ float	raycasting(t_data *cub, float angle, int optn)
 				&& cub->map[cub->ray.map_check[1]][cub->ray.map_check[0]]
 				== 'D')
 			{
-				if (test(cub, angle, &len, optn))
+				if (ray_door(cub, angle, &len, optn))
 					break ;
 			}
 			else
