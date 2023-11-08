@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-int	mlx_close(t_data *cub)
+void	mlx_close(t_data *cub)
 {
 	int	i;
 
@@ -27,8 +27,10 @@ int	mlx_close(t_data *cub)
 	}
 	if (BONUS && cub->walls[DOOR].img)
 		mlx_destroy_image(cub->mlx, cub->walls[DOOR].img);
-	mlx_destroy_window(cub->mlx, cub->win);
-	mlx_destroy_display(cub->mlx);
+	if (cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
+	if (cub->mlx)
+		mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
 	clear_parsing(cub);
 	exit (1);

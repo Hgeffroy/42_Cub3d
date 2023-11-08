@@ -23,7 +23,7 @@ void	rotate_left(t_data *cub, int ratio);
 void	rotate_right(t_data *cub, int ratio);
 int		play(t_data *cub);
 
-int		mlx_close(t_data *cub);
+void	mlx_close(t_data *cub);
 
 int		move_mouse(int x, int y, t_data *cub);
 int		release_mouse(int keycode, int x, int y, t_data *cub);
