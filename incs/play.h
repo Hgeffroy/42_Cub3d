@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:01:00 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:10:41 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 17:01:48 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotate_left(t_data *cub, int ratio);
 void	rotate_right(t_data *cub, int ratio);
 int		play(t_data *cub);
 
-void	mlx_close(t_data *cub);
+int		mlx_close(t_data *cub);
 
 int		move_mouse(int x, int y, t_data *cub);
 int		release_mouse(int keycode, int x, int y, t_data *cub);

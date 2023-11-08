@@ -33,7 +33,8 @@ typedef struct s_textures
 	char	*east;
 }	t_textures;
 
-typedef struct s_colors
+
+typedef struct s_colors //to del ?
 {
 	char	*rgb_floor;
 	char	*rgb_roof;
@@ -41,7 +42,8 @@ typedef struct s_colors
 	int		hexa_roof;
 }	t_colors;
 
-typedef struct s_map
+
+typedef struct s_map //to del ?
 {
 	char	**map;
 	char	**map_cpy;

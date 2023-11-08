@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:01:19 by xcharra           #+#    #+#             */
-/*   Updated: 2023/11/08 17:01:20 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/08 17:01:29 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	init_mlx(t_data *cub)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
-		return (mlx_close(cub));
+		return ((void)mlx_close(cub));
 	cub->win = mlx_new_window(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	if (!cub->win)
-		return (mlx_close(cub));
+		return ((void)mlx_close(cub));
 	cub->display.img = mlx_new_image(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cub->display.img)
-		return (mlx_close(cub));
+		return ((void)mlx_close(cub));
 	cub->display.addr = mlx_get_data_addr(cub->display.img,
 			&cub->display.bits_per_pixel, &cub->display.line_len,
 			&cub->display.endian);
 	if (!cub->display.addr)
-		return (mlx_close(cub));
+		return ((void)mlx_close(cub));
 }
