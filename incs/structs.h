@@ -131,6 +131,7 @@ typedef struct s_door
 
 typedef struct s_data
 {
+	int			exit_code;
 	void		*mlx;
 	void		*win;
 	char		**map;

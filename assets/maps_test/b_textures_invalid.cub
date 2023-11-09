@@ -1,7 +1,7 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/x
-EA textures/test/east.xpm
+NO assets/textures/North.xpm
+SO assets/textures/South.xpm
+WE assets/textures/W
+EA assets/textures/East.xpm
 
 F 20,20,20
 C 200,200,200

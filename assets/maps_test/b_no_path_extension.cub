@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+assets/textures/North
+assets/textures/South
+assets/textures/West
+assets/textures/East
 F 220, 100, 12
 C 225, 30, 87
 
