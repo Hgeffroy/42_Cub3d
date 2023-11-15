@@ -1,6 +1,9 @@
 ########################################################################################################################
 #                                                       VARIABLE                                                       #
 ########################################################################################################################
+SRCS_FILES	=	$(SRCS)\
+				$(SRCS_B)
+
 SRCS		:=	\
 				cub3D.c\
 				\
@@ -25,7 +28,7 @@ SRCS		:=	\
 				play/init_walls.c\
 				play/movements.c\
 				play/play.c\
-				play/rotation.c\
+				play/rotation.c
 
 SRCS_B		=	\
 				$(SRCS)\
@@ -35,7 +38,7 @@ SRCS_B		=	\
 				display/minimap_utils.c\
 				display/raycasting_doors.c\
 				parsing/parsing_bonus.c\
-				play/hook_bonus.c\
+				play/hook_bonus.c
 
 HEAD		:=	\
 				cub3D.h\
@@ -227,4 +230,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY		:	all bonus leaks run fsan banner clean fclean re
+.PHONY		:	all bonus leaks bleaks run brun fsan bfsan banner clean fclean re

@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:46:01 by xcharra           #+#    #+#             */
-/*   Updated: 2023/10/31 16:00:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/15 11:23:29 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static int	_get_real_size_map(t_data *cub)
 		i++;
 	if (cub->map[i])
 		return (ft_fdprintf(2, E_THAMAP, cub->map[i]), 1);
+	if (cub->max_x * cub->max_y > 40000)
+		return (ft_fdprintf(2, E_MAPLARGE, cub->max_x, cub->max_y), 1);
 	return (0);
 }
 
