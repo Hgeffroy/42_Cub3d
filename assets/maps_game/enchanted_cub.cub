@@ -1,0 +1,22 @@
+NO ./assets/textures/enchanted_forest.xpm
+SO ./assets/textures/enchanted_path.xpm
+WE ./assets/textures/enchanted_river.xpm
+EA ./assets/textures/mossy_forest.xpm
+
+F 74,47,39
+C 147,34,64
+
+       111
+    111000111
+ 111000000000111
+10000000000000001
+10000000000000W01
+10000000000000001
+ 100110000011001
+  11  11D11  11
+       101
+       101
+       101
+       101
+       101
+      11111

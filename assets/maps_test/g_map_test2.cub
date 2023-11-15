@@ -1,12 +1,12 @@
-    WE     ./assets/textures/West.xpm
+    WE     ./assets/textures/west.xpm
 
-NO    ./assets/textures/North.xpm
+NO    ./assets/textures/north.xpm
 F    220,   100 ,  12
 
- EA   ./assets/textures/East.xpm
+ EA   ./assets/textures/east.xpm
         C          225  ,30 , 87
 
-      SO      ./assets/textures/South.xpm
+      SO      ./assets/textures/south.xpm
 
 
 

@@ -3,8 +3,8 @@ SO ./assets/textures/newton_x8192.xpm
 WE ./assets/textures/reverse_mandelbrot_x8192.xpm
 EA ./assets/textures/julia_third_x8192.xpm
 
-F 0, 0, 0
-C 4, 170, 182
+F 17,31,116
+C 1,160,112
 
                                        1111
                                       100001
