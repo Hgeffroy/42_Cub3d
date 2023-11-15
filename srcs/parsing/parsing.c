@@ -38,6 +38,7 @@ static void	_init_cub(t_data *cub)
 	ft_bzero(cub, sizeof(*cub));
 	cub->txr = _init_txr();
 	_init_rgb(cub);
+	cub->exit_code = 0;
 	cub->end_desc = -1;
 }
 

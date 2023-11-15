@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:59:10 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/08 13:40:09 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/15 11:25:16 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define SPEED				0.04
 # define SCREEN_HEIGHT		960
 # define SCREEN_WIDTH		1707
-# define DOORTXR			"./assets/textures/North.xpm"
+# define DOORTXR			"./assets/textures/magic_wall_x2048.xpm"
 
 /* error messages */
 # define E_NARGS			"Please enter a single argument\n"
@@ -53,8 +53,8 @@
 # define E_MPLAYER			"There is more than one player\n"
 # define E_NPLAYER			"There is no player\n"
 # define E_MNCLOSED			"Map not closed\n"
-# define E_OPNTXR			"Can't open texture :%s\n"
-
+# define E_OPNTXR			"Can't open texture: %s\n"
+# define E_MAPLARGE			"Map too large (x: %d * y: %d) Max 200 * 200\n"
 /* legal charset */
 # define M_CHARSET			"01 NSEW\n"
 # define B_CHARSET			"01 NSEWD\n"

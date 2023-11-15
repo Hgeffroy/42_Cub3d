@@ -6,13 +6,13 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:58:35 by hgeffroy          #+#    #+#             */
-/*   Updated: 2023/11/08 13:52:47 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/09 12:19:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	mlx_close(t_data *cub)
+int	mlx_close(t_data *cub)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ void	mlx_close(t_data *cub)
 		mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
 	clear_parsing(cub);
-	exit (1);
+	exit (cub->exit_code);
 }
 
 int	init_game(t_data *cub)
