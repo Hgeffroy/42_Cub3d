@@ -34,7 +34,7 @@
 # define SPEED				0.04
 # define SCREEN_HEIGHT		960
 # define SCREEN_WIDTH		1707
-# define DOORTXR			"./assets/textures/magic_wall_x2048.xpm"
+# define DOORTXR			"./assets/textures/void_portal.xpm"
 
 /* error messages */
 # define E_NARGS			"Please enter a single argument\n"
