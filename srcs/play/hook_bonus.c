@@ -30,8 +30,8 @@ int	move_mouse(int x, int y, t_data *cub)
 	if (mouse_x > SCREEN_WIDTH - 50 || mouse_y > SCREEN_HEIGHT - 50
 		|| mouse_x < 50 || mouse_y < 50)
 	{
-		mlx_mouse_move(cub->mlx, cub->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-		cub->movement.last_x = SCREEN_WIDTH / 2;
+		mlx_mouse_move(cub->mlx, cub->win, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
+		cub->movement.last_x = SCREEN_WIDTH * 0.5;
 		return (0);
 	}
 	cub->movement.last_x += diff_x;

@@ -18,7 +18,7 @@ void	draw_floor_ceiling(t_data *cub)
 	int	j;
 
 	j = 0;
-	while (j < SCREEN_HEIGHT / 2)
+	while (j < SCREEN_HEIGHT * 0.5)
 	{
 		i = 0;
 		while (i < SCREEN_WIDTH)
@@ -49,7 +49,7 @@ void	wallray_init(t_data *cub, t_wallray *wallray)
 
 void	wallray_init_col(t_data *cub, t_wallray *wallray)
 {
-	wallray->angle = atanf((wallray->x + 0.0001 - (SCREEN_WIDTH / 2))
+	wallray->angle = atanf((wallray->x + 0.0001 - (SCREEN_WIDTH * 0.5))
 			/ (SCREEN_WIDTH * 6 / (2 * M_PI))) + cub->player.angle + 0.0001;
 	wallray->len = raycasting(cub, wallray->angle, 0)
 		* cosf(wallray->angle - cub->player.angle);
@@ -57,7 +57,7 @@ void	wallray_init_col(t_data *cub, t_wallray *wallray)
 	init_col(cub, wallray);
 	if (wallray->height > SCREEN_HEIGHT)
 		wallray->height = SCREEN_HEIGHT;
-	wallray->half_height = wallray->height / 2;
+	wallray->half_height = wallray->height * 0.5;
 }
 
 int	draw_display(t_data *cub)
@@ -73,7 +73,7 @@ int	draw_display(t_data *cub)
 		{
 			get_wall_color(cub, &wallray);
 			pixel_put(&(cub->display), wallray.x,
-				(SCREEN_HEIGHT / 2) + wallray.height - wallray.half_height - 1,
+				(SCREEN_HEIGHT * 0.5) + wallray.height - wallray.half_height - 1,
 				wallray.color);
 			wallray.height -= 1;
 		}
