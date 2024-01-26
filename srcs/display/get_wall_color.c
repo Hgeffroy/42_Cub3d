@@ -18,7 +18,7 @@ static void	_get_north_color(t_data *cub, t_wallray *wallray)
 	int	y;
 
 	x = wallray->x_impact;
-	y = cub->walls[NORTH].width - (int)(cub->walls[NORTH].height / 2
+	y = cub->walls[NORTH].width - (int)(cub->walls[NORTH].height * 0.5
 			- (wallray->height - wallray->half_height) * wallray->y_ratio);
 	if (y > cub->walls[NORTH].height - 1)
 		y = cub->walls[NORTH].height - 1;
@@ -31,7 +31,7 @@ static void	_get_south_color(t_data *cub, t_wallray *wallray)
 	int	y;
 
 	x = cub->walls[SOUTH].width - wallray->x_impact;
-	y = cub->walls[SOUTH].width - (int)(cub->walls[SOUTH].height / 2
+	y = cub->walls[SOUTH].width - (int)(cub->walls[SOUTH].height * 0.5
 			- (wallray->height - wallray->half_height) * wallray->y_ratio);
 	if (y > cub->walls[SOUTH].height - 1)
 		y = cub->walls[SOUTH].height - 1;
@@ -44,7 +44,7 @@ static void	_get_west_color(t_data *cub, t_wallray *wallray)
 	int	y;
 
 	x = cub->walls[WEST].width - wallray->y_impact;
-	y = cub->walls[WEST].width - (int)(cub->walls[WEST].height / 2
+	y = cub->walls[WEST].width - (int)(cub->walls[WEST].height * 0.5
 			- (wallray->height - wallray->half_height) * wallray->y_ratio);
 	if (y > cub->walls[WEST].height - 1)
 		y = cub->walls[WEST].height - 1;
@@ -57,7 +57,7 @@ static void	_get_east_color(t_data *cub, t_wallray *wallray)
 	int	y;
 
 	x = wallray->y_impact;
-	y = cub->walls[EAST].width - (int)(cub->walls[EAST].height / 2
+	y = cub->walls[EAST].width - (int)(cub->walls[EAST].height * 0.5
 			- (wallray->height - wallray->half_height) * wallray->y_ratio);
 	if (y > cub->walls[EAST].height - 1)
 		y = cub->walls[EAST].height - 1;
