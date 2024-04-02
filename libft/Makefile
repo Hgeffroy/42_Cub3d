@@ -147,4 +147,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY: all debug leaks re clean fclean
+.PHONY		:	all debug leaks re clean fclean
