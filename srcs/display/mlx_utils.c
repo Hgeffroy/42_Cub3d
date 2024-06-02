@@ -12,9 +12,9 @@
 
 #include "cub3D.h"
 
-inline void    pixel_put(t_img *data, int x, int y, int color)
+inline void	pixel_put(t_img *data, int x, int y, int color)
 {
-    ((int *)data->addr)[y * (data->line_len >> 2) + x] = color;
+	((int *)data->addr)[y * (data->line_len >> 2) + x] = color;
 }
 
 int	get_color(t_walltext w, int x, int y)

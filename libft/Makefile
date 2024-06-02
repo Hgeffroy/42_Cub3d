@@ -1,103 +1,150 @@
-SRCS			=	ft_atoi.c\
-					ft_atoi_safe.c\
-					ft_atoll.c\
-					ft_bzero.c\
-					ft_calloc.c\
-					ft_dtoa.c\
-					ft_fdprintf.c\
-					ft_isalnum.c\
-					ft_isalpha.c\
-					ft_isascii.c\
-					ft_ischarset.c\
-					ft_isdigit.c\
-					ft_isprint.c\
-					ft_itoa.c\
-					ft_lstadd_back.c\
-					ft_lstadd_front.c\
-					ft_lstclear.c\
-					ft_lstdelone.c\
-					ft_lstiter.c\
-					ft_lstlast.c\
-					ft_lstmap.c\
-					ft_lstnew.c\
-					ft_lstsize.c\
-					ft_memchr.c\
-					ft_memcmp.c\
-					ft_memcpy.c\
-					ft_memmove.c\
-					ft_memset.c\
-					ft_printf.c\
-					ft_putchar_fd.c\
-					ft_putchar.c\
-					ft_putendl_fd.c\
-					ft_putnbr_base.c\
-					ft_putnbr_fd.c\
-					ft_putnbr.c\
-					ft_putstr_fd.c\
-					ft_putstr.c\
-					ft_putunbr.c\
-					ft_split.c\
-					ft_strchr.c\
-					ft_strdup.c\
-					ft_strndup.c\
-					ft_strischarset.c\
-					ft_striteri.c\
-					ft_strjoin.c\
-					ft_strlcat.c\
-					ft_strlcpy.c\
-					ft_strlen.c\
-					ft_strmapi.c\
-					ft_strcmp.c\
-					ft_strncmp.c\
-					ft_strnstr.c\
-					ft_strrchr.c\
-					ft_strtrim.c\
-					ft_substr.c\
-					ft_tabdup.c\
-					ft_tabfree.c\
-					ft_tolower.c\
-					ft_toupper.c\
-					get_next_line.c\
+########################################################################################################################
+#                                                       VARIABLE                                                       #
+########################################################################################################################
+INCS		:=	\
+				libft.h\
 
-SRCS_D			=	srcs/
+SRCS		:=	\
+				ft_atoi.c\
+				ft_atoi_safe.c\
+				ft_atoll.c\
+				ft_bzero.c\
+				ft_calloc.c\
+				ft_dtoa.c\
+				ft_fdprintf.c\
+				ft_isalnum.c\
+				ft_isalpha.c\
+				ft_isascii.c\
+				ft_ischarset.c\
+				ft_isdigit.c\
+				ft_isprint.c\
+				ft_itoa.c\
+				ft_lstadd_back.c\
+				ft_lstadd_front.c\
+				ft_lstclear.c\
+				ft_lstdelone.c\
+				ft_lstiter.c\
+				ft_lstlast.c\
+				ft_lstmap.c\
+				ft_lstnew.c\
+				ft_lstsize.c\
+				ft_memchr.c\
+				ft_memcmp.c\
+				ft_memcpy.c\
+				ft_memmove.c\
+				ft_memset.c\
+				ft_printf.c\
+				ft_putchar_fd.c\
+				ft_putchar.c\
+				ft_putendl_fd.c\
+				ft_putnbr_base.c\
+				ft_putnbr_fd.c\
+				ft_putnbr.c\
+				ft_putstr_fd.c\
+				ft_putstr.c\
+				ft_putunbr.c\
+				ft_split.c\
+				ft_strchr.c\
+				ft_strdup.c\
+				ft_strndup.c\
+				ft_strischarset.c\
+				ft_striteri.c\
+				ft_strjoin.c\
+				ft_strlcat.c\
+				ft_strlcpy.c\
+				ft_strlen.c\
+				ft_strmapi.c\
+				ft_strcmp.c\
+				ft_strncmp.c\
+				ft_strnstr.c\
+				ft_strrchr.c\
+				ft_strtrim.c\
+				ft_substr.c\
+				ft_tabdup.c\
+				ft_tabfree.c\
+				ft_tolower.c\
+				ft_toupper.c\
+				get_next_line.c\
 
-OBJS			=	$(SRCS:%.c=$(OBJS_D)%.o)
+INCS_D		:=	incs/
 
-OBJS_D			=	objs/
+SRCS_D		:=	srcs/
 
-HEAD			=	libft.h
+OBJS_D		:=	objs/
 
-HEAD_D			=	incs/
+DEPS_D		:=	deps/
 
-NAME			=	libft.a
+OBJS		:=	$(SRCS:%.c=$(OBJS_D)%.o)
 
-AR				=	ar
+DEPS		:=	$(SRCS:%.c=$(DEPS_D)%.d)
 
-ARFLAGS			=	rcs
+NAME		:=	libft.a
 
-CC				=	cc
+########################################################################################################################
+#                                                        FLAGS                                                         #
+########################################################################################################################
+CC			:=	cc
 
-RM				=	rm -rf
+AR			:=	ar
 
-CFLAGS			=	-Wall -Wextra -Werror -g3
+RM			:=	rm -rf
 
-all				:	$(NAME)
+IFLAGS		:=	-I $(INCS_D)
 
-$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD)
-				$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+DFLAGS		=	-MMD -MP -MT $@ -MF $(DEPS_D)$*.d
 
-$(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD)
-				$(CC) $(CFLAGS) -I$(HEAD_D) -c $< -o $@
+CFLAGS		=	-Wall -Wextra -Werror -g3 $(IFLAGS)
 
-clean			:
-				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
+ARFLAGS		=	rcs
+########################################################################################################################
+#                                                        COLORS                                                        #
+########################################################################################################################
+BLUE		:=	\001\033[34m\002
 
-fclean			:	clean
-				$(RM) $(NAME) $(OBJS_B)
+BOLD		:=	\001\033[1m\002
 
-$(OBJS_D)		:
-				mkdir -p $(OBJS_D)
+ITALIC		:=	\001\033[3m\002
 
-re				:	fclean all
+RESET		:=	\001\033[0m\002
 
-.PHONY			:	all clean fclean re
+########################################################################################################################
+#                                                        RULES                                                         #
+########################################################################################################################
+-include $(DEPS)
+
+.DEFAULT_GOAL = all
+
+all			:	$(NAME) banner
+
+$(NAME)		:	$(OBJS)
+			$(AR) $(ARFLAGS) -o $(NAME) $(OBJS)
+
+$(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.c | $(OBJS_D) $(DEPS_D)
+			$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+
+$(OBJS_D)	:
+			mkdir -p $(OBJS_D)
+
+$(DEPS_D)	:
+			mkdir -p $(DEPS_D)
+
+banner		:
+			@echo -e '$(BLUE)'
+			@echo -e '    __    _ __    ______ '
+			@echo -e '   / /   (_) /_  / __/ /_'
+			@echo -e '  / /   / / __ \/ /_/ __/'
+			@echo -e ' / /___/ / /_/ / __/ /_  '
+			@echo -e '/_____/_/_.___/_/  \__/  '
+			@echo -e '$(BOLD)''$(ITALIC)'
+			@echo -e '              🍦  xcharra'
+			@echo -e '$(RESET)'
+
+clean		:
+			$(RM) $(OBJS) $(OBJS_D) $(DEPS_D)
+
+fclean		:	clean
+			$(RM) $(NAME)
+
+re			:	fclean all
+
+.PHONY		:	all debug leaks re clean fclean

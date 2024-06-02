@@ -73,7 +73,8 @@ int	draw_display(t_data *cub)
 		{
 			get_wall_color(cub, &wallray);
 			pixel_put(&(cub->display), wallray.x,
-				(SCREEN_HEIGHT * 0.5) + wallray.height - wallray.half_height - 1,
+				(SCREEN_HEIGHT * 0.5) + wallray.height
+				- wallray.half_height - 1,
 				wallray.color);
 			wallray.height -= 1;
 		}
